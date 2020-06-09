@@ -1,22 +1,22 @@
-console.log("connected")
+console.log("connected");
 var registerForm = document.getElementsByClassName("register-form")[0];
 
 registerForm.onsubmit = (e) => {
   e.preventDefault();
-  var name = document.getElementById('name').value 
+  var name = document.getElementById("name").value;
   var phone = document.getElementById("phone").value;
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
   var address = document.getElementById("address").value;
-  console.log(name, phone,email,password,address)
+  console.log(name, phone, email, password, address);
   //   e.preventDefault();
   // ../../api/user/login
   var body = JSON.stringify({
     name: name,
     phone: phone,
-    email:email,
+    email: email,
     password: password,
-    address: address
+    address: address,
   });
   console.log(phone, password);
   console.log(body);
@@ -25,6 +25,7 @@ registerForm.onsubmit = (e) => {
     mode: "cors",
     headers: { "Content-Type": "application/json" },
     body: body,
+    accept: "application/json",
   })
     .then((res) => res.json())
     .then((data) => {
