@@ -19,7 +19,7 @@ function ready(callbackFunc) {
 }
 
 function logOut() {
-  localStorage.setItem("foodji-user-auth-header", null);
+  localStorage.removeItem("foodji-user-auth-header");
 }
 
 
