@@ -1,0 +1,80 @@
+.orderfoodbutton {
+  border: none;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  color: #ffb606;
+  font-size: 1.5rem;
+  background: transparent;
+  transition: all 0.2s;
+}
+
+.orderfoodbutton:hover {
+  color: white;
+}
+.deleteorderfood {
+  border: none;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  color: red;
+  font-size: 1.5rem;
+  background: transparent;
+  transition: all 0.2s;
+}
+
+.deleteorderfood:hover {
+  color: white;
+}
+
+.fixed-value {
+  display: flex;
+  padding: 1rem;
+  color: white;
+  justify-content: space-between;
+}
+.foodview {
+  display: flex;
+  justify-content: space-between;
+}
+.orders {
+  background-color: #ffb606;
+  width: 20rem;
+  height: 30rem;
+}
+
+.listofitem {
+  overflow-y: scroll;
+  height: 20rem;
+}
+
+.style-change {
+  margin-right: 1rem;
+}
+.orders h2 {
+  padding: 0.5rem 1rem;
+}
+.order-item {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  color: white;
+  justify-content: space-between;
+}
+
+.pr {
+  text-align: end;
+}
+
+.fade {
+  animation: fade 0.5s forwards;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
