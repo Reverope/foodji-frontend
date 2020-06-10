@@ -18,6 +18,11 @@ function ready(callbackFunc) {
   }
 }
 
+function logOut() {
+  localStorage.setItem("foodji-user-auth-header", null);
+}
+
+
 ready(function () {
   var logInOutBtn = document.getElementById("logInLogOutBtn");
   var signUpProfileBtn = document.getElementById("signUpProfileBtn");
@@ -26,12 +31,9 @@ ready(function () {
   var loginHtml = '<a class="check" href="userlogin.html">Login</a>';
   var signUpHtml = '<a href="usersignup.html">Signup</a>';
 
-  var logoutHtml = '<a href="#" onclick="logOut()">LogOut</a>';
+  var logoutHtml = '<a href="index.html" onclick="logOut()">LogOut</a>';
   var profileLinkHtml = '<a href="userprofile.html">Profile</a>';
 
-  function logOut() {
-    localStorage.setItem("foodji-user-auth-header", null);
-  }
 
   if (!token) {
     console.log("Token does not exist");
