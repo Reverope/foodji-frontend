@@ -1,4 +1,5 @@
 var container = document.querySelector("#ritem");
+// var loader = document.querySelector(".preloader");
 var containerBig = document.getElementById("container");
 fetch("https://knight-foodji.herokuapp.com/api/restaurant?pageNo=1&size=10", {
   accept: "application/json",
@@ -13,8 +14,10 @@ fetch("https://knight-foodji.herokuapp.com/api/restaurant?pageNo=1&size=10", {
       var restaurant = container.cloneNode(true);
 
       // restaurant.childNodes[1]["attributes"]["href"]["value"] = `../../ui/restaurant/${element.name}/${element.id}`
-      restaurant.childNodes[1]["attributes"]["href"]["value"] = `restfood.html?name=${element.name}&id=${element.id}`
-        // "restaurant/" + element.name + "/" + element.id;
+      restaurant.childNodes[1]["attributes"]["href"][
+        "value"
+      ] = `restfood.html?name=${element.name}&id=${element.id}`;
+      // "restaurant/" + element.name + "/" + element.id;
 
       // console.log(a);
 
@@ -37,4 +40,5 @@ fetch("https://knight-foodji.herokuapp.com/api/restaurant?pageNo=1&size=10", {
   })
   .then((_) => {
     containerBig.removeChild(containerBig.childNodes[1]);
+    // loader.remove();
   });

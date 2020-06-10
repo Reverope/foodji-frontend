@@ -16,7 +16,17 @@
     <link rel="stylesheet" href="./assets/css/owl-carousel.min.css" />
     <link rel="stylesheet" href="./assets/css/jquery.datetimepicker.min.css" />
     <link rel="stylesheet" href="./css/styleanother.css" />
+    <link rel="stylesheet" href="./css/component.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
+  <style>
+    .col-md-3 {
+      max-width: 100% !important;
+    }
+  </style>
   <body>
     <!-- Preloader Starts -->
     <!-- <div class="preloader">
@@ -67,14 +77,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <h1><i>Restaurant</i></h1>
+            <h1><i>Foods</i></h1>
             <p class="pt-2">
               <i
                 >Beast kind form divide night above let moveth bearing
                 darkness.</i
-              ><br /><i style="opacity: 0;" id="restaurantId"
-                ><%=restaurantId %></i
-              >
+              ><br />
             </p>
           </div>
         </div>
@@ -99,21 +107,44 @@
             </div>
           </div>
         </div>
-        <div class="row" id="container">
-          <div class="col-md-4 col-sm-6" id="ritem">
-            <a href="vd" style="width: 100%; height: 100%;">
+        <div class="foodview">
+          <div class="row" id="container">
+            <div class="col-md-3 col-sm-6" id="ritem">
               <div class="single-food">
                 <div class="food-img">
                   <!-- <img src="wce" class="img-fluid" alt="" /> -->
                 </div>
                 <div class="food-content">
                   <div class="d-flex justify-content-between">
-                    <h5></h5>
-                    <span class="style-change"></span>
+                    <h5>FOOD1</h5>
+                    <span class="style-change">100</span>
                   </div>
+
                   <p class="pt-3"></p>
-                </div></div
-            ></a>
+                  <button class="orderfoodbutton" id="orderfoodbutton">
+                    +</button
+                  ><button class="deleteorderfood" id="deleteorderfood">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orders">
+            <div class="todo-container">
+              <h2>Orders</h2>
+              <div class="listofitem">
+                <ul class="todo-list">
+                  <li class="order-item">
+                    No Items in your cart.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="fixed-value">
+                Total <span class="style-change" id="total">3513515</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -123,5 +154,6 @@
     <!-- Javascript -->
     <script src="./js/list_foods.js"></script>
     <script src="./js/global.js"></script>
+    <script src="./js/order.js"></script>
   </body>
 </html>
