@@ -8,18 +8,18 @@ var restaurantCode = url.searchParams.get("id");
 var placeOrderBtn = document.getElementById('placeOrder')
 
 // var restaurantId = document.getElementById("restaurantId").innerText;
-// function getParameterByName(name, url) {
-//   if (!url) url = window.location.href;
-//   name = name.replace(/[\[\]]/g, "\\$&");
-//   var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-//     results = regex.exec(url);
-//   if (!results) return null;
-//   if (!results[2]) return "";
-//   return decodeURIComponent(results[2].replace(/\+/g, " "));
-// }
-// var restaurantId = getParameterByName("id");
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+var restaurantId = getParameterByName("id");
 // console.log(restId)
-var url = "https://knight-foodji.herokuapp.com/api/restaurant/" + restaurantCode;
+var url = "https://knight-foodji.herokuapp.com/api/restaurant/" + restaurantId;
 
 fetch(url, {
   accept: "application/json",
@@ -178,4 +178,4 @@ fetch(url, {
     });
   });
 
-  placeOrderBtn.onclick()
+  // placeOrderBtn.onclick
