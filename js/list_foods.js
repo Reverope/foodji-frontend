@@ -122,7 +122,7 @@ fetch(url, {
           todoList.appendChild(foodItemInList);
         });
 
-        totalAmount.innerText = totalAm();
+        totalAmount.innerText = "₹" + totalAm();
       })
     );
 
@@ -164,7 +164,7 @@ fetch(url, {
 
           todoList.appendChild(foodItemInList);
         });
-        totalAmount.innerText = totalAm();
+        totalAmount.innerText = "₹" + totalAm();
         // var found = orderAr.find((element) => element == foodName);
       });
     });
