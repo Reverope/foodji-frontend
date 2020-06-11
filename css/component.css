@@ -42,6 +42,17 @@
   width: 20rem;
   height: 30rem;
 }
+.placeOrder {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid white;
+}
+
+.placeOrder:hover {
+  color: #ffb606 !important;
+  background-color: white;
+}
 
 .listofitem {
   overflow-y: scroll;

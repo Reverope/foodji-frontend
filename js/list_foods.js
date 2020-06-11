@@ -2,6 +2,10 @@
 var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("container");
 var orderAr = [];
+var url_string = window.location.href;
+var url = new URL(url_string);
+var restaurantCode = url.searchParams.get("id");
+
 // var restaurantId = document.getElementById("restaurantId").innerText;
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -60,6 +64,16 @@ fetch(url, {
   .then(() => {
     const todoButton = document.querySelectorAll(".orderfoodbutton");
     const deleteButton = document.querySelectorAll(".deleteorderfood");
+    var totalAmount = document.getElementById("total");
+
+    function totalAm() {
+      var total = 0;
+
+      for (every in orderAr) {
+        total = total + orderAr[every].food_price * orderAr[every].quantity;
+      }
+      return total;
+    }
 
     [...todoButton].forEach((button) =>
       button.addEventListener("click", (item) => {
@@ -69,6 +83,7 @@ fetch(url, {
         } else {
           const todoList = document.querySelector(".todo-list");
           const todoListItem = document.querySelectorAll(".order-item");
+
           todoListItem.forEach((_i) => {
             _i.remove();
           });
@@ -78,13 +93,22 @@ fetch(url, {
           var foodName = foodItem["childNodes"][1].innerText;
           var foodPrice = foodItem["childNodes"][3].innerText;
 
-          orderAr.push({
-            food_name: foodName,
-            food_price: foodPrice,
-            quantity: 1,
-          });
+          var present = 0;
 
-          console.log(orderAr.length);
+          for (var x in orderAr) {
+            if (orderAr[x].food_name == foodName) {
+              orderAr[x].quantity++;
+              present = 1;
+            }
+          }
+          if (present == 0) {
+            orderAr.push({
+              food_name: foodName,
+              food_price: foodPrice,
+              quantity: 1,
+            });
+          }
+
           orderAr.forEach((orderItem) => {
             var foodItemInList = document.createElement("li");
             foodItemInList.className = "order-item";
@@ -103,6 +127,8 @@ fetch(url, {
 
             todoList.appendChild(foodItemInList);
           });
+
+          totalAmount.innerText = "₹" + totalAm();
         }
       })
     );
@@ -116,6 +142,36 @@ fetch(url, {
         var foodItem = foodItemClicked["childNodes"];
         var foodName = foodItem[1]["childNodes"][1].innerText;
 
+        todoListItem.forEach((_i) => {
+          _i.remove();
+        });
+
+        for (var x in orderAr) {
+          if (orderAr[x].quantity == 1) {
+            delete orderAr[x];
+          } else if (orderAr[x].food_name == foodName) {
+            orderAr[x].quantity--;
+          }
+        }
+        orderAr.forEach((orderItem) => {
+          var foodItemInList = document.createElement("li");
+          foodItemInList.className = "order-item";
+
+          var foodItemPriceInlist = document.createElement("span");
+          foodItemPriceInlist.className = "pr";
+
+          foodItemInList.innerText = orderItem.food_name;
+
+          var priceandquan =
+            orderItem.food_price + " ( x" + orderItem.quantity + " )";
+
+          foodItemPriceInlist.innerText = priceandquan;
+
+          foodItemInList.appendChild(foodItemPriceInlist);
+
+          todoList.appendChild(foodItemInList);
+        });
+        totalAmount.innerText = "₹" + totalAm();
         // var found = orderAr.find((element) => element == foodName);
       });
     });

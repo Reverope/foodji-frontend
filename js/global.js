@@ -20,6 +20,7 @@ function ready(callbackFunc) {
 
 function logOut() {
   localStorage.removeItem("foodji-user-auth-header");
+  localStorage.removeItem("foodji-user");
 }
 
 var loginModal = document.getElementById("login-modal");
