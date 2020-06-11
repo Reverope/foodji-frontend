@@ -1,15 +1,17 @@
 //Function to get data from query string
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  }
+// function getParameterByName(name, url) {
+//     if (!url) url = window.location.href;
+//     name = name.replace(/[\[\]]/g, '\\$&');
+//     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+//         results = regex.exec(url);
+//     if (!results) return null;
+//     if (!results[2]) return '';
+//     return decodeURIComponent(results[2].replace(/\+/g, ' '));
+//   }
 
-var orderId = getParameterByName('id')
+var url = new URL(window.location.href)
+
+var orderId = url.searchParams.get("id")
 var token = localStorage.getItem("foodji-delguy-auth-header")
 console.log(orderId)
 var url = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`
@@ -32,7 +34,7 @@ fetch(url,{
 
 var assignButton = document.getElementById('assign')
 
-assignButton.onclick((e)=>{
+assignButton.onclick = (e)=>{
     fetch(`https://knight-foodji.herokuapp.com/api/deliveryguy/assign/${orderId}`,{
         accept: "application/json",
         mode: "cors",
@@ -48,4 +50,4 @@ assignButton.onclick((e)=>{
             window.location = 'restaurant.html'
         }
     })
-})
+}
