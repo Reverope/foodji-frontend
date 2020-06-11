@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./assets/css/bootstrap-4.1.3.min.css" />
     <link rel="stylesheet" href="./assets/css/owl-carousel.min.css" />
     <link rel="stylesheet" href="./css/styleanother.css" />
+    <link rel="stylesheet" href="css/global.css" />
   </head>
   <body>
     <!-- Preloader Starts -->
@@ -262,13 +263,97 @@
       </div>
     </section>
     <!--================Blog Area =================-->
+        <!-- The Modal -->
+    <div id="login-modal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="login-close">&times;</span>
+        <form class="login-form">
+          <h1>Login</h1>
+          <p id="login-para"></p>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="Phone"
+            autocomplete="off"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            autocomplete="off"
+            required
+          />
+          <a href="#" onclick="PopUpSign()">Not registered? Sign Up</a>
+          <button type="submit" class="btn">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="register-modal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="register-close">&times;</span>
+        <form class="register-form">
+          <h1>Register</h1>
+          <p id="register-para"></p>
+          <input
+            type="text"
+            name="name"
+            id="register-name"
+            placeholder="Name"
+            autocomplete="off"
+            required
+          />
+          <input
+            type="text"
+            name="phone"
+            id="register-phone"
+            placeholder="Phone"
+            autocomplete="off"
+            required
+          />
+          <input
+            type="text"
+            name="email"
+            id="register-email"
+            placeholder="Email"
+            autocomplete="off"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            id="register-password"
+            placeholder="Password"
+            autocomplete="off"
+            required
+          />
+          <input
+            type="text"
+            name="address"
+            id="register-address"
+            placeholder="Address"
+            autocomplete="off"
+            required
+          />
+          <a href="#" onclick="PopUpLog()">Already a user? Log In</a>
+
+          <button type="submit" class="btn">Register</button>
+        </form>
+      </div>
+    </div>
+
 
     <!-- Footer Area Starts -->
     <!-- <%-include("partials/footer")%> -->
     <!-- Footer Area End -->
 
     <!-- Javascript -->
-    <script src="./js/user_profile.js"></script>
     <script src="./assets/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="./assets/js/vendor/bootstrap-4.1.3.min.js"></script>
     <script src="./assets/js/vendor/wow.min.js"></script>
@@ -277,6 +362,9 @@
     <script src="./assets/js/vendor/jquery.nice-select.min.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./js/global.js"></script>
+    <script src="./js/user_profile.js"></script>
+    <script src="./js/userlogin.js"></script>
+    <script src="./js/userRegister.js"></script>
 
   </body>
 </html>
