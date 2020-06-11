@@ -1,6 +1,6 @@
 var restProfileURL = "https://knight-foodji.herokuapp.com/api/restaurant/me"
 var addFoodURL = "https://knight-foodji.herokuapp.com/api/food/"
-var addFoodURL = "https://knight-foodji.herokuapp.com/api/restaurant/food/"
+var deleteFoodURL = "https://knight-foodji.herokuapp.com/api/restaurant/food/"
 var token = localStorage.getItem("foodji-rest-auth-header")
 
 var addFoodForm = document.getElementById('addFoodForm')
@@ -32,6 +32,7 @@ addFoodForm.onsubmit = (e) =>{
       name: foodName,
       price: foodPrice
     });
+    console.log(reqBody)
     fetch(addFoodURL,{
         mode: "cors",
         method: "POST",
@@ -45,6 +46,7 @@ addFoodForm.onsubmit = (e) =>{
     })
     .then(res => res.json)
     .then((data)=>{
+        // console.log(JSON.stringify(data))
         window.location = "restprofile.html"
     })
     .catch(err => {
@@ -58,7 +60,7 @@ deleteFoodForm.onsubmit = (e)=>{
     var reqBody = JSON.stringify({
         foodid: deletefoodId
       });
-    fetch(addFoodURL,{
+    fetch(deleteFoodURL,{
     mode: "cors",
     method: "DELETE",
     
