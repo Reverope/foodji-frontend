@@ -2,6 +2,10 @@
 var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("container");
 var orderAr = [];
+var url_string = window.location.href;
+var url = new URL(url_string);
+var restaurantCode = url.searchParams.get("id");
+
 // var restaurantId = document.getElementById("restaurantId").innerText;
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
