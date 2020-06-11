@@ -27,4 +27,7 @@ fetch(url, {
   })
   .then((_) => {
     loader.remove();
+  })
+  .catch((err) => {
+    PopUpLog();
   });
