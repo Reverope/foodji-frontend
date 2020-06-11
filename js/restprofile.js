@@ -32,7 +32,6 @@ addFoodForm.onsubmit = (e) =>{
       name: foodName,
       price: foodPrice
     });
-    console.log(reqBody)
     fetch(addFoodURL,{
         mode: "cors",
         method: "POST",
