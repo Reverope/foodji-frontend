@@ -3,11 +3,11 @@ var registerForm = document.getElementsByClassName("register-form")[0];
 
 registerForm.onsubmit = (e) => {
   e.preventDefault();
-  var name = document.getElementById("name").value;
-  var phone = document.getElementById("phone").value;
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  var address = document.getElementById("address").value;
+  var name = document.getElementById("register-name").value;
+  var phone = document.getElementById("register-phone").value;
+  var email = document.getElementById("register-email").value;
+  var password = document.getElementById("register-password").value;
+  var address = document.getElementById("register-address").value;
   console.log(name, phone, email, password, address);
   //   e.preventDefault();
   // ../../api/user/login
@@ -18,8 +18,6 @@ registerForm.onsubmit = (e) => {
     password: password,
     address: address,
   });
-  console.log(phone, password);
-  console.log(body);
   fetch("https://knight-foodji.herokuapp.com/api/user/", {
     method: "POST",
     mode: "cors",
@@ -31,7 +29,7 @@ registerForm.onsubmit = (e) => {
     .then((data) => {
       localStorage.setItem("foodji-user-auth-header", "Bearer " + data.token);
       localStorage.setItem("foodji-user-name", data.user.name);
-      window.location = "userprofile.html";
+      location.reload();
     })
     .catch((err) => console.log(err));
   //   //   console.log(phone, password);

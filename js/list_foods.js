@@ -64,43 +64,46 @@ fetch(url, {
     [...todoButton].forEach((button) =>
       button.addEventListener("click", (item) => {
         //
+        if (!localStorage.getItem("foodji-user-auth-header")) {
+          PopUpLog("You need to be authenticated to do this");
+        } else {
+          const todoList = document.querySelector(".todo-list");
+          const todoListItem = document.querySelectorAll(".order-item");
+          todoListItem.forEach((_i) => {
+            _i.remove();
+          });
+          //
+          var foodItemClicked = item.composedPath()[1];
+          var foodItem = foodItemClicked["childNodes"][1];
+          var foodName = foodItem["childNodes"][1].innerText;
+          var foodPrice = foodItem["childNodes"][3].innerText;
 
-        const todoList = document.querySelector(".todo-list");
-        const todoListItem = document.querySelectorAll(".order-item");
-        todoListItem.forEach((_i) => {
-          _i.remove();
-        });
-        //
-        var foodItemClicked = item.composedPath()[1];
-        var foodItem = foodItemClicked["childNodes"][1];
-        var foodName = foodItem["childNodes"][1].innerText;
-        var foodPrice = foodItem["childNodes"][3].innerText;
+          orderAr.push({
+            food_name: foodName,
+            food_price: foodPrice,
+            quantity: 1,
+          });
 
-        orderAr.push({
-          food_name: foodName,
-          food_price: foodPrice,
-          quantity: 1,
-        });
+          console.log(orderAr.length);
+          orderAr.forEach((orderItem) => {
+            var foodItemInList = document.createElement("li");
+            foodItemInList.className = "order-item";
 
-        console.log(orderAr.length);
-        orderAr.forEach((orderItem) => {
-          var foodItemInList = document.createElement("li");
-          foodItemInList.className = "order-item";
+            var foodItemPriceInlist = document.createElement("span");
+            foodItemPriceInlist.className = "pr";
 
-          var foodItemPriceInlist = document.createElement("span");
-          foodItemPriceInlist.className = "pr";
+            foodItemInList.innerText = orderItem.food_name;
 
-          foodItemInList.innerText = orderItem.food_name;
+            var priceandquan =
+              orderItem.food_price + " ( x" + orderItem.quantity + " )";
 
-          var priceandquan =
-            orderItem.food_price + " ( x" + orderItem.quantity + " )";
+            foodItemPriceInlist.innerText = priceandquan;
 
-          foodItemPriceInlist.innerText = priceandquan;
+            foodItemInList.appendChild(foodItemPriceInlist);
 
-          foodItemInList.appendChild(foodItemPriceInlist);
-
-          todoList.appendChild(foodItemInList);
-        });
+            todoList.appendChild(foodItemInList);
+          });
+        }
       })
     );
 
