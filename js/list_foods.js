@@ -5,6 +5,8 @@ var orderAr = [];
 var url_string = window.location.href;
 var url = new URL(url_string);
 var restaurantCode = url.searchParams.get("id");
+var placeOrderBtn = document.getElementById('placeOrder')
+var createOrderURL = `https://knight-foodji.herokuapp.com/api/user/order`
 
 // var restaurantId = document.getElementById("restaurantId").innerText;
 function getParameterByName(name, url) {
@@ -176,5 +178,4 @@ fetch(url, {
       });
     });
   });
-{
-}
+

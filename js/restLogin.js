@@ -11,8 +11,8 @@ loginForm.onsubmit = (e) => {
     rest_id: rest_id,
     password: password,
   });
-  console.log(rest_id, password);
-  console.log(body);
+  // console.log(rest_id, password);
+  // console.log(body);
   fetch("https://knight-foodji.herokuapp.com/api/restaurant/login", {
     method: "POST",
     mode: "cors",
