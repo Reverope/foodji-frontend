@@ -7,7 +7,48 @@
 </head>
 <body>
     <h1>Welcome Super Admin</h1>
-    <!-- <button>Logout</button> -->
+
+    <h2>Changes:</h2>
+    <ol>
+        <li>Every order fetched will be shown in a card.Pagination is there so on clicking nxt button section will render next 
+            10 orders(JS to be written).Items to be stored: <ol>
+            <li>restaurant.name</li>
+            <li>restaurant.phone</li>
+            <li>user.phone</li>
+            <li>Whole Payment Object</li>
+            <li>address</li>
+        </ol></li>
+        <li>For creating restaurant there will be a form or a modal can be used like login signup modal.</li>
+        <li>Same goes for creating delivery Boy</li>
+    </ol>
+    <div id="orders">
+    </div>
+    <br>
+    <br>
+    <h3>Create Restaurant</h3>
+    <form id="createRestForm">
+        <input type="text" id="rest_id" placeholder="Restaurant ID">
+        <input type="text" id="restName" placeholder="Restaurant Name">
+        <input type="text" id="restEmail" placeholder="Restaurant Email">
+        <input type="text" id="restPassword" placeholder="Password">
+        <input type="text" id="restAddress" placeholder="Restaurant Address">
+        <input type="text" id="restPhone" placeholder="Contact Number">
+        <button type="submit">Create Restaurant</button>
+        
+    </form>
+
+    <br><br>
+    <h3>Create Delivery Guy</h3>
+    <form id="createDelGuyForm">
+        <input type="text" id="delguyUsername" placeholder="DeliveryGuy UserName">
+        <input type="text" id="delguyName" placeholder="DeliveryGuy Name">
+        <input type="text" id="delguyEmail" placeholder="DeliveryGuy Email">
+        <input type="text" id="delguyPhone" placeholder="Contact Number">
+        <input type="text" id="delguyPassword" placeholder="Password">
+        <button type="submit">Create Delivery Boy</button>
+        
+    </form>
+
     <script src="./js/superhome.js"></script>
 </body>
 </html>
