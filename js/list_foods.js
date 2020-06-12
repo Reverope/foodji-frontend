@@ -5,6 +5,7 @@ var orderAr = [];
 var url_string = window.location.href;
 var url = new URL(url_string);
 var restaurantCode = url.searchParams.get("id");
+var placeOrderBtn = document.getElementById('placeOrder')
 
 // var restaurantId = document.getElementById("restaurantId").innerText;
 function getParameterByName(name, url) {
@@ -78,55 +79,58 @@ fetch(url, {
     [...todoButton].forEach((button) =>
       button.addEventListener("click", (item) => {
         //
+        if (!localStorage.getItem("foodji-user-auth-header")) {
+          PopUpLog("You need to be authenticated to do this");
+        } else {
+          const todoList = document.querySelector(".todo-list");
+          const todoListItem = document.querySelectorAll(".order-item");
 
-        const todoList = document.querySelector(".todo-list");
-        const todoListItem = document.querySelectorAll(".order-item");
-
-        todoListItem.forEach((_i) => {
-          _i.remove();
-        });
-        //
-        var foodItemClicked = item.composedPath()[1];
-        var foodItem = foodItemClicked["childNodes"][1];
-        var foodName = foodItem["childNodes"][1].innerText;
-        var foodPrice = foodItem["childNodes"][3].innerText;
-
-        var present = 0;
-
-        for (var x in orderAr) {
-          if (orderAr[x].food_name == foodName) {
-            orderAr[x].quantity++;
-            present = 1;
-          }
-        }
-        if (present == 0) {
-          orderAr.push({
-            food_name: foodName,
-            food_price: foodPrice,
-            quantity: 1,
+          todoListItem.forEach((_i) => {
+            _i.remove();
           });
+          //
+          var foodItemClicked = item.composedPath()[1];
+          var foodItem = foodItemClicked["childNodes"][1];
+          var foodName = foodItem["childNodes"][1].innerText;
+          var foodPrice = foodItem["childNodes"][3].innerText;
+
+          var present = 0;
+
+          for (var x in orderAr) {
+            if (orderAr[x].food_name == foodName) {
+              orderAr[x].quantity++;
+              present = 1;
+            }
+          }
+          if (present == 0) {
+            orderAr.push({
+              food_name: foodName,
+              food_price: foodPrice,
+              quantity: 1,
+            });
+          }
+
+          orderAr.forEach((orderItem) => {
+            var foodItemInList = document.createElement("li");
+            foodItemInList.className = "order-item";
+
+            var foodItemPriceInlist = document.createElement("span");
+            foodItemPriceInlist.className = "pr";
+
+            foodItemInList.innerText = orderItem.food_name;
+
+            var priceandquan =
+              orderItem.food_price + " ( x" + orderItem.quantity + " )";
+
+            foodItemPriceInlist.innerText = priceandquan;
+
+            foodItemInList.appendChild(foodItemPriceInlist);
+
+            todoList.appendChild(foodItemInList);
+          });
+
+          totalAmount.innerText = "₹" + totalAm();
         }
-
-        orderAr.forEach((orderItem) => {
-          var foodItemInList = document.createElement("li");
-          foodItemInList.className = "order-item";
-
-          var foodItemPriceInlist = document.createElement("span");
-          foodItemPriceInlist.className = "pr";
-
-          foodItemInList.innerText = orderItem.food_name;
-
-          var priceandquan =
-            orderItem.food_price + " ( x" + orderItem.quantity + " )";
-
-          foodItemPriceInlist.innerText = priceandquan;
-
-          foodItemInList.appendChild(foodItemPriceInlist);
-
-          todoList.appendChild(foodItemInList);
-        });
-
-        totalAmount.innerText = "₹" + totalAm();
       })
     );
 
@@ -173,5 +177,5 @@ fetch(url, {
       });
     });
   });
-{
-}
+
+  // placeOrderBtn.onclick

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Profile</title>
+        <!-- Favicon -->
+        <link
+        rel="shortcut icon"
+        href="./assets/images/logo/favicon.png"
+        type="image/x-icon"
+      />
+  
+      <!-- CSS Files -->
+      <!-- <link rel="stylesheet" href="./assets/css/animate-3.7.0.css" />
+      <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0.min.css" />
+      <link rel="stylesheet" href="./assets/css/bootstrap-4.1.3.min.css" />
+      <link rel="stylesheet" href="./assets/css/owl-carousel.min.css" />
+      <link rel="stylesheet" href="./assets/css/jquery.datetimepicker.min.css" />
+      <link rel="stylesheet" href="./assets/css/style.css" /> -->
+</head>
+<body>
+        <!-- Preloader Starts -->
+        <!-- <div class="preloader">
+            <div class="spinner"></div>
+          </div> -->
+          <!-- Preloader End -->
+      
+          <!-- Header Area Starts -->
+          <!-- <header class="header-area header-area2">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-2">
+                  <div class="logo-area">
+                    <a href="index.html"
+                      ><img src="./assets/images/logo/logo2.png" alt="logo"
+                    /></a>
+                  </div>
+                </div>
+                <div class="col-lg-10">
+                  <div class="custom-navbar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="main-menu main-menu2">
+                    <ul>
+                      <li class="active"><a href="index.html">home</a></li>
+                      <li id="restLogInLogOut"><a href="restlogin.html">Restaurant Login</a></li>
+                      <li><a href="restaurant.html">restaurants</a></li>
+                      <li id="logInLogOutBtn"><a href="userlogin.html">Login</a></li>
+                      <li id="signUpProfileBtn"><a href="usersignup.html">Signup</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header> -->
+          <!-- Header Area End -->
+    <h1>Restaurant Profile</h1>
+    <h5>Changes:
+      <ol>
+        <li>NavBar at top</li>
+        <li>100% width image of restaurant</li>
+        <li>Basic details like name, address, email and contact no of reaturant</li>
+        <li>Available foods</li>
+        <li>Orders</li>
+        <li>Form for add food</li>
+        <li>With each Food there must be a delete button which will trigger the deleteFoodURL</li>
+        <li>Edit Profile Button</li>
+      </ol>
+    </h5>
+    <p id="restDetails"></p>
+    <br>
+    <h3>Add Food</h3>
+    <form id="addFoodForm">
+        <input type="text" id="foodName" placeholder="Food Name">
+        <input type="text" id="foodPrice" placeholder="Food Price">
+        <button type="submit">Add Food</button>
+    </form>
+    <br><br>
+    <h3>Delete Food</h3>
+    <h5>Changes: For delete there will be a button with each food that will trigger the request.</h5>
+    <form id="deleteFood">
+        <input type="text" id="deleteFoodId" placeholder="Delete Food ID">
+        <button type="submit">Delete Food</button>
+    </form>
+
+
+    <!-- <script src="./js/global.js"></script> -->
+    <script src="./js/restprofile.js"></script>
+</body>
+</html>
