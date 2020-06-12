@@ -21,14 +21,17 @@ function ready(callbackFunc) {
 function logOut() {
   localStorage.removeItem("foodji-user-auth-header");
   localStorage.removeItem("foodji-user");
+  localStorage.removeItem("foodji-rest-auth-header");
+  localStorage.removeItem("foodji-rest");
 }
 
 var loginModal = document.getElementById("login-modal");
+var signUpModal = document.getElementById("register-modal");
+var restLogInModal = document.getElementById("rest-modal");
 
 function logIn() {
   if (loginModal) loginModal.style.display = "block";
 }
-var signUpModal = document.getElementById("register-modal");
 function singUp() {
   if (signUpModal) signUpModal.style.display = "block";
 }
@@ -48,6 +51,10 @@ function PopUpSign() {
     loginModal.style.display = "none";
     if (str) document.getElementById("register-para").innerHTML = str;
   }
+}
+
+function logRest() {
+  if (restLogInModal) restLogInModal.style.display = "block";
 }
 
 ready(function () {
@@ -78,11 +85,17 @@ ready(function () {
   span2.onclick = function () {
     signUpModal.style.display = "none";
   };
+  var span3 = document.getElementById("rest-close");
+  span3.onclick = function () {
+    restLogInModal.style.diplay = "none";
+  };
   window.onclick = function (event) {
     if (event.target == loginModal) {
       loginModal.style.display = "none";
     } else if (event.target == signUpModal) {
       signUpModal.style.display = "none";
+    } else if (event.target == restLogInModal) {
+      restLogInModal.style.display = "none";
     }
   };
 });

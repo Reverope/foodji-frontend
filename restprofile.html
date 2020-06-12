@@ -269,11 +269,8 @@
             </div>
             <div class="col-md-4">
               <div class="single-widget single-widget3">
-                <h5 class="mb-4">opening hours</h5>
-                <p>Monday ...................... Closed</p>
-                <p>Tue-Fri .............. 10 am - 12 pm</p>
-                <p>Sat-Sun ............... 8 am - 11 pm</p>
-                <p>Holidays ............. 10 am - 12 pm</p>
+                <h5 class="mb-4">Quick Links</h5>
+                <p><a onclick="logRest()" href="#">Login As a Restaurant</a></p>
               </div>
             </div>
           </div>
@@ -411,6 +408,35 @@
         </form>
       </div>
     </div>
+
+    <div class="modal" id="rest-modal">
+      <div class="modal-content">
+        <span id="rest-close">&times;</span>
+        <form class="rest-login-form">
+          <h1>Login</h1>
+          <p id="restaurant-login-para"></p>
+
+          <input
+            type="text"
+            name="rest_id"
+            id="rest_id"
+            placeholder="Restaurant Id"
+            autocomplete="off"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            id="rest_password"
+            placeholder="Password"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" class="btn">Login</button>
+        </form>
+      </div>
+    </div>
+
     <!-- Javascript -->
     <script src="./assets/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="./assets/js/vendor/bootstrap-4.1.3.min.js"></script>
@@ -423,5 +449,6 @@
     <script src="./js/userlogin.js"></script>
     <script src="./js/userRegister.js"></script>
     <script src="./js/restprofile.js"></script>
+    <script src="./js/restLogin.js"></script>
   </body>
 </html>
