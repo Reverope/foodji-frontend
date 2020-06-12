@@ -1,10 +1,10 @@
-var loginForm = document.getElementsByClassName("login-form")[0];
+var loginForm = document.getElementsByClassName("rest-login-form")[0];
 // var loginFirm = document.getElementById("login-form")[0];
 
 loginForm.onsubmit = (e) => {
   e.preventDefault();
   var rest_id = document.getElementById("rest_id").value;
-  var password = document.getElementById("password").value;
+  var password = document.getElementById("rest_password").value;
   //   e.preventDefault();
   // ../../api/user/login
   var body = JSON.stringify({
