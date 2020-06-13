@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="./assets/css/jquery.datetimepicker.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./css/component.css" />
+    <style>
+      .tableoforder td {
+        padding: 1rem;
+        text-align: start;
+      }
+    </style>
   </head>
   <body>
     <!-- Preloader Starts -->
@@ -96,6 +102,7 @@
           <div class="col-md-6 align-self-center">
             <div class="welcome-text mt-5 mt-md-0">
               <h3 id="dName2"></h3>
+              <p id="dID"></p>
               <br />
               <p id="dAdd"></p>
 
@@ -117,7 +124,18 @@
           <div class="col-lg-12">
             <h2>Customers are waiting</h2>
             <h4 class="mt-4">check out their orders</h4>
-            <div class="orderListInProfile"></div>
+            <div class="orderListInProfile">
+              <table class="tableoforder">
+                <tr>
+                  <th>Order Id</th>
+                  <th>Address</th>
+                  <th>Payable</th>
+                  <th>Date</th>
+                  <th>Phone</th>
+                  <th>E.T.A</th>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
       </div>

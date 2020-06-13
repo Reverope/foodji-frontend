@@ -5,8 +5,9 @@ var orderAr = [];
 var url_string = window.location.href;
 var url = new URL(url_string);
 var restaurantCode = url.searchParams.get("id");
-var placeOrderBtn = document.getElementById('placeOrder')
-var createOrderURL = `https://knight-foodji.herokuapp.com/api/user/order`
+var placeOrderBtn = document.getElementById("placeOrder");
+var createOrderURL = `https://knight-foodji.herokuapp.com/api/user/order`;
+orderAr["resid"] = restaurantCode;
 
 // var restaurantId = document.getElementById("restaurantId").innerText;
 function getParameterByName(name, url) {
@@ -36,7 +37,7 @@ fetch(url, {
 
     [...ar["restaurant"].foods].forEach((foodItem) => {
       var food = container.cloneNode(true);
-      console.log(foodItem);
+      // console.log(foodItem);
       //   food.childNodes[1]["attributes"]["href"]["value"] =
       //     "/" + element.name + "/" + element.id;
 
@@ -83,6 +84,7 @@ fetch(url, {
         if (!localStorage.getItem("foodji-user-auth-header")) {
           PopUpLog("You need to be authenticated to do this");
         } else {
+          console.log(orderAr);
           const todoList = document.querySelector(".todo-list");
           const todoListItem = document.querySelectorAll(".order-item");
 
@@ -178,4 +180,3 @@ fetch(url, {
       });
     });
   });
-
