@@ -607,6 +607,7 @@
               <div class="single-widget single-widget3">
                 <h5 class="mb-4">Quick Links</h5>
                 <p><a onclick="logRest()" href="#">Login As a Restaurant</a></p>
+                <p><a onclick="logGuy()" href="#">Login As a Delivery Person</a></p>
               </div>
             </div>
           </div>
@@ -780,6 +781,36 @@
     </div>
     </div>
 
+    <div class="modal" id="guy-modal">
+    <div class="modal-content">
+        <span id="guy-close">&times;</span>
+        <form class="rest-login-form">
+          <h1>Login</h1>
+          <p id="guy-login-para"></p>
+
+            <input
+              type="text"
+              name="guy_username"
+              id="guy_username"
+              placeholder="Username"
+              autocomplete="off"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              id="guy_password"
+              placeholder="Password"
+              autocomplete="off"
+              required
+            />
+          <button type="submit" class="btn">Login</button>
+        </form>
+
+    </div>
+    </div>
+
+
     
     <!-- Javascript -->
     <script src="./assets/js/vendor/jquery-2.2.4.min.js"></script>
@@ -793,6 +824,7 @@
     <script src="./js/userlogin.js"></script>
     <script src="./js/userRegister.js"></script>
     <script src="./js/restLogin.js"></script>
+    <script src="./js/guyLogin.js"></script>
 
 
   </body>
