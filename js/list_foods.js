@@ -45,12 +45,15 @@ fetch(url, {
 
       //   var img = food.childNodes[1].childNodes[1].childNodes[1].childNodes[1];
       //   img["attributes"][0]["value"] = element.image;
-
+     
       var name = food.childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       name["innerText"] = foodItem["foodid"].name;
 
       var price = food.childNodes[1].childNodes[3].childNodes[1].childNodes[3];
       price["innerText"] = foodItem.price;
+
+      var foodId = food.childNodes[1].childNodes[3].childNodes[1].childNodes[5];
+      foodId["innerText"] = foodItem._id;
 
       //   var address =
       //     food.childNodes[1].childNodes[1].childNodes[3].childNodes[3];
@@ -96,7 +99,8 @@ fetch(url, {
           var foodItem = foodItemClicked["childNodes"][1];
           var foodName = foodItem["childNodes"][1].innerText;
           var foodPrice = foodItem["childNodes"][3].innerText;
-
+          var foodId = foodItem["childNodes"][5].innerText;
+          console.log(foodId);
           var present = 0;
 
           for (var x in orderAr) {
@@ -107,6 +111,7 @@ fetch(url, {
           }
           if (present == 0) {
             orderAr.push({
+              food_id: foodId,
               food_name: foodName,
               food_price: foodPrice,
               quantity: 1,
