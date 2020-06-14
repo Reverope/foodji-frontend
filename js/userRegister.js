@@ -32,8 +32,7 @@ registerForm.onsubmit = (e) => {
       location.reload();
     })
     .catch((err) => {
-      var errorPara = document.getElementById("login-error");
-      errorPara.value = "Authentication Not Successfull";
+      document.getElementById("register-error").style.display = "block";
     });
   //   //   console.log(phone, password);
 };

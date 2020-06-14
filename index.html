@@ -685,7 +685,7 @@
               required
             />
             <a href="#" onclick="PopUpSign()">Not registered? Sign Up</a>
-            <p id="login-error"></p>
+            <p class="error-para" id="login-error">Authentication Not Successful</p>
 
           <button type="submit" class="btn">Login</button>
         </form>
@@ -745,7 +745,7 @@
               required
             />
           <a href="#" onclick="PopUpLog()">Already a user? Log In</a>
-<p id="register-error"></p>
+<p class="error-para" id="register-error">Authentication Not Successful</p>
           <button type="submit" class="btn">Register</button>
         </form>
 
@@ -776,7 +776,7 @@
               autocomplete="off"
               required
             />
-            <p id="rest-error"></p>
+            <p class="error-para" id="rest-error">Authentication Not Successful</p>
           <button type="submit" class="btn">Login</button>
         </form>
 
@@ -786,7 +786,7 @@
     <div class="modal" id="guy-modal">
     <div class="modal-content">
         <span id="guy-close">&times;</span>
-        <form class="rest-login-form">
+        <form class="guy-login-form">
           <h1>Login</h1>
           <p id="guy-login-para"></p>
 
@@ -806,7 +806,7 @@
               autocomplete="off"
               required
             />
-            <p id="guy-error"></p>
+            <p class="error-para" id="guy-error">Authentication Not Successful</p>
           <button type="submit" class="btn">Login</button>
         </form>
 
