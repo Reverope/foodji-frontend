@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/superadminhome.css" />
+
+    <title>Super Admin</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Welcome, Super-Admin
+      </h1>
+      <section class="cards" id="cards">
+        <div class="card unvisible" id="cardItem">
+          <p class="name">Restaurant Name</p>
+          <p class="phone">989898989</p>
+
+          <hr style="margin: 0.5rem 0;" />
+          <div class="userinfo">
+            <p>User Contact</p>
+            <p>9898989898</p>
+          </div>
+          <div class="payment">
+            <div class="paymentdetails">
+              <p>Payment Mode</p>
+              <p class="pmode">COD</p>
+            </div>
+            <div class="paymentdetails">
+              <p>Payment Status</p>
+              <p class="pstatus">Received</p>
+            </div>
+            <div class="paymentdetails">
+              <p>Payment Amount</p>
+              <p class="pamount">200</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="newrest">
+        <div class="formbox">
+          <h1>Add Restaurant</h1>
+
+          <form action="" class="form" id="createRestForm">
+            <input type="text" id="rest_id" placeholder="Restaurant ID" />
+            <hr style="color: grey; margin-bottom: 0.6rem; opacity: 0.5;" />
+            <input type="text" id="restName" placeholder="Restaurant Name" />
+            <input type="text" id="restEmail" placeholder="Restaurant Email" />
+            <input
+              type="text"
+              id="restAddress"
+              placeholder="Restaurant Address"
+            />
+            <hr style="color: grey; margin-bottom: 0.6rem; opacity: 0.5;" />
+            <input type="text" id="restPassword" placeholder="Password" />
+
+            <input type="text" id="restPhone" placeholder="Contact Number" />
+            <button type="submit">Create Restaurant</button>
+          </form>
+        </div>
+      </section>
+      <section class="newrest">
+        <div class="formbox">
+          <h1>Add Delivery Guy</h1>
+
+          <form action="" class="form" id="createDelGuyForm">
+            <input
+              type="text"
+              id="delguyUsername"
+              placeholder="DeliveryGuy UserName"
+            />
+            <input type="text" id="delguyName" placeholder="DeliveryGuy Name" />
+            <input
+              type="text"
+              id="delguyEmail"
+              placeholder="DeliveryGuy Email"
+            />
+            <input type="text" id="delguyPhone" placeholder="Contact Number" />
+            <input type="text" id="delguyPassword" placeholder="Password" />
+            <button type="submit">Create Delivery Boy</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </body>
+  <script src="/js/superadminhome.js"></script>
+</html>

@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #272727;
+
+  h1 {
+    margin: 2rem;
+    font-family: "Century Gothic";
+    text-align: start;
+    font-size: 1rem;
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .unvisible {
+    opacity: 0;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 20rem;
+    padding: 1rem;
+    font-family: "Courier New", Courier, monospace;
+    border-radius: 25px;
+    background: #ffffff;
+    box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+    margin: 1rem;
+    height: fit-content;
+
+    .name {
+      color: #444444;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 600;
+    }
+    .phone {
+      font-size: 0.8rem;
+      font-family: "Century Gothic";
+    }
+
+    .userinfo {
+      padding: 0.8rem 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    .payment {
+      margin: 1rem 0;
+      padding: 1rem 0;
+    }
+
+    .paymentdetails {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .newrest {
+    background-color: #f8f8f8;
+    height: 100vh;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .formbox {
+      width: 20rem;
+      // height: 50%;
+      background-color: #ffffff;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+        font-weight: 200;
+        letter-spacing: 0.2rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: space-evenly;
+        width: 100%;
+        padding: 1.5rem 1.3rem;
+        input {
+          font-size: 14px;
+          display: block;
+          width: 100%;
+          height: 42px;
+          margin-bottom: 12px;
+          padding: 16px 13px;
+          color: #999999;
+          border: 1px solid #d9d9d9;
+          background: transparent;
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+          border-radius: 2px;
+        }
+        button {
+          font-size: 12px;
+          line-height: 42px;
+          display: block;
+          width: 100%;
+          height: 42px;
+          cursor: pointer;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: #263238;
+          border: 1px solid #263238;
+          background: transparent;
+          background-color: transparent;
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+          border-radius: 2px;
+          transition: all 0.4s;
+
+          &:hover {
+            background-color: #263238;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
