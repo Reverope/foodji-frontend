@@ -25,6 +25,9 @@ loginForm.onsubmit = (e) => {
       localStorage.setItem("foodji-rest", JSON.stringify(data.restaurant));
       window.location = "restprofile.html";
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      var errorPara = document.getElementById("login-error");
+      errorPara.value = "Authentication Not Successfull";
+    });
   //   //   console.log(phone, password);
 };

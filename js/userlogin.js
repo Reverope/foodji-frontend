@@ -25,6 +25,10 @@ loginForm.onsubmit = (e) => {
       localStorage.setItem("foodji-user-name", data.user.name);
       location.reload();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      var errorPara = document.getElementById("login-error");
+      errorPara.value = "Authentication Not Successfull";
+      console.log(err);
+    });
   //   //   console.log(phone, password);
 };

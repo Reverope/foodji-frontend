@@ -16,7 +16,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 40em; /* Could be more or less, depending on screen size */
-  color: black !important;
+  color: black;
 }
 
 .modal-content h1 {
@@ -77,4 +77,24 @@ form button.btn:hover {
 }
 form label {
   font-size: 1.3em;
+}
+@media (max-width: 570px) {
+  .modal-content {
+    width: 95%;
+  }
+
+  /* global.css | http://localhost:5501/css/global.css?_cacheOverride=1592145047639 */
+
+  form input {
+    /* width: 26em; */
+    width: 100%;
+  }
+
+  form button.btn {
+    /* width: 28em; */
+    width: 100%;
+  }
+}
+#error {
+  color: red;
 }
