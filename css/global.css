@@ -95,6 +95,7 @@ form label {
     width: 100%;
   }
 }
-#error {
+.error-para {
   color: red;
+  display: none;
 }

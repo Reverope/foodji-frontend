@@ -26,8 +26,7 @@ loginForm.onsubmit = (e) => {
       location.reload();
     })
     .catch((err) => {
-      var errorPara = document.getElementById("login-error");
-      errorPara.value = "Authentication Not Successfull";
+      document.getElementById("guy-error").style.display = "block";
     });
   //   //   console.log(phone, password);
 };

@@ -28,12 +28,11 @@ registerForm.onsubmit = (e) => {
     .then((res) => res.json())
     .then((data) => {
       localStorage.setItem("foodji-user-auth-header", "Bearer " + data.token);
-      localStorage.setItem("foodji-user-name", data.user.name);
+      localStorage.setItem("foodji-user", data.user);
       location.reload();
     })
     .catch((err) => {
-      var errorPara = document.getElementById("login-error");
-      errorPara.value = "Authentication Not Successfull";
+      document.getElementById("register-error").style.display = "block";
     });
   //   //   console.log(phone, password);
 };

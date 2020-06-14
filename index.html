@@ -665,7 +665,7 @@
       <div class="modal-content">
         <span class="login-close">&times;</span>
         <form class="login-form">
-          <h1>Login</h1>
+          <h1>User Login</h1>
           <p id="login-para"></p>
 
             <input
@@ -685,7 +685,7 @@
               required
             />
             <a href="#" onclick="PopUpSign()">Not registered? Sign Up</a>
-            <p id="login-error"></p>
+            <p class="error-para" id="login-error">Authentication Not Successful</p>
 
           <button type="submit" class="btn">Login</button>
         </form>
@@ -701,7 +701,7 @@
       <div class="modal-content">
         <span class="register-close">&times;</span>
         <form class="register-form">
-          <h1>Register</h1>
+          <h1>User Register</h1>
           <p id="register-para"></p>
 
             <input
@@ -745,7 +745,7 @@
               required
             />
           <a href="#" onclick="PopUpLog()">Already a user? Log In</a>
-<p id="register-error"></p>
+<p class="error-para" id="register-error">Authentication Not Successful</p>
           <button type="submit" class="btn">Register</button>
         </form>
 
@@ -757,7 +757,7 @@
     <div class="modal-content">
         <span id="rest-close">&times;</span>
         <form class="rest-login-form">
-          <h1>Login</h1>
+          <h1>Restaurant Login</h1>
           <p id="restaurant-login-para"></p>
 
             <input
@@ -776,7 +776,7 @@
               autocomplete="off"
               required
             />
-            <p id="rest-error"></p>
+            <p class="error-para" id="rest-error">Authentication Not Successful</p>
           <button type="submit" class="btn">Login</button>
         </form>
 
@@ -786,8 +786,8 @@
     <div class="modal" id="guy-modal">
     <div class="modal-content">
         <span id="guy-close">&times;</span>
-        <form class="rest-login-form">
-          <h1>Login</h1>
+        <form class="guy-login-form">
+          <h1>Delivery Login</h1>
           <p id="guy-login-para"></p>
 
             <input
@@ -806,7 +806,7 @@
               autocomplete="off"
               required
             />
-            <p id="guy-error"></p>
+            <p class="error-para" id="guy-error">Authentication Not Successful</p>
           <button type="submit" class="btn">Login</button>
         </form>
 
