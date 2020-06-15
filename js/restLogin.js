@@ -3,7 +3,7 @@ var loginForm = document.getElementsByClassName("rest-login-form")[0];
 
 loginForm.onsubmit = (e) => {
   e.preventDefault();
-  document.getElementById('restLoginBtn').innerText = "Logging In"
+  document.getElementById("restLoginBtn").innerText = "Logging In";
   var rest_id = document.getElementById("rest_id").value;
   var password = document.getElementById("rest_password").value;
   //   e.preventDefault();
@@ -20,7 +20,13 @@ loginForm.onsubmit = (e) => {
     headers: { "Content-Type": "application/json" },
     body: body,
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw Error(res);
+      } else {
+        return res.json();
+      }
+    })
     .then((data) => {
       localStorage.setItem("foodji-rest-auth-header", "Bearer " + data.token);
       localStorage.setItem("foodji-rest", JSON.stringify(data.restaurant));
@@ -30,7 +36,7 @@ loginForm.onsubmit = (e) => {
     })
     .catch((err) => {
       document.getElementById("rest-error").style.display = "block";
-      document.getElementById('restLoginBtn').innerText = "Login"
+      document.getElementById("restLoginBtn").innerText = "Login";
     });
   //   //   console.log(phone, password);
 };
