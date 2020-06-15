@@ -94,6 +94,7 @@ fetch(url, {
         }).then((response) => {
           if (response.status == 200) {
             console.log("Accepted");
+            window.location('restprofile.html')
           } else {
             console.log("Error");
           }
@@ -116,6 +117,7 @@ fetch(url, {
         }).then((response) => {
           if (response.status == 200) {
             console.log("Rejected");
+            window.location('restprofile.html')
           } else {
             console.log("Error");
           }

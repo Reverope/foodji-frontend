@@ -12,6 +12,51 @@
       <h1>
         Welcome, Super-Admin
       </h1>
+
+      <section class="newrest">
+        <div class="formbox">
+          <h1>Add Restaurant</h1>
+
+          <form class="form" id="createRestForm">
+            <input type="text" id="rest_id" placeholder="Restaurant ID" />
+            <hr style="color: grey; margin-bottom: 0.6rem; opacity: 0.5;" />
+            <input type="text" id="restName" placeholder="Restaurant Name" />
+            <input type="text" id="restEmail" placeholder="Restaurant Email" />
+            <input
+              type="text"
+              id="restAddress"
+              placeholder="Restaurant Address"
+            />
+            <hr style="color: grey; margin-bottom: 0.6rem; opacity: 0.5;" />
+            <input type="password" id="restPassword" placeholder="Password(Atleast 7 character)" />
+
+            <input type="text" id="restPhone" placeholder="Contact Number" />
+            <button type="submit">Create Restaurant</button>
+          </form>
+        </div>
+      </section>
+      <section class="newrest">
+        <div class="formbox">
+          <h1>Add Delivery Guy</h1>
+
+          <form  class="form" id="createDelGuyForm">
+            <input
+              type="text"
+              id="delguyUsername"
+              placeholder="DeliveryGuy UserName"
+            />
+            <input type="text" id="delguyName" placeholder="DeliveryGuy Name" />
+            <input
+              type="text"
+              id="delguyEmail"
+              placeholder="DeliveryGuy Email"
+            />
+            <input type="text" id="delguyPhone" placeholder="Contact Number" />
+            <input type="password" id="delguyPassword" placeholder="Password(Atleast 7 characters)" />
+            <button type="submit">Create Delivery Boy</button>
+          </form>
+        </div>
+      </section>
       <section class="cards" id="cards">
         <div class="card unvisible" id="cardItem">
           <p class="name">Restaurant Name</p>
@@ -36,50 +81,6 @@
               <p class="pamount">200</p>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="newrest">
-        <div class="formbox">
-          <h1>Add Restaurant</h1>
-
-          <form class="form" id="createRestForm">
-            <input type="text" id="rest_id" placeholder="Restaurant ID" />
-            <hr style="color: grey; margin-bottom: 0.6rem; opacity: 0.5;" />
-            <input type="text" id="restName" placeholder="Restaurant Name" />
-            <input type="text" id="restEmail" placeholder="Restaurant Email" />
-            <input
-              type="text"
-              id="restAddress"
-              placeholder="Restaurant Address"
-            />
-            <hr style="color: grey; margin-bottom: 0.6rem; opacity: 0.5;" />
-            <input type="password" id="restPassword" placeholder="Password" />
-
-            <input type="text" id="restPhone" placeholder="Contact Number" />
-            <button type="submit">Create Restaurant</button>
-          </form>
-        </div>
-      </section>
-      <section class="newrest">
-        <div class="formbox">
-          <h1>Add Delivery Guy</h1>
-
-          <form  class="form" id="createDelGuyForm">
-            <input
-              type="text"
-              id="delguyUsername"
-              placeholder="DeliveryGuy UserName"
-            />
-            <input type="text" id="delguyName" placeholder="DeliveryGuy Name" />
-            <input
-              type="text"
-              id="delguyEmail"
-              placeholder="DeliveryGuy Email"
-            />
-            <input type="text" id="delguyPhone" placeholder="Contact Number" />
-            <input type="password" id="delguyPassword" placeholder="Password" />
-            <button type="submit">Create Delivery Boy</button>
-          </form>
         </div>
       </section>
     </div>
