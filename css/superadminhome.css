@@ -19,14 +19,20 @@
   color: #272727;
 }
 
+.container .welcome {
+  background-image: url("../assets/images/banner-bg.jpg");
+}
+
 .container h1 {
   margin: 2rem;
   font-family: "Century Gothic";
-  text-align: start;
-  font-size: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
 }
 
 .container .cards {
+  background-image: url("../assets/images/banner-bg.jpg");
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -58,8 +64,6 @@
   font-family: "Courier New", Courier, monospace;
   border-radius: 25px;
   background: #ffffff;
-  -webkit-box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
-          box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
   margin: 1rem;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -118,6 +122,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-image: url("../assets/images/super.png");
+  background-repeat: repeat;
 }
 
 .container .newrest .formbox {
@@ -138,8 +144,11 @@
 }
 
 .container .newrest .formbox h1 {
+  font-size: 1rem;
+  text-align: center;
   font-weight: 200;
   letter-spacing: 0.2rem;
+  color: #484848;
 }
 
 .container .newrest .formbox form {
