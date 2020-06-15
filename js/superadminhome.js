@@ -79,8 +79,7 @@ createRestForm.onsubmit = (e) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      // console.log(JSON.stringify(data))
-      window.location("superadminhome.html");
+      location.reload()
     })
     .catch((err) => {
       console.log(err);
@@ -113,7 +112,7 @@ createDelGuyForm.onsubmit = (e) => {
     .then((res) => res.json())
     .then((data) => {
       // console.log(JSON.stringify(data))
-      window.location("superadminhome.html");
+      location.reload()
     })
     .catch((err) => {
       console.log(err);
