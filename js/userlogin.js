@@ -20,8 +20,9 @@ userLoginForm.onsubmit = (e) => {
     .then((res) => {
       if (!res.ok) {
         throw Error(res);
+      } else {
+        return res.json();
       }
-      res.json();
     })
     .then((data) => {
       console.log(data);
@@ -29,13 +30,15 @@ userLoginForm.onsubmit = (e) => {
       console.log("No error");
       localStorage.setItem("foodji-user-auth-header", "Bearer " + data.token);
       localStorage.setItem("foodji-user", data.user);
+      document.getElementById("login-error").style.display = "none";
+
       location.reload();
     })
     .catch((err) => {
       console.log("error occured");
       document.getElementById("login-error").style.display = "block";
 
-      console.log(err);
+      console.log(err.statusText);
     });
   //   //   console.log(phone, password);
 };

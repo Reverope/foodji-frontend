@@ -29,6 +29,8 @@ registerForm.onsubmit = (e) => {
     .then((data) => {
       localStorage.setItem("foodji-user-auth-header", "Bearer " + data.token);
       localStorage.setItem("foodji-user", data.user);
+      document.getElementById("register-error").style.display = "none";
+
       location.reload();
     })
     .catch((err) => {
