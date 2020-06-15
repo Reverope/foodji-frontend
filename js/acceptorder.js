@@ -12,9 +12,6 @@ var containerBig = document.getElementById("foodlistingbox");
 var addFoodForm = document.getElementById("addFoodForm");
 var orderDisplay = document.querySelector(".tableoforder");
 
-
-
-
 fetch(restProfileURL, {
   accept: "application/json",
   mode: "cors",
@@ -29,7 +26,6 @@ fetch(restProfileURL, {
     console.log(restaurant);
     restaurant.orders.forEach((orderId) => {
       var tablerow = document.createElement("tr");
-
       var liElement = document.createElement("td");
       var liAddress = document.createElement("td");
       var liPaymentStatus = document.createElement("td");
@@ -49,21 +45,6 @@ fetch(restProfileURL, {
       tablerow.appendChild(accept);
       tablerow.appendChild(decline);
 
-      var acceptButton = document.createElement("button");
-      var declineButton = document.createElement("button");
-      declineButton.id = orderId;
-      acceptButton.id = orderId;
-
-      accept.appendChild(acceptButton);
-      decline.appendChild(declineButton);
-
-      acceptButton.style.margin = "0 1rem";
-      declineButton.style.margin = "0 1rem";
-      acceptButton.className = "acceptdecision template-btn template-btn2";
-      declineButton.className = "declinedecision template-btn template-btn2";
-      acceptButton.innerText = "Accept";
-      declineButton.innerText = "Decline";
-
       var url = `https://knight-foodji.herokuapp.com/api/restaurant/order/${orderId}`;
 
       fetch(url, {
@@ -76,6 +57,56 @@ fetch(restProfileURL, {
       })
         .then((response) => response.json())
         .then((data) => {
+          if (data["status"] == "RECEIVED") {
+            var acceptButton = document.createElement("button");
+            var declineButton = document.createElement("button");
+            declineButton.id = orderId;
+            acceptButton.id = orderId;
+            accept.appendChild(acceptButton);
+            decline.appendChild(declineButton);
+            acceptButton.style.margin = "0 1rem";
+            declineButton.style.margin = "0 1rem";
+            acceptButton.className =
+              "acceptdecision template-btn template-btn2";
+            declineButton.className =
+              "declinedecision template-btn template-btn2";
+            acceptButton.innerText = "Accept";
+            declineButton.innerText = "Decline";
+          }
+
+          if (data["status"] == "ACCEPTED") {
+            var acceptButton = document.createElement("button");
+            var declineButton = document.createElement("button");
+            declineButton.id = orderId;
+            // acceptButton.id = orderId;
+            accept.appendChild(acceptButton);
+            decline.appendChild(declineButton);
+            acceptButton.style.margin = "0 1rem";
+            declineButton.style.margin = "0 1rem";
+            acceptButton.className =
+              "acceptdecision template-btn template-btn2";
+            declineButton.className = "declinedecision template-btn-disable";
+            acceptButton.innerText = "LEFT";
+            declineButton.disabled = true;
+            declineButton.innerText = "Decline";
+          }
+          if (data["status"] == "REJECTED") {
+            var acceptButton = document.createElement("button");
+            var declineButton = document.createElement("button");
+            acceptButton.disabled = true;
+            declineButton.disabled = true;
+            console.log(acceptButton);
+            declineButton.id = orderId;
+            acceptButton.id = orderId;
+            accept.appendChild(acceptButton);
+            decline.appendChild(declineButton);
+            acceptButton.style.margin = "0 1rem";
+            declineButton.style.margin = "0 1rem";
+            acceptButton.className = "acceptdecision template-btn-disable";
+            declineButton.className = "declinedecision template-btn-disable";
+            acceptButton.innerText = "Accept";
+            declineButton.innerText = "Decline";
+          }
           console.log(data);
           liElement.innerText = orderId;
           liAddress.innerText = data["address"];
@@ -143,6 +174,5 @@ fetch(restProfileURL, {
             });
           });
         });
-    })
     });
-
+  });
