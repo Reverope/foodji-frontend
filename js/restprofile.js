@@ -32,7 +32,6 @@ fetch(restProfileURL, {
 })
   .then((response) => response.json())
   .then((restaurant) => {
-    console.log(restaurant);
 
     var restaurantName = restaurant["name"];
     var restaurantId = restaurant["_id"];
@@ -112,7 +111,7 @@ fetch(restProfileURL, {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+  
           liElement.innerText = orderId;
           liAddress.innerText = data["address"];
           liTotalPrice.innerText = data["payment"]["total"];
@@ -136,7 +135,7 @@ fetch(restProfileURL, {
 
           selectAllAcceptButtons.forEach((button) => {
             button.addEventListener("click", (clickedButton) => {
-              console.log(clickedButton.target.id);
+        
               var url =
                 "https://knight-foodji.herokuapp.com/api/restaurant/order/acceptreject/accept/" +
                 clickedButton.target.id;

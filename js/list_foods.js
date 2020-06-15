@@ -2,14 +2,13 @@
 var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("container");
 var orderAr = [];
+var foods = []
 var url_string = window.location.href;
 var url = new URL(url_string);
 var restaurantCode = url.searchParams.get("id");
 var placeOrderBtn = document.getElementById("placeOrder");
 var createOrderURL = `https://knight-foodji.herokuapp.com/api/user/order`;
-orderAr["resid"] = restaurantCode;
 
-// var restaurantId = document.getElementById("restaurantId").innerText;
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, "\\$&");
@@ -20,7 +19,6 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 var restaurantId = getParameterByName("id");
-// console.log(restId)
 var url = "https://knight-foodji.herokuapp.com/api/restaurant/" + restaurantId;
 
 fetch(url, {
@@ -87,7 +85,6 @@ fetch(url, {
         if (!localStorage.getItem("foodji-user-auth-header")) {
           PopUpLog("You need to be authenticated to do this");
         } else {
-          console.log(orderAr);
           const todoList = document.querySelector(".todo-list");
           const todoListItem = document.querySelectorAll(".order-item");
 
@@ -100,21 +97,26 @@ fetch(url, {
           var foodName = foodItem["childNodes"][1].innerText;
           var foodPrice = foodItem["childNodes"][3].innerText;
           var foodId = foodItem["childNodes"][5].innerText;
-          console.log(foodId);
           var present = 0;
 
           for (var x in orderAr) {
             if (orderAr[x].food_name == foodName) {
               orderAr[x].quantity++;
+              foods[x].quantity++;
               present = 1;
             }
           }
+          
           if (present == 0) {
             orderAr.push({
               food_id: foodId,
               food_name: foodName,
               food_price: foodPrice,
               quantity: 1,
+            })
+            foods.push({
+              foodid: foodId,
+              quantity: 1
             });
           }
 
@@ -185,3 +187,36 @@ fetch(url, {
       });
     });
   });
+
+
+  placeOrderBtn.onclick = (e)=>{
+    var reqBody = JSON.stringify({
+      restaurantId: restaurantCode,
+      foods: foods,
+      payment:{
+        method: "COD",
+        status:"UNPAID"
+      }
+    })
+
+    console.log(reqBody);
+    fetch(createOrderURL, {
+      mode: "cors",
+      method: "POST",
+  
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: reqBody,
+      accept: "application/json",
+    })
+      .then((res) => res.json)
+      .then((data) => {
+        window.location = "index.html";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  
