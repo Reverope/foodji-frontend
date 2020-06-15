@@ -51,7 +51,7 @@ fetch(url, {
       price["innerText"] = foodItem.price;
 
       var foodId = food.childNodes[1].childNodes[3].childNodes[1].childNodes[5];
-      foodId["innerText"] = foodItem._id;
+      foodId["innerText"] = foodItem.foodid._id;
 
       //   var address =
       //     food.childNodes[1].childNodes[1].childNodes[3].childNodes[3];
@@ -188,6 +188,7 @@ fetch(url, {
     });
   });
 
+  var userToken = localStorage.getItem("foodji-user-auth-header")
 
   placeOrderBtn.onclick = (e)=>{
     var reqBody = JSON.stringify({
@@ -206,14 +207,15 @@ fetch(url, {
   
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: userToken,
       },
       body: reqBody,
       accept: "application/json",
     })
       .then((res) => res.json)
       .then((data) => {
-        window.location = "index.html";
+        window.location = "userprofile.html";
+
       })
       .catch((err) => {
         console.log(err);
