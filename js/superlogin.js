@@ -18,7 +18,7 @@ superLoginForm.onsubmit = (e)=>{
     .then( (data) =>{
         console.log(JSON.stringify(data))
         localStorage.setItem("foodji-super-auth-header", "Bearer " + data.token)
-        window.location = 'superhome.html'
+        window.location = 'superadminhome.html'
     })
     .catch( error =>{
         console.log(error)

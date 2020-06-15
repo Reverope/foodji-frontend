@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="./assets/css/jquery.datetimepicker.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./css/component.css" />
+    <style>
+      .tableoforder td {
+        padding: 1rem;
+        text-align: start;
+      }
+    </style>
   </head>
   <body>
     <!-- Preloader Starts -->
@@ -40,7 +46,7 @@
           <div class="col-lg-2">
             <div class="logo-area">
               <a href="ui"
-                ><img src="./assets/images/logo/logo.png" alt="logo"
+                ><img src="./assets/images/logo/foodji.jpeg" alt="logo"
               /></a>
             </div>
           </div>
@@ -96,6 +102,7 @@
           <div class="col-md-6 align-self-center">
             <div class="welcome-text mt-5 mt-md-0">
               <h3 id="dName2"></h3>
+              <p id="dID"></p>
               <br />
               <p id="dAdd"></p>
 
@@ -110,20 +117,6 @@
     </section>
     <!-- Welcome Area End -->
 
-    <!-- Reservation Area Starts -->
-    <div class="reservation-area section-padding text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h2>Customers are waiting</h2>
-            <h4 class="mt-4">check out their orders</h4>
-            <div class="orderListInProfile"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Deshes Area End -->
 
     <!-- Update Area Starts -->
     <section class="update-area section-padding">
@@ -229,10 +222,7 @@
                   ><img src="/assets/images/logo/logo2.png" alt=""
                 /></a>
                 <p class="mt-3">
-                  Which morning fourth great won't is to fly bearing man. Called
-                  unto shall seed, deep, herb set seed land divide after over
-                  first creeping. First creature set upon stars deep male
-                  gathered said she'd an image spirit our
+                  Discover the flavours of foodji
                 </p>
               </div>
             </div>
@@ -245,7 +235,7 @@
                   </div>
                   <div class="info-text">
                     <p>
-                      1234 Some St San Francisco, CA 94102, US 1.800.123.4567
+                      Silchar, Assam
                     </p>
                   </div>
                 </div>
@@ -262,15 +252,18 @@
                     <i class="fa fa-envelope-o"></i>
                   </div>
                   <div class="info-text">
-                    <p>support@axiomthemes.com</p>
+                    <p>foodji.care@gmail.com</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="single-widget single-widget3">
-                <h5 class="mb-4">Quick Links</h5>
-                <p><a onclick="logRest()" href="#">Login As a Restaurant</a></p>
+                <h5 class="mb-4">opening hours</h5>
+                <p>Monday ...................... Closed</p>
+                <p>Tue-Fri .............. 10 am - 12 pm</p>
+                <p>Sat-Sun ............... 8 am - 11 pm</p>
+                <p>Holidays ............. 10 am - 12 pm</p>
               </div>
             </div>
           </div>
@@ -408,35 +401,6 @@
         </form>
       </div>
     </div>
-
-    <div class="modal" id="rest-modal">
-      <div class="modal-content">
-        <span id="rest-close">&times;</span>
-        <form class="rest-login-form">
-          <h1>Login</h1>
-          <p id="restaurant-login-para"></p>
-
-          <input
-            type="text"
-            name="rest_id"
-            id="rest_id"
-            placeholder="Restaurant Id"
-            autocomplete="off"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            id="rest_password"
-            placeholder="Password"
-            autocomplete="off"
-            required
-          />
-          <button type="submit" class="btn">Login</button>
-        </form>
-      </div>
-    </div>
-
     <!-- Javascript -->
     <script src="./assets/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="./assets/js/vendor/bootstrap-4.1.3.min.js"></script>
@@ -449,6 +413,5 @@
     <script src="./js/userlogin.js"></script>
     <script src="./js/userRegister.js"></script>
     <script src="./js/restprofile.js"></script>
-    <script src="./js/restLogin.js"></script>
   </body>
 </html>
