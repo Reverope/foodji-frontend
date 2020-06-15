@@ -3,6 +3,7 @@ var loginForm = document.getElementsByClassName("rest-login-form")[0];
 
 loginForm.onsubmit = (e) => {
   e.preventDefault();
+  document.getElementById('restLoginBtn').innerText = "Logging In"
   var rest_id = document.getElementById("rest_id").value;
   var password = document.getElementById("rest_password").value;
   //   e.preventDefault();
@@ -29,6 +30,7 @@ loginForm.onsubmit = (e) => {
     })
     .catch((err) => {
       document.getElementById("rest-error").style.display = "block";
+      document.getElementById('restLoginBtn').innerText = "Login"
     });
   //   //   console.log(phone, password);
 };

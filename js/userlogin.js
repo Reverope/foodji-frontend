@@ -3,6 +3,7 @@ var userLoginForm = document.getElementsByClassName("login-form")[0];
 
 userLoginForm.onsubmit = (e) => {
   e.preventDefault();
+  document.getElementById('userLoginBtn').innerText = "Logging In"
   var phone = document.getElementById("phone").value;
   var password = document.getElementById("password").value;
   //   e.preventDefault();
@@ -35,10 +36,9 @@ userLoginForm.onsubmit = (e) => {
       location.reload();
     })
     .catch((err) => {
-      console.log("error occured");
       document.getElementById("login-error").style.display = "block";
-
-      console.log(err.statusText);
+      document.getElementById('userLoginBtn').innerText = "Login"
+    
     });
   //   //   console.log(phone, password);
 };
