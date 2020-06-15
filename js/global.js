@@ -76,7 +76,11 @@ ready(function () {
   var signUpHtml = '<a onclick="singUp()" href="#">Signup</a>';
 
   var logoutHtml = '<a href="index.html" onclick="logOut()">LogOut</a>';
-  var profileLinkHtml = '<a href="userprofile.html">Profile</a>';
+  var profileLinkHtml = () => {
+    if (token) return `<a href="userprofile.html">Profile</a>`;
+    else if (restToken) return `<a href="restoprofile.html">Profile</a>`;
+    else return signUpHtml;
+  };
 
   if (!token && !restToken && !guyToken) {
     console.log("Token does not exist");
@@ -84,7 +88,7 @@ ready(function () {
     signUpProfileBtn.innerHTML = signUpHtml;
   } else {
     logInOutBtn.innerHTML = logoutHtml;
-    signUpProfileBtn.innerHTML = profileLinkHtml;
+    signUpProfileBtn.innerHTML = profileLinkHtml();
   }
 
   var span = document.getElementsByClassName("login-close")[0];
@@ -105,12 +109,16 @@ ready(function () {
   };
   window.onclick = function (event) {
     if (event.target == loginModal) {
+      document.getElementById("login-error").style.display = "none";
       loginModal.style.display = "none";
     } else if (event.target == signUpModal) {
+      document.getElementById("register-error").style.display = "none";
       signUpModal.style.display = "none";
     } else if (event.target == restLogInModal) {
+      document.getElementById("rest-error").style.display = "none";
       restLogInModal.style.display = "none";
     } else if (event.target == guyLogInModal) {
+      document.getElementById("guy-error").style.display = "none";
       guyLogInModal.style.display = "none";
     }
   };

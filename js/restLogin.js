@@ -23,6 +23,8 @@ loginForm.onsubmit = (e) => {
     .then((data) => {
       localStorage.setItem("foodji-rest-auth-header", "Bearer " + data.token);
       localStorage.setItem("foodji-rest", JSON.stringify(data.restaurant));
+      document.getElementById("rest-error").style.display = "none";
+
       window.location = "restprofile.html";
     })
     .catch((err) => {
