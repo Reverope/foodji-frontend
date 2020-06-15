@@ -19,7 +19,13 @@ loginForm.onsubmit = (e) => {
     headers: { "Content-Type": "application/json" },
     body: body,
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw Error(res);
+      } else {
+        return res.json();
+      }
+    })
     .then((data) => {
       localStorage.setItem("foodji-guy-auth-header", "Bearer " + data.token);
       localStorage.setItem("foodji-guy", JSON.stringify(data.restaurant));
