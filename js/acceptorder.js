@@ -32,9 +32,10 @@ fetch(restProfileURL, {
       var liTotalPrice = document.createElement("td");
       var liAssignmentDate = document.createElement("td");
       var liContact = document.createElement("td");
-      var liETA = document.createElement("td");
+      var liETA = document.createElement("input");
       var accept = document.createElement("td");
       var decline = document.createElement("td");
+      var liStatus = document.createElement("td");
 
       tablerow.appendChild(liElement);
       tablerow.appendChild(liAddress);
@@ -42,6 +43,7 @@ fetch(restProfileURL, {
       tablerow.appendChild(liAssignmentDate);
       tablerow.appendChild(liContact);
       tablerow.appendChild(liETA);
+      tablerow.appendChild(liStatus);
       tablerow.appendChild(accept);
       tablerow.appendChild(decline);
 
@@ -83,10 +85,10 @@ fetch(restProfileURL, {
             decline.appendChild(declineButton);
             acceptButton.style.margin = "0 1rem";
             declineButton.style.margin = "0 1rem";
-            acceptButton.className =
-              "acceptdecision template-btn template-btn2";
+            acceptButton.className = "acceptdecision template-btn disable";
             declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.innerText = "LEFT";
+            acceptButton.disabled = true;
+            acceptButton.innerText = "ACCEPTED";
             declineButton.disabled = true;
             declineButton.innerText = "Decline";
           }
@@ -95,7 +97,7 @@ fetch(restProfileURL, {
             var declineButton = document.createElement("button");
             acceptButton.disabled = true;
             declineButton.disabled = true;
-            console.log(acceptButton);
+
             declineButton.id = orderId;
             acceptButton.id = orderId;
             accept.appendChild(acceptButton);
@@ -105,13 +107,46 @@ fetch(restProfileURL, {
             acceptButton.className = "acceptdecision template-btn-disable";
             declineButton.className = "declinedecision template-btn-disable";
             acceptButton.innerText = "Accept";
-            declineButton.innerText = "Decline";
+            declineButton.innerText = "Rejected";
           }
-          console.log(data);
-          liElement.innerText = orderId;
+          if (data["status"] == "CANCELED") {
+            var acceptButton = document.createElement("button");
+            var declineButton = document.createElement("button");
+            acceptButton.disabled = true;
+            declineButton.disabled = true;
+
+            declineButton.id = orderId;
+            acceptButton.id = orderId;
+            accept.appendChild(acceptButton);
+            decline.appendChild(declineButton);
+            acceptButton.style.margin = "0 1rem";
+            declineButton.style.margin = "0 1rem";
+            acceptButton.className = "acceptdecision template-btn-disable";
+            declineButton.className = "declinedecision template-btn-disable";
+            acceptButton.innerText = "Accept";
+            declineButton.innerText = "Reject";
+          }
+
+          var orderedFoodList = data["foods"];
+          console.log(orderedFoodList);
+
+          [...orderedFoodList].forEach((food) => {
+            liElement.innerHTML +=
+              "<li><p>" +
+              food["name"] +
+              "(x" +
+              food["quantity"] +
+              ")  <br> ₹" +
+              food["price"] +
+              "</p>" +
+              "</li>";
+          });
+
+          // liElement.innerText = orderId;
           liAddress.innerText = data["address"];
           liTotalPrice.innerText = data["payment"]["total"];
           liContact.innerText = data["user"]["phone"];
+          liStatus.innerText = data["status"];
 
           var time = data["updatedAt"];
           var timing = Date(time);
