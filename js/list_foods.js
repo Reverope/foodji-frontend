@@ -199,26 +199,30 @@ fetch(url, {
         status:"UNPAID"
       }
     })
-
-    console.log(reqBody);
-    fetch(createOrderURL, {
-      mode: "cors",
-      method: "POST",
-  
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: userToken,
-      },
-      body: reqBody,
-      accept: "application/json",
-    })
-      .then((res) => res.json)
-      .then((data) => {
-        window.location = "userprofile.html";
-
+    var r = confirm(`You are trying to place order from Foodji. Do you want to continue?`)
+    if(r == true){
+      fetch(createOrderURL, {
+        mode: "cors",
+        method: "POST",
+    
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: userToken,
+        },
+        body: reqBody,
+        accept: "application/json",
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => res.json)
+        .then((data) => {
+          window.location = "userprofile.html";
+  
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else{
+      window.location("restfood.html")
+    }
+
   };
   
