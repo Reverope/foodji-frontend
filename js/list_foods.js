@@ -221,7 +221,7 @@ fetch(url, {
           console.log(err);
         });
     } else{
-      window.location("restfood.html")
+      location.reload()
     }
 
   };
