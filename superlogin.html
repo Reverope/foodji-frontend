@@ -4,15 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-    <h1>Super Admin Login</h1>
+    <!-- <h1>Super Admin Login</h1>
     <form id="superLoginForm">
         <input type="text" placeholder="Username" id="username">
         <input type="password" placeholder="Password" id="password">
         <button type="submit" id="loginBtn">Login</button>
-    </form>
+    </form> -->
 
+    <div class="container">
+        <header class="header">Super Admin Login</header>
+        <main class="main">
+          <form class="login-form" id="superLoginForm">
+            <h1>Login</h1>
+            <div class="form-control">
+              <input
+                type="text"
+                id="username"
+                placeholder=" "
+                autocomplete="off"
+                required
+              />
+              <label for="phone">Username</label>
+            </div>
+            <div class="form-control">
+              <input
+                type="password"
+                id="password"
+                placeholder=" "
+                autocomplete="off"
+                required
+              />
+              <label for="password">Password</label>
+            </div>
+            <button type="submit" class="btn" id="loginBtn">Login</button>
+          </form>
+        </main>
+      </div>
     <script src="./js/superlogin.js"></script>
 </body>
 </html>
