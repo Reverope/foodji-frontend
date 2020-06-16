@@ -221,7 +221,7 @@ fetch(url, {
           console.log(err);
         });
     } else{
-      location.reload()
+
     }
 
   };

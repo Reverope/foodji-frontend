@@ -78,7 +78,7 @@ ready(function () {
   var logoutHtml = '<a href="index.html" onclick="logOut()">LogOut</a>';
   var profileLinkHtml = () => {
     if (token) return `<a href="userprofile.html">Profile</a>`;
-    else if (restToken) return `<a href="restoprofile.html">Profile</a>`;
+    else if (restToken) return `<a href="restprofile.html">Profile</a>`;
     else return signUpHtml;
   };
 
