@@ -25,7 +25,13 @@ registerForm.onsubmit = (e) => {
     body: body,
     accept: "application/json",
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw Error(res);
+      } else {
+        return res.json();
+      }
+    })
     .then((data) => {
       localStorage.setItem("foodji-user-auth-header", "Bearer " + data.token);
       localStorage.setItem("foodji-user", data.user);
