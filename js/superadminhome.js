@@ -79,6 +79,7 @@ createRestForm.onsubmit = (e) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      alert("Restaurant Created")
       location.reload()
     })
     .catch((err) => {
@@ -111,7 +112,7 @@ createDelGuyForm.onsubmit = (e) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      // console.log(JSON.stringify(data))
+      alert("Delivery Boy Created")
       location.reload()
     })
     .catch((err) => {
