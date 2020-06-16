@@ -34,8 +34,13 @@ fetch(getAllOrdersURL, {
       var paymentStatus = ordercards.childNodes[9].childNodes[3].childNodes[3];
       var paymentAmount = ordercards.childNodes[9].childNodes[5].childNodes[3];
 
+      var time = new Date(item["createdAt"]);
+
       resname["innerText"] = item["restaurant"].name;
-      resContact["innerText"] = item["restaurant"].contactNos[0];
+      resContact["innerHTML"] =
+        item["restaurant"].contactNos[0] +
+        "<br>  " +
+        time.toString().substr(0, 24);
       userContact["innerText"] = item["user"].phone;
       paymentMode["innerText"] = item["payment"].method;
       paymentStatus["innerText"] = item["payment"].status;
@@ -79,8 +84,8 @@ createRestForm.onsubmit = (e) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      alert("Restaurant Created")
-      location.reload()
+      alert("Restaurant Created");
+      location.reload();
     })
     .catch((err) => {
       console.log(err);
@@ -112,8 +117,8 @@ createDelGuyForm.onsubmit = (e) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      alert("Delivery Boy Created")
-      location.reload()
+      alert("Delivery Boy Created");
+      location.reload();
     })
     .catch((err) => {
       console.log(err);
