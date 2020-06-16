@@ -84,9 +84,10 @@ fetch(restProfileURL, {
             acceptButton.style.margin = "0 1rem";
             declineButton.style.margin = "0 1rem";
             acceptButton.className =
-              "acceptdecision template-btn template-btn2";
+              "acceptdecision template-btn disable";
             declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.innerText = "LEFT";
+            acceptButton.disabled = true
+            acceptButton.innerText = "ACCEPTED";
             declineButton.disabled = true;
             declineButton.innerText = "Decline";
           }
@@ -105,7 +106,24 @@ fetch(restProfileURL, {
             acceptButton.className = "acceptdecision template-btn-disable";
             declineButton.className = "declinedecision template-btn-disable";
             acceptButton.innerText = "Accept";
-            declineButton.innerText = "Decline";
+            declineButton.innerText = "Rejected";
+          }
+          if (data["status"] == "CANCELED") {
+            var acceptButton = document.createElement("button");
+            var declineButton = document.createElement("button");
+            acceptButton.disabled = true;
+            declineButton.disabled = true;
+            console.log(acceptButton);
+            declineButton.id = orderId;
+            acceptButton.id = orderId;
+            accept.appendChild(acceptButton);
+            decline.appendChild(declineButton);
+            acceptButton.style.margin = "0 1rem";
+            declineButton.style.margin = "0 1rem";
+            acceptButton.className = "acceptdecision template-btn-disable";
+            declineButton.className = "declinedecision template-btn-disable";
+            acceptButton.innerText = "Accept";
+            declineButton.innerText = "Reject";
           }
           console.log(data);
           liElement.innerText = orderId;
