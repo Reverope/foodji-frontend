@@ -8,56 +8,68 @@ var createRestForm = document.getElementById("createRestForm");
 var createDelGuyForm = document.getElementById("createDelGuyForm");
 
 //
-var card = document.getElementById("cardItem");
-var cards = document.getElementById("cards");
-fetch(getAllOrdersURL, {
-  accept: "application/json",
-  mode: "cors",
-  method: "GET",
-  headers: {
-    Authorization: token,
-  },
-})
-  .then((response) => response.json())
-  .then((data) => {
-    [...data].forEach((item) => {
-      console.log(item);
 
-      var ordercards = card.cloneNode(true);
+window.onload = () => {
+  var card = document.getElementById("cardItem");
+  var cards = document.getElementById("cards");
+  fetch(getAllOrdersURL, {
+    accept: "application/json",
+    mode: "cors",
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response);
+      } else {
+        response.json();
+      }
+    })
+    .then((data) => {
+      [...data].forEach((item) => {
+        console.log(item);
 
-      ordercards["attributes"].class["value"] = "card";
+        var ordercards = card.cloneNode(true);
 
-      var resname = ordercards.childNodes[1];
-      var resContact = ordercards.childNodes[3];
-      var userContact = ordercards.childNodes[7].childNodes[3];
-      var paymentMode = ordercards.childNodes[9].childNodes[1].childNodes[3];
-      var paymentStatus = ordercards.childNodes[9].childNodes[3].childNodes[3];
-      var paymentAmount = ordercards.childNodes[9].childNodes[5].childNodes[3];
+        ordercards["attributes"].class["value"] = "card";
 
-      var time = new Date(item["createdAt"]);
+        var resname = ordercards.childNodes[1];
+        var resContact = ordercards.childNodes[3];
+        var userContact = ordercards.childNodes[7].childNodes[3];
+        var paymentMode = ordercards.childNodes[9].childNodes[1].childNodes[3];
+        var paymentStatus =
+          ordercards.childNodes[9].childNodes[3].childNodes[3];
+        var paymentAmount =
+          ordercards.childNodes[9].childNodes[5].childNodes[3];
 
-      resname["innerText"] = item["restaurant"].name;
-      resContact["innerHTML"] =
-        item["restaurant"].contactNos[0] +
-        "<br>  " +
-        time.toString().substr(0, 24);
-      userContact["innerText"] = item["user"].phone;
-      paymentMode["innerText"] = item["payment"].method;
-      paymentStatus["innerText"] = item["payment"].status;
-      paymentAmount["innerText"] = item["payment"].total;
+        var time = new Date(item["createdAt"]);
 
-      //   console.log(ordercards["attributes"].class["value"]);
+        resname["innerText"] = item["restaurant"].name;
+        resContact["innerHTML"] =
+          item["restaurant"].contactNos[0] +
+          "<br>  " +
+          time.toString().substr(0, 24);
+        userContact["innerText"] = item["user"].phone;
+        paymentMode["innerText"] = item["payment"].method;
+        paymentStatus["innerText"] = item["payment"].status;
+        paymentAmount["innerText"] = item["payment"].total;
 
-      cards.appendChild(ordercards);
+        //   console.log(ordercards["attributes"].class["value"]);
+
+        cards.appendChild(ordercards);
+      });
+    })
+    .then((_) => {
+      cards.removeChild(cards.childNodes[1]);
+    })
+    .catch((err) => {
+      console.log(err);
+      document.getElementById("super-login-form").style.display = "block";
+      document.getElementById("super-login-error").style.display = "block";
     });
-  })
-  .then((_) => {
-    cards.removeChild(cards.childNodes[1]);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
+};
 //Creating restaurant
 createRestForm.onsubmit = (e) => {
   e.preventDefault();
@@ -82,13 +94,21 @@ createRestForm.onsubmit = (e) => {
     body: reqBody,
     accept: "application/json",
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!response.ok) {
+        throw Error(response);
+      } else {
+        response.json();
+      }
+    })
     .then((data) => {
       alert("Restaurant Created");
       location.reload();
     })
     .catch((err) => {
       console.log(err);
+      document.getElementById("super-login-form").style.display = "block";
+      document.getElementById("super-login-error").style.display = "block";
     });
 };
 
@@ -115,12 +135,20 @@ createDelGuyForm.onsubmit = (e) => {
     body: reqBody,
     accept: "application/json",
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!response.ok) {
+        throw Error(response);
+      } else {
+        response.json();
+      }
+    })
     .then((data) => {
       alert("Delivery Boy Created");
       location.reload();
     })
     .catch((err) => {
       console.log(err);
+      document.getElementById("super-login-form").style.display = "block";
+      document.getElementById("super-login-error").style.display = "block";
     });
 };
