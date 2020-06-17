@@ -179,9 +179,11 @@ fetch(restProfileURL, {
                 },
               }).then((response) => {
                 if (response.status == 200) {
-                  console.log("Accepted");
+                  location.reload()
+                  // console.log("Accepted");
                 } else {
-                  console.log("Error");
+                  // console.log("Error");
+                  location.reload()
                 }
               });
             });
@@ -201,9 +203,11 @@ fetch(restProfileURL, {
                 },
               }).then((response) => {
                 if (response.status == 200) {
-                  console.log("Rejected");
+                  // console.log("Rejected");
+                  location.reload()
                 } else {
-                  console.log("Error");
+                  // console.log("Error");
+                  location.reload()
                 }
               });
             });
