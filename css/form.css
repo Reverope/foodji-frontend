@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.containert {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #272727;
+}
+
+.containert .formsection {
+  height: 100vh;
+  font-size: 0.7rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.containert .formboxiwthillus {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+}
+
+.containert .formboxiwthillus .formbox {
+  width: 20rem;
+  background-color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 0.8rem;
+}
+
+.containert .formboxiwthillus .formbox h1 {
+  font-family: "Century Gothic";
+  font-weight: 600;
+  letter-spacing: 0.5rem;
+  font-size: 0.8rem !important;
+  color: #242424;
+}
+
+.containert .formboxiwthillus .formbox form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: space-evenly;
+      -ms-flex-align: space-evenly;
+          align-items: space-evenly;
+  width: 100%;
+  padding: 1.5rem 1.3rem;
+}
+
+.containert .formboxiwthillus .formbox form label {
+  opacity: 0;
+  font-family: sans-serif;
+  font-weight: 200;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 0.8rem;
+  color: #999999;
+}
+
+.containert .formboxiwthillus .formbox form input {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  border-radius: 2px;
+}
+
+.containert .formboxiwthillus .formbox form .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.containert .formboxiwthillus .formbox form .cancel,
+.containert .formboxiwthillus .formbox form button {
+  font-size: 12px;
+  line-height: 42px;
+  display: block;
+  width: 30%;
+  height: 42px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #263238;
+  border: 1px solid #263238;
+  background: transparent;
+  background-color: transparent;
+  border-radius: 2px;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.containert .formboxiwthillus .formbox form .cancel:hover,
+.containert .formboxiwthillus .formbox form button:hover {
+  background-color: #263238;
+  color: white;
+}
+
+.containert .formboxiwthillus .formillustration {
+  width: 20rem;
+  height: 25rem;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.containert .formboxiwthillus .formillustration img {
+  height: 100%;
+}
+
+@-webkit-keyframes moveup {
+  from {
+    -webkit-transform: translate(20px);
+            transform: translate(20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes moveup {
+  from {
+    -webkit-transform: translate(20px);
+            transform: translate(20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes movedown {
+  from {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: translate(20px);
+            transform: translate(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes movedown {
+  from {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: translate(20px);
+            transform: translate(20px);
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=form.css.map */
