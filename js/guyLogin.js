@@ -28,7 +28,7 @@ loginForm.onsubmit = (e) => {
     })
     .then((data) => {
       localStorage.setItem("foodji-guy-auth-header", "Bearer " + data.token);
-      localStorage.setItem("foodji-guy", JSON.stringify(data.restaurant));
+      localStorage.setItem("foodji-guy", JSON.stringify(data.deliveryGuy));
       document.getElementById("guy-error").style.display = "none";
 
       location.reload();

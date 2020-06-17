@@ -35,28 +35,26 @@ window.onload = () => {
 
         ordercards["attributes"].class["value"] = "card";
 
-        var resname = ordercards.childNodes[1];
-        var resContact = ordercards.childNodes[3];
-        var userContact = ordercards.childNodes[7].childNodes[3];
-        var paymentMode = ordercards.childNodes[9].childNodes[1].childNodes[3];
-        var paymentStatus =
-          ordercards.childNodes[9].childNodes[3].childNodes[3];
-        var paymentAmount =
-          ordercards.childNodes[9].childNodes[5].childNodes[3];
+      var resname = ordercards.childNodes[1];
+      var resContact = ordercards.childNodes[3];
+      var userContact = ordercards.childNodes[7].childNodes[3];
+      var paymentMode = ordercards.childNodes[9].childNodes[1].childNodes[3];
+      var paymentStatus = ordercards.childNodes[9].childNodes[3].childNodes[3];
+      var paymentAmount = ordercards.childNodes[9].childNodes[5].childNodes[3];
+      var orderStatus = ordercards.childNodes[9].childNodes[7].childNodes[3];
+
 
         var time = new Date(item["createdAt"]);
-
-        resname["innerText"] = item["restaurant"].name;
-        resContact["innerHTML"] =
-          item["restaurant"].contactNos[0] +
-          "<br>  " +
-          time.toString().substr(0, 24);
-        userContact["innerText"] = item["user"].phone;
-        paymentMode["innerText"] = item["payment"].method;
-        paymentStatus["innerText"] = item["payment"].status;
-        paymentAmount["innerText"] = item["payment"].total;
-
-        //   console.log(ordercards["attributes"].class["value"]);
+      resname["innerText"] = item["restaurant"].name;
+      resContact["innerHTML"] =
+        item["restaurant"].contactNos[0] +
+        "<br>  " +
+        time.toString().substr(0, 24);
+      userContact["innerText"] = item["user"].phone;
+      paymentMode["innerText"] = item["payment"].method;
+      paymentStatus["innerText"] = item["payment"].status;
+      paymentAmount["innerText"] = item["payment"].total;
+      orderStatus["innerText"] = item["status"]
 
         cards.appendChild(ordercards);
       });
