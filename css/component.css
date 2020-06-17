@@ -132,8 +132,8 @@
   transition: all 0.2s;
   border: 1px solid;
 }
-
 #changeAddress:hover {
   color: #ffb606;
   background-color: white !important;
 }
+

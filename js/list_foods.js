@@ -2,7 +2,6 @@
 var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("container");
 var orderAr = [];
-var foods = [];
 var url_string = window.location.href;
 var url = new URL(url_string);
 var restaurantCode = url.searchParams.get("id");
@@ -108,7 +107,6 @@ fetch(url, {
           for (var x in orderAr) {
             if (orderAr[x].food_name == foodName) {
               orderAr[x].quantity++;
-              foods[x].quantity++;
               present = 1;
             }
           }
@@ -119,11 +117,7 @@ fetch(url, {
               food_name: foodName,
               food_price: foodPrice,
               quantity: 1,
-            });
-            foods.push({
-              foodid: foodId,
-              quantity: 1,
-            });
+            })
           }
 
           orderAr.forEach((orderItem) => {
@@ -196,29 +190,28 @@ fetch(url, {
 
 var userToken = localStorage.getItem("foodji-user-auth-header");
 
-placeOrderBtn.onclick = (e) => {
-  var reqBody = JSON.stringify({
-    restaurantId: restaurantCode,
-    foods: foods,
-    payment: {
-      method: "COD",
-      status: "UNPAID",
-    },
-  });
-  var r = confirm(
-    `You are trying to place order from Foodji. Do you want to continue?`
-  );
-  if (r == true) {
-    fetch(createOrderURL, {
-      mode: "cors",
-      method: "POST",
 
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: userToken,
-      },
-      body: reqBody,
-      accept: "application/json",
+  placeOrderBtn.onclick = (e)=>{
+    var foods = []
+    orderAr.forEach((item) => {
+      if(item.food_id){
+        foods.push({
+          foodid: item.food_id,
+          quantity: item.quantity
+        })
+      }
+    })
+    if(foods.length == 0){
+      alert("Please add food to your cart.")
+      return
+    }
+    var reqBody = JSON.stringify({
+      restaurantId: restaurantCode,
+      foods: foods,
+      payment:{
+        method: "COD",
+        status:"UNPAID"
+      }
     })
       .then((res) => res.json)
       .then((data) => {
