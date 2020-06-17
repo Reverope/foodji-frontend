@@ -139,7 +139,7 @@ table th {
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 800px) {
   table {
     border: 0;
     width: 100%;
