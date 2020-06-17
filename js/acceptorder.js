@@ -11,7 +11,11 @@ var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("foodlistingbox");
 var addFoodForm = document.getElementById("addFoodForm");
 var orderDisplay = document.querySelector(".tableoforder");
-
+window.onload = () => {
+  if (!token) {
+    document.getElementById("pop-modal").style.display = "block";
+  }
+};
 fetch(restProfileURL, {
   accept: "application/json",
   mode: "cors",
