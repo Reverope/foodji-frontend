@@ -193,6 +193,7 @@ var userToken = localStorage.getItem("foodji-user-auth-header");
 
   placeOrderBtn.onclick = (e)=>{
     var foods = []
+    var orderAddress = document.getElementById("address").value
     orderAr.forEach((item) => {
       if(item.food_id){
         foods.push({
@@ -208,18 +209,33 @@ var userToken = localStorage.getItem("foodji-user-auth-header");
     var reqBody = JSON.stringify({
       restaurantId: restaurantCode,
       foods: foods,
+      address: orderAddress,
       payment:{
         method: "COD",
         status:"UNPAID"
       }
     })
-      .then((res) => res.json)
-      .then((data) => {
-        window.location = "userprofile.html";
+    var r = confirm(`You are trying to place order from Foodji. Do you want to continue?`)
+    if(r == true){
+      fetch(createOrderURL, {
+        mode: "cors",
+        method: "POST",
+    
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: userToken,
+        },
+        body: reqBody,
+        accept: "application/json",
       })
+        .then((res) => res.json)
+        .then((data) => {
+          window.location = "userprofile.html";
+  
+    })
       .catch((err) => {
         console.log(err);
       });
-  } else {
-  }
-};
+  } 
+}
+

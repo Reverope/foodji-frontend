@@ -85,70 +85,41 @@ fetch(url, {
         .then((response) => response.json())
         .then((data) => {
           if (data["status"] == "RECEIVED") {
-            var acceptButton = document.createElement("button");
             var declineButton = document.createElement("button");
             declineButton.id = orderId;
-            acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
             decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
             declineButton.style.margin = "0 1rem";
-            acceptButton.className =
-              "acceptdecision template-btn template-btn2";
             declineButton.className =
               "declinedecision template-btn template-btn2";
-            acceptButton.innerText = "Received";
             declineButton.innerText = "Cancel";
           }
 
           if (data["status"] == "ACCEPTED") {
-            var acceptButton = document.createElement("button");
             var declineButton = document.createElement("button");
             declineButton.id = orderId;
-            // acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
             decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
             declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn disable";
             declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.disabled = true;
-            acceptButton.innerText = "Received";
             declineButton.disabled = true;
             declineButton.innerText = "Cancel";
           }
           if (data["status"] == "REJECTED") {
-            var acceptButton = document.createElement("button");
             var declineButton = document.createElement("button");
-            acceptButton.disabled = true;
             declineButton.disabled = true;
-
             declineButton.id = orderId;
-            acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
             decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
-            declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn-disable";
+            declineButton.style.margin = "0 1rem";           
             declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.innerText = "Received";
             declineButton.innerText = "Cancel";
           }
           if (data["status"] == "CANCELED") {
-            var acceptButton = document.createElement("button");
             var declineButton = document.createElement("button");
-            acceptButton.disabled = true;
             declineButton.disabled = true;
 
             declineButton.id = orderId;
-            acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
             decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
             declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn-disable";
             declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.innerText = "Received";
             declineButton.innerText = "Cancel";
           }
 
@@ -172,7 +143,7 @@ fetch(url, {
           liTotalPrice.innerText = data["payment"]["total"];
           liContact.innerText = data["user"]["phone"];
           liStatus.innerText = data["status"];
-          liETA.innerText = `30 minutes`
+          liETA.innerText = data["eta"]
 
           var time = data["updatedAt"];
           var timing = Date(time);
@@ -183,38 +154,17 @@ fetch(url, {
 
           orderDisplay.appendChild(tablerow);
 
-          var selectAllAcceptButtons = document.querySelectorAll(
-            ".acceptdecision"
-          );
+        
           var selectAllDeclineButtons = document.querySelectorAll(
             ".declinedecision"
           );
 
-          selectAllAcceptButtons.forEach((button) => {
-            button.addEventListener("click", (clickedButton) => {
-              console.log(clickedButton.target.id);
-              var url =
-                "https://knight-foodji.herokuapp.com/api/user/order/status/" +
-                clickedButton.target.id;
-              fetch(url, {
-                accept: "application/json",
-                mode: "cors",
-                method: "PATCH",
-                headers: {
-                  Authorization: token,
-                },
-              }).then((response) => {
-                if (response.status == 200) {
-                  console.log("Received");
-                } else {
-                  console.log("Error");
-                }
-              });
-            });
-          });
           selectAllDeclineButtons.forEach((button) => {
             button.addEventListener("click", (clickedButton) => {
-              console.log(clickedButton.target.id);
+              var r = confirm("Do you want to cancel the order.")
+              if(!r){
+                return 
+              }
               var url =
                 "https://knight-foodji.herokuapp.com/api/user/order/cancel/" +
                 clickedButton.target.id;
