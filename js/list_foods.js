@@ -2,12 +2,18 @@
 var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("container");
 var orderAr = [];
-var foods = []
+var foods = [];
 var url_string = window.location.href;
 var url = new URL(url_string);
 var restaurantCode = url.searchParams.get("id");
 var placeOrderBtn = document.getElementById("placeOrder");
 var createOrderURL = `https://knight-foodji.herokuapp.com/api/user/order`;
+var currentAddress = document.querySelector(".currentaddress");
+
+// Address Code
+var userAddress = localStorage.getItem("foodji-user-address");
+var index = parseInt(userAddress.toString().length - 2);
+currentAddress["value"] = userAddress.toString().substr(1, index);
 
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -43,7 +49,7 @@ fetch(url, {
 
       //   var img = food.childNodes[1].childNodes[1].childNodes[1].childNodes[1];
       //   img["attributes"][0]["value"] = element.image;
-     
+
       var name = food.childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       name["innerText"] = foodItem["foodid"].name;
 
@@ -106,17 +112,17 @@ fetch(url, {
               present = 1;
             }
           }
-          
+
           if (present == 0) {
             orderAr.push({
               food_id: foodId,
               food_name: foodName,
               food_price: foodPrice,
               quantity: 1,
-            })
+            });
             foods.push({
               foodid: foodId,
-              quantity: 1
+              quantity: 1,
             });
           }
 
@@ -188,41 +194,39 @@ fetch(url, {
     });
   });
 
-  var userToken = localStorage.getItem("foodji-user-auth-header")
+var userToken = localStorage.getItem("foodji-user-auth-header");
 
-  placeOrderBtn.onclick = (e)=>{
-    var reqBody = JSON.stringify({
-      restaurantId: restaurantCode,
-      foods: foods,
-      payment:{
-        method: "COD",
-        status:"UNPAID"
-      }
+placeOrderBtn.onclick = (e) => {
+  var reqBody = JSON.stringify({
+    restaurantId: restaurantCode,
+    foods: foods,
+    payment: {
+      method: "COD",
+      status: "UNPAID",
+    },
+  });
+  var r = confirm(
+    `You are trying to place order from Foodji. Do you want to continue?`
+  );
+  if (r == true) {
+    fetch(createOrderURL, {
+      mode: "cors",
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: userToken,
+      },
+      body: reqBody,
+      accept: "application/json",
     })
-    var r = confirm(`You are trying to place order from Foodji. Do you want to continue?`)
-    if(r == true){
-      fetch(createOrderURL, {
-        mode: "cors",
-        method: "POST",
-    
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: userToken,
-        },
-        body: reqBody,
-        accept: "application/json",
+      .then((res) => res.json)
+      .then((data) => {
+        window.location = "userprofile.html";
       })
-        .then((res) => res.json)
-        .then((data) => {
-          window.location = "userprofile.html";
-  
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else{
-
-    }
-
-  };
-  
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+  }
+};

@@ -113,3 +113,27 @@
     opacity: 1;
   }
 }
+
+.currentaddress {
+  background-color: transparent;
+  border: none;
+  border-left: 1px solid;
+  padding: 0.8rem;
+  width: max-content !important;
+}
+#changeAddress {
+  border: none;
+  cursor: pointer;
+  height: 3rem;
+  color: white;
+  background-color: #ffb606 !important;
+  font-size: 1rem;
+  background: transparent;
+  transition: all 0.2s;
+  border: 1px solid;
+}
+
+#changeAddress:hover {
+  color: #ffb606;
+  background-color: white !important;
+}
