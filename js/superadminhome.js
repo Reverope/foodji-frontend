@@ -8,24 +8,32 @@ var createRestForm = document.getElementById("createRestForm");
 var createDelGuyForm = document.getElementById("createDelGuyForm");
 
 //
-var card = document.getElementById("cardItem");
-var cards = document.getElementById("cards");
-fetch(getAllOrdersURL, {
-  accept: "application/json",
-  mode: "cors",
-  method: "GET",
-  headers: {
-    Authorization: token,
-  },
-})
-  .then((response) => response.json())
-  .then((data) => {
-    [...data].forEach((item) => {
-      console.log(item);
 
-      var ordercards = card.cloneNode(true);
+window.onload = () => {
+  var card = document.getElementById("cardItem");
+  var cards = document.getElementById("cards");
+  fetch(getAllOrdersURL, {
+    accept: "application/json",
+    mode: "cors",
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response);
+      } else {
+        response.json();
+      }
+    })
+    .then((data) => {
+      [...data].forEach((item) => {
+        console.log(item);
 
-      ordercards["attributes"].class["value"] = "card";
+        var ordercards = card.cloneNode(true);
+
+        ordercards["attributes"].class["value"] = "card";
 
       var resname = ordercards.childNodes[1];
       var resContact = ordercards.childNodes[3];
@@ -35,8 +43,8 @@ fetch(getAllOrdersURL, {
       var paymentAmount = ordercards.childNodes[9].childNodes[5].childNodes[3];
       var orderStatus = ordercards.childNodes[9].childNodes[7].childNodes[3];
 
-      var time = new Date(item["createdAt"]);
 
+        var time = new Date(item["createdAt"]);
       resname["innerText"] = item["restaurant"].name;
       resContact["innerHTML"] =
         item["restaurant"].contactNos[0] +
@@ -47,18 +55,19 @@ fetch(getAllOrdersURL, {
       paymentStatus["innerText"] = item["payment"].status;
       paymentAmount["innerText"] = item["payment"].total;
       orderStatus["innerText"] = item["status"]
-      //   console.log(ordercards["attributes"].class["value"]);
 
-      cards.appendChild(ordercards);
+        cards.appendChild(ordercards);
+      });
+    })
+    .then((_) => {
+      cards.removeChild(cards.childNodes[1]);
+    })
+    .catch((err) => {
+      console.log(err);
+      document.getElementById("super-login-form").style.display = "block";
+      document.getElementById("super-login-error").style.display = "block";
     });
-  })
-  .then((_) => {
-    cards.removeChild(cards.childNodes[1]);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
+};
 //Creating restaurant
 createRestForm.onsubmit = (e) => {
   e.preventDefault();
@@ -83,13 +92,21 @@ createRestForm.onsubmit = (e) => {
     body: reqBody,
     accept: "application/json",
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!response.ok) {
+        throw Error(response);
+      } else {
+        response.json();
+      }
+    })
     .then((data) => {
       alert("Restaurant Created");
       location.reload();
     })
     .catch((err) => {
       console.log(err);
+      document.getElementById("super-login-form").style.display = "block";
+      document.getElementById("super-login-error").style.display = "block";
     });
 };
 
@@ -116,12 +133,20 @@ createDelGuyForm.onsubmit = (e) => {
     body: reqBody,
     accept: "application/json",
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!response.ok) {
+        throw Error(response);
+      } else {
+        response.json();
+      }
+    })
     .then((data) => {
       alert("Delivery Boy Created");
       location.reload();
     })
     .catch((err) => {
       console.log(err);
+      document.getElementById("super-login-form").style.display = "block";
+      document.getElementById("super-login-error").style.display = "block";
     });
 };
