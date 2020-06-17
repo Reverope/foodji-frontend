@@ -191,6 +191,10 @@ fetch(url, {
   var userToken = localStorage.getItem("foodji-user-auth-header")
 
   placeOrderBtn.onclick = (e)=>{
+    if(foods.length == 0){
+      alert("Please add food to your cart.")
+      return
+    }
     var reqBody = JSON.stringify({
       restaurantId: restaurantCode,
       foods: foods,
