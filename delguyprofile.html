@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="./assets/css/jquery.datetimepicker.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./css/component.css" />
+    <link rel="stylesheet" href="./css/global.css">
+
   </head>
   <body>
     <!-- Preloader Starts -->
@@ -132,7 +134,35 @@
         </div>
       </div>
     </section>
-   
+    <div class="modal" id="guy-modal">
+    <div class="modal-content">
+        <span id="guy-close">&times;</span>
+        <form class="guy-login-form">
+          <h1>Delivery Login</h1>
+          <p id="guy-login-para"></p>
+
+            <input
+              type="text"
+              name="guy_username"
+              id="guy_username"
+              placeholder="Username"
+              autocomplete="off"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              id="guy_password"
+              placeholder="Password"
+              autocomplete="off"
+              required
+            />
+            <p class="error-para" id="guy-error">Authentication Not Successful</p>
+          <button type="submit" class="btn" id="delLoginBtn">Login</button>
+        </form>
+
+    </div>
+    </div>
 
 
     <!-- Javascript -->
@@ -144,6 +174,7 @@
     <script src="./assets/js/vendor/jquery.nice-select.min.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./js/global.js"></script>
+    <script src="./js/guyLogin.js"></script>
     <script src="./js/delguyprofile.js"></script>
 
   </body>
