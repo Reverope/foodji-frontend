@@ -6,10 +6,11 @@ var orderDisplay = document.querySelector(".tableoforder");
 var container = document.querySelector("#ritem");
 var editFormSection = document.querySelector(".containert");
 var editProfileButton = document.getElementById("edit");
+var editProfileForm = document.getElementById('editprofileform')
 
 var eName = document.getElementById("Name");
 var eEmail = document.getElementById("Email");
-var ePassword = document.getElementById("Password");
+
 var eAddress = document.getElementById("Address");
 var ePhone = document.getElementById("Phone");
 
@@ -44,7 +45,6 @@ fetch(url, {
 
     eName["value"] = data["user"].name;
     eEmail["value"] = data["user"].email;
-    ePassword["value"] = data["user"].name;
     eAddress["value"] = data["user"].address;
     ePhone["value"] = data["user"].phone;
 
@@ -169,3 +169,36 @@ fetch(url, {
     console.log(err);
     PopUpLog();
   });
+
+  var editProfileURL = `https://knight-foodji.herokuapp.com/api/user/me`
+
+  editProfileForm.onsubmit = (e)=>{
+    e.preventDefault()
+    var reqBody = JSON.stringify({
+      name: eName.value,
+      email:eEmail.value,
+      phone:ePhone.value,
+      address:eAddress.value
+    }) 
+
+    fetch(editProfileURL,{
+      mode: "cors",
+      method: "PATCH",
+  
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: reqBody,
+      accept: "application/json"
+    })
+    .then(res => {
+      if(res.status == 200){
+        alert("Profile Updated Successfully")
+        location.reload()
+      } else{
+        alert("Please try again.")
+        location.reload()
+      }
+    })
+  }
