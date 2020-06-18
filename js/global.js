@@ -92,21 +92,33 @@ ready(function () {
   }
 
   var span = document.getElementsByClassName("login-close")[0];
-  span.onclick = function () {
-    loginModal.style.display = "none";
-  };
+  if (span) {
+    span.onclick = function () {
+      loginModal.style.display = "none";
+    };
+  }
+
   var span2 = document.getElementsByClassName("register-close")[0];
-  span2.onclick = function () {
-    signUpModal.style.display = "none";
-  };
+
+  if (span2) {
+    span2.onclick = function () {
+      signUpModal.style.display = "none";
+    };
+  }
+
   var span3 = document.getElementById("rest-close");
-  span3.onclick = function () {
-    restLogInModal.style.diplay = "none";
-  };
+
+  if (span3) {
+    span3.onclick = function () {
+      restLogInModal.style.diplay = "none";
+    };
+  }
   var span4 = document.getElementById("guy-close");
-  span3.onclick = function () {
-    guyLogInModal.style.diplay = "none";
-  };
+  if (span4) {
+    span4.onclick = function () {
+      guyLogInModal.style.diplay = "none";
+    };
+  }
   window.onclick = function (event) {
     if (event.target == loginModal) {
       document.getElementById("login-error").style.display = "none";

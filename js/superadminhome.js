@@ -46,7 +46,7 @@ fetch(getAllOrdersURL, {
       paymentMode["innerText"] = item["payment"].method;
       paymentStatus["innerText"] = item["payment"].status;
       paymentAmount["innerText"] = item["payment"].total;
-      orderStatus["innerText"] = item["status"]
+      orderStatus["innerText"] = item["status"];
       //   console.log(ordercards["attributes"].class["value"]);
 
       cards.appendChild(ordercards);
