@@ -94,34 +94,6 @@ fetch(url, {
             declineButton.innerText = "Cancel";
           }
 
-          if (data["status"] == "ACCEPTED") {
-            var declineButton = document.createElement("button");
-            declineButton.id = orderId;
-            decline.appendChild(declineButton);
-            declineButton.style.margin = "0 1rem";
-            declineButton.className = "declinedecision template-btn-disable";
-            declineButton.disabled = true;
-            declineButton.innerText = "Cancel";
-          }
-          if (data["status"] == "REJECTED") {
-            var declineButton = document.createElement("button");
-            declineButton.disabled = true;
-            declineButton.id = orderId;
-            decline.appendChild(declineButton);
-            declineButton.style.margin = "0 1rem";           
-            declineButton.className = "declinedecision template-btn-disable";
-            declineButton.innerText = "Cancel";
-          }
-          if (data["status"] == "CANCELED") {
-            var declineButton = document.createElement("button");
-            declineButton.disabled = true;
-
-            declineButton.id = orderId;
-            decline.appendChild(declineButton);
-            declineButton.style.margin = "0 1rem";
-            declineButton.className = "declinedecision template-btn-disable";
-            declineButton.innerText = "Cancel";
-          }
 
           var orderedFoodList = data["foods"];
           console.log(orderedFoodList);
@@ -171,15 +143,17 @@ fetch(url, {
               fetch(url, {
                 accept: "application/json",
                 mode: "cors",
-                method: "PATCH",
+                method: "POST",
                 headers: {
                   Authorization: token,
                 },
               }).then((response) => {
                 if (response.status == 200) {
                   console.log("Canceled");
+                  location.reload()
                 } else {
                   console.log("Error");
+                  location.reload()
                 }
               });
             });
