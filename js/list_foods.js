@@ -7,6 +7,12 @@ var url = new URL(url_string);
 var restaurantCode = url.searchParams.get("id");
 var placeOrderBtn = document.getElementById("placeOrder");
 var createOrderURL = `https://knight-foodji.herokuapp.com/api/user/order`;
+var currentAddress = document.querySelector(".currentaddress");
+
+// Address Code
+var userAddress = localStorage.getItem("foodji-user-address");
+var index = parseInt(userAddress.toString().length - 2);
+currentAddress["value"] = userAddress.toString().substr(1, index);
 
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -42,7 +48,7 @@ fetch(url, {
 
       //   var img = food.childNodes[1].childNodes[1].childNodes[1].childNodes[1];
       //   img["attributes"][0]["value"] = element.image;
-     
+
       var name = food.childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       name["innerText"] = foodItem["foodid"].name;
 
@@ -104,7 +110,7 @@ fetch(url, {
               present = 1;
             }
           }
-          
+
           if (present == 0) {
             orderAr.push({
               food_id: foodId,
@@ -112,7 +118,6 @@ fetch(url, {
               food_price: foodPrice,
               quantity: 1,
             })
-           
           }
 
           orderAr.forEach((orderItem) => {
@@ -183,10 +188,12 @@ fetch(url, {
     });
   });
 
-  var userToken = localStorage.getItem("foodji-user-auth-header")
+var userToken = localStorage.getItem("foodji-user-auth-header");
+
 
   placeOrderBtn.onclick = (e)=>{
     var foods = []
+    var orderAddress = document.getElementById("address").value
     orderAr.forEach((item) => {
       if(item.food_id){
         foods.push({
@@ -202,6 +209,7 @@ fetch(url, {
     var reqBody = JSON.stringify({
       restaurantId: restaurantCode,
       foods: foods,
+      address: orderAddress,
       payment:{
         method: "COD",
         status:"UNPAID"
@@ -224,13 +232,10 @@ fetch(url, {
         .then((data) => {
           window.location = "userprofile.html";
   
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else{
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+  } 
+}
 
-    }
-
-  };
-  

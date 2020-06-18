@@ -3,7 +3,7 @@ var userLoginForm = document.getElementsByClassName("login-form")[0];
 
 userLoginForm.onsubmit = (e) => {
   e.preventDefault();
-  document.getElementById('userLoginBtn').innerText = "Logging In"
+  document.getElementById("userLoginBtn").innerText = "Logging In";
   var phone = document.getElementById("phone").value;
   var password = document.getElementById("password").value;
   //   e.preventDefault();
@@ -30,15 +30,18 @@ userLoginForm.onsubmit = (e) => {
 
       console.log("No error");
       localStorage.setItem("foodji-user-auth-header", "Bearer " + data.token);
-      localStorage.setItem("foodji-user", data.user);
+      localStorage.setItem("foodji-user", JSON.stringify(data.user));
+      localStorage.setItem(
+        "foodji-user-address",
+        JSON.stringify(data.user["address"])
+      );
       document.getElementById("login-error").style.display = "none";
 
       location.reload();
     })
     .catch((err) => {
       document.getElementById("login-error").style.display = "block";
-      document.getElementById('userLoginBtn').innerText = "Login"
-    
+      document.getElementById("userLoginBtn").innerText = "Login";
     });
   //   //   console.log(phone, password);
 };

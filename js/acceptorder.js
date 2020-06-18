@@ -27,7 +27,6 @@ fetch(restProfileURL, {
 })
   .then((response) => response.json())
   .then((restaurant) => {
-    console.log(restaurant);
     restaurant.orders.forEach((orderId) => {
       var tablerow = document.createElement("tr");
       var liElement = document.createElement("td");
@@ -37,6 +36,7 @@ fetch(restProfileURL, {
       var liAssignmentDate = document.createElement("td");
       var liContact = document.createElement("td");
       var liETA = document.createElement("input");
+      // liETA.setAttribute("id",`eta${orderId}`)
       var accept = document.createElement("td");
       var decline = document.createElement("td");
       var liStatus = document.createElement("td");
@@ -80,59 +80,7 @@ fetch(restProfileURL, {
             declineButton.innerText = "Decline";
           }
 
-          if (data["status"] == "ACCEPTED") {
-            var acceptButton = document.createElement("button");
-            var declineButton = document.createElement("button");
-            declineButton.id = orderId;
-            // acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
-            decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
-            declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn disable";
-            declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.disabled = true;
-            acceptButton.innerText = "ACCEPTED";
-            declineButton.disabled = true;
-            declineButton.innerText = "Decline";
-          }
-          if (data["status"] == "REJECTED") {
-            var acceptButton = document.createElement("button");
-            var declineButton = document.createElement("button");
-            acceptButton.disabled = true;
-            declineButton.disabled = true;
-
-            declineButton.id = orderId;
-            acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
-            decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
-            declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn-disable";
-            declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.innerText = "Accept";
-            declineButton.innerText = "Rejected";
-          }
-          if (data["status"] == "CANCELED") {
-            var acceptButton = document.createElement("button");
-            var declineButton = document.createElement("button");
-            acceptButton.disabled = true;
-            declineButton.disabled = true;
-
-            declineButton.id = orderId;
-            acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
-            decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
-            declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn-disable";
-            declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.innerText = "Accept";
-            declineButton.innerText = "Reject";
-          }
-
           var orderedFoodList = data["foods"];
-          console.log(orderedFoodList);
 
           [...orderedFoodList].forEach((food) => {
             liElement.innerHTML +=
@@ -170,22 +118,27 @@ fetch(restProfileURL, {
 
           selectAllAcceptButtons.forEach((button) => {
             button.addEventListener("click", (clickedButton) => {
-              console.log(clickedButton.target.id);
               var url =
                 "https://knight-foodji.herokuapp.com/api/restaurant/order/acceptreject/accept/" +
                 clickedButton.target.id;
+              // var reqBody = JSON.stringify({
+              //   eta: document.getElementById(`eta${clickedButton.target.id}`).value
+              // })
               fetch(url, {
                 accept: "application/json",
                 mode: "cors",
+                // body: reqBody,
                 method: "POST",
                 headers: {
                   Authorization: token,
                 },
               }).then((response) => {
                 if (response.status == 200) {
-                  console.log("Accepted");
+                  location.reload()
+                  // console.log("Accepted");
                 } else {
-                  console.log("Error");
+                  // console.log("Error");
+                  location.reload()
                 }
               });
             });
@@ -205,9 +158,11 @@ fetch(restProfileURL, {
                 },
               }).then((response) => {
                 if (response.status == 200) {
-                  console.log("Rejected");
+                  // console.log("Rejected");
+                  location.reload()
                 } else {
-                  console.log("Error");
+                  // console.log("Error");
+                  location.reload()
                 }
               });
             });

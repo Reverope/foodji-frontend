@@ -5,6 +5,7 @@ var profileNumber = document.getElementById("about");
 var orderDisplay = document.querySelector(".tableoforder");
 var container = document.querySelector("#ritem");
 
+
 var url = "https://knight-foodji.herokuapp.com/api/deliveryguy/me";
 
 var token = localStorage.getItem("foodji-guy-auth-header");
@@ -37,6 +38,7 @@ window.onload = () => {
         var accept = document.createElement("td");
         var decline = document.createElement("td");
         var liStatus = document.createElement("td");
+
 
         tablerow.appendChild(liElement);
         tablerow.appendChild(liAddress);
@@ -81,12 +83,12 @@ window.onload = () => {
                 "</li>";
             });
 
-            // liElement.innerText = orderId;
-            liAddress.innerText = data["address"];
-            liTotalPrice.innerText = data["payment"]["total"];
-            liContact.innerText = data["user"]["phone"];
-            liStatus.innerText = data["status"];
-            liETA.innerText = `30 minutes`;
+          // liElement.innerText = orderId;
+          liAddress.innerText = data["address"];
+          liTotalPrice.innerText = data["payment"]["total"];
+          liContact.innerText = data["user"]["phone"];
+          liStatus.innerText = data["status"];
+          liETA.innerText = data["eta"]
 
             var time = data["updatedAt"];
             var timing = Date(time);

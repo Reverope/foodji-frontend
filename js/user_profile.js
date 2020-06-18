@@ -4,10 +4,27 @@ var profileName = document.getElementById("name");
 var profileNumber = document.getElementById("about");
 var orderDisplay = document.querySelector(".tableoforder");
 var container = document.querySelector("#ritem");
+var editFormSection = document.querySelector(".containert");
+var editProfileButton = document.getElementById("edit");
+
+var eName = document.getElementById("Name");
+var eEmail = document.getElementById("Email");
+var ePassword = document.getElementById("Password");
+var eAddress = document.getElementById("Address");
+var ePhone = document.getElementById("Phone");
 
 var url = "https://knight-foodji.herokuapp.com/api/user/me";
-
 var token = localStorage.getItem("foodji-user-auth-header");
+
+editProfileButton.addEventListener("click", () => {
+  editFormSection.style.display = "block";
+  window.scrollTo(0, document.body.scrollHeight);
+});
+
+function remove() {
+  editFormSection.style.display = "none";
+  window.scrollTo(document.body.scrollHeight, 0);
+}
 
 fetch(url, {
   accept: "application/json",
@@ -22,11 +39,17 @@ fetch(url, {
     return response.json();
   })
   .then(function (data) {
-
     profileName.innerHTML = data["user"].name;
     profileNumber.innerHTML = data["user"].email;
-    data.user.orders.forEach((ord) => {
-      var orderId = ord._id
+
+    eName["value"] = data["user"].name;
+    eEmail["value"] = data["user"].email;
+    ePassword["value"] = data["user"].name;
+    eAddress["value"] = data["user"].address;
+    ePhone["value"] = data["user"].phone;
+
+    data.user.orders.forEach((item) => {
+      var orderId = item._id;
       var tablerow = document.createElement("tr");
       var liElement = document.createElement("td");
       var liAddress = document.createElement("td");
@@ -62,70 +85,41 @@ fetch(url, {
         .then((response) => response.json())
         .then((data) => {
           if (data["status"] == "RECEIVED") {
-            var acceptButton = document.createElement("button");
             var declineButton = document.createElement("button");
             declineButton.id = orderId;
-            acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
             decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
             declineButton.style.margin = "0 1rem";
-            acceptButton.className =
-              "acceptdecision template-btn template-btn2";
             declineButton.className =
               "declinedecision template-btn template-btn2";
-            acceptButton.innerText = "Received";
             declineButton.innerText = "Cancel";
           }
 
           if (data["status"] == "ACCEPTED") {
-            var acceptButton = document.createElement("button");
             var declineButton = document.createElement("button");
             declineButton.id = orderId;
-            // acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
             decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
             declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn disable";
             declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.disabled = true;
-            acceptButton.innerText = "Received";
             declineButton.disabled = true;
             declineButton.innerText = "Cancel";
           }
           if (data["status"] == "REJECTED") {
-            var acceptButton = document.createElement("button");
             var declineButton = document.createElement("button");
-            acceptButton.disabled = true;
             declineButton.disabled = true;
-
             declineButton.id = orderId;
-            acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
             decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
-            declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn-disable";
+            declineButton.style.margin = "0 1rem";           
             declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.innerText = "Received";
             declineButton.innerText = "Cancel";
           }
           if (data["status"] == "CANCELED") {
-            var acceptButton = document.createElement("button");
             var declineButton = document.createElement("button");
-            acceptButton.disabled = true;
             declineButton.disabled = true;
 
             declineButton.id = orderId;
-            acceptButton.id = orderId;
-            accept.appendChild(acceptButton);
             decline.appendChild(declineButton);
-            acceptButton.style.margin = "0 1rem";
             declineButton.style.margin = "0 1rem";
-            acceptButton.className = "acceptdecision template-btn-disable";
             declineButton.className = "declinedecision template-btn-disable";
-            acceptButton.innerText = "Received";
             declineButton.innerText = "Cancel";
           }
 
@@ -149,7 +143,7 @@ fetch(url, {
           liTotalPrice.innerText = data["payment"]["total"];
           liContact.innerText = data["user"]["phone"];
           liStatus.innerText = data["status"];
-          liETA.innerText = `30 minutes`
+          liETA.innerText = data["eta"]
 
           var time = data["updatedAt"];
           var timing = Date(time);
@@ -160,38 +154,17 @@ fetch(url, {
 
           orderDisplay.appendChild(tablerow);
 
-          var selectAllAcceptButtons = document.querySelectorAll(
-            ".acceptdecision"
-          );
+        
           var selectAllDeclineButtons = document.querySelectorAll(
             ".declinedecision"
           );
 
-          selectAllAcceptButtons.forEach((button) => {
-            button.addEventListener("click", (clickedButton) => {
-              console.log(clickedButton.target.id);
-              var url =
-                "https://knight-foodji.herokuapp.com/api/user/order/status/" +
-                clickedButton.target.id;
-              fetch(url, {
-                accept: "application/json",
-                mode: "cors",
-                method: "PATCH",
-                headers: {
-                  Authorization: token,
-                },
-              }).then((response) => {
-                if (response.status == 200) {
-                  console.log("Received");
-                } else {
-                  console.log("Error");
-                }
-              });
-            });
-          });
           selectAllDeclineButtons.forEach((button) => {
             button.addEventListener("click", (clickedButton) => {
-              console.log(clickedButton.target.id);
+              var r = confirm("Do you want to cancel the order.")
+              if(!r){
+                return 
+              }
               var url =
                 "https://knight-foodji.herokuapp.com/api/user/order/cancel/" +
                 clickedButton.target.id;
@@ -219,6 +192,6 @@ fetch(url, {
     loader.remove();
   })
   .catch((err) => {
-    console.log(err)
+    console.log(err);
     PopUpLog();
-  })
+  });
