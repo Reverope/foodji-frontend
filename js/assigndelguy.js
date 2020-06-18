@@ -22,52 +22,25 @@ fetch(url, {
 })
   .then((response) => response.json())
   .then((data) => {
-    // document.getElementById('orderDetails').innerHTML = `OrderId: ${data._id}. Ordered By ${data.user.name}.Delivery Address: ${data.address}`
-    var tablerow = document.createElement("tr");
-    var liElement = document.createElement("td");
-    var liAddress = document.createElement("td");
-    var liPaymentStatus = document.createElement("td");
-    var liTotalPrice = document.createElement("td");
-    var liAssignmentDate = document.createElement("td");
-    var liContact = document.createElement("td");
-    var liETA = document.createElement("td");
-    var accept = document.createElement("td");
-    var decline = document.createElement("td");
-    var liStatus = document.createElement("td");
-
-    tablerow.appendChild(liElement);
-    tablerow.appendChild(liAddress);
-    tablerow.appendChild(liTotalPrice);
-    tablerow.appendChild(liAssignmentDate);
-    tablerow.appendChild(liContact);
-    tablerow.appendChild(liETA);
-    tablerow.appendChild(liStatus);
-    tablerow.appendChild(accept);
-    tablerow.appendChild(decline);
-
+    console.log(data);
     if (!data["assign"] && data.status != "CANCELED") {
-      var acceptButton = document.createElement("button");
-      acceptButton.id = orderId;
-      accept.appendChild(acceptButton);
-      acceptButton.style.margin = "0 1rem";
-      acceptButton.className = "acceptdecision template-btn template-btn2";
-      acceptButton.innerText = "Accept Order";
+        
     }
 
     var orderedFoodList = data["foods"];
     console.log(orderedFoodList);
 
-    [...orderedFoodList].forEach((food) => {
-      liElement.innerHTML +=
-        "<li><p>" +
-        food["name"] +
-        "(x" +
-        food["quantity"] +
-        ")  <br> ₹" +
-        food["price"] +
-        "</p>" +
-        "</li>";
-    });
+    // [...orderedFoodList].forEach((food) => {
+    //   liElement.innerHTML +=
+    //     "<li><p>" +
+    //     food["name"] +
+    //     "(x" +
+    //     food["quantity"] +
+    //     ")  <br> ₹" +
+    //     food["price"] +
+    //     "</p>" +
+    //     "</li>";
+    // });
 
     // liElement.innerText = orderId;
     liAddress.innerText = data["address"];
@@ -87,26 +60,26 @@ fetch(url, {
 
     var selectAllAcceptButtons = document.querySelectorAll(".acceptdecision");
 
-    selectAllAcceptButtons.forEach((button) => {
-      button.addEventListener("click", (clickedButton) => {
-        console.log(clickedButton.target.id);
-        var url =
-          "https://knight-foodji.herokuapp.com/api/deliveryguy/assign/" +
-          clickedButton.target.id;
-        fetch(url, {
-          accept: "application/json",
-          mode: "cors",
-          method: "POST",
-          headers: {
-            Authorization: token,
-          },
-        }).then((response) => {
-          if (response.status == 200) {
-            location.reload();
-          } else {
-            location.reload();
-          }
-        });
-      });
-    });
+    // selectAllAcceptButtons.forEach((button) => {
+    //   button.addEventListener("click", (clickedButton) => {
+    //     console.log(clickedButton.target.id);
+    //     var url =
+    //       "https://knight-foodji.herokuapp.com/api/deliveryguy/assign/" +
+    //       clickedButton.target.id;
+    //     fetch(url, {
+    //       accept: "application/json",
+    //       mode: "cors",
+    //       method: "POST",
+    //       headers: {
+    //         Authorization: token,
+    //       },
+    //     }).then((response) => {
+    //       if (response.status == 200) {
+    //         location.reload();
+    //       } else {
+    //         location.reload();
+    //       }
+    //     });
+    //   });
+    // });
   });

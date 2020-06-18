@@ -5,46 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assign Delivery Guy</title>
 
-    <link rel="stylesheet" href="./assets/css/animate-3.7.0.css" />
-    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0.min.css" />
-    <link rel="stylesheet" href="./assets/css/bootstrap-4.1.3.min.css" />
-    <link rel="stylesheet" href="./assets/css/owl-carousel.min.css" />
-    <link rel="stylesheet" href="./assets/css/jquery.datetimepicker.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./css/component.css" />
     <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/superadminhome.css" />
   </head>
+  <style>
+    h1 {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      margin: 1rem 0;
+      color: #263238;
+    }
+
+    .cards {
+      height: min-content;
+      align-items: center;
+    }
+    .card {
+      width: 40% !important;
+    }
+
+    .paddress,
+    .raddress {
+      width: 50%;
+      text-align: end;
+    }
+
+    button {
+      font-size: 12px;
+      line-height: 42px;
+      display: block;
+      width: 100%;
+      height: 42px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #263238;
+      border: 1px solid #263238;
+      background: transparent;
+      background-color: transparent;
+      border-radius: 2px;
+      -webkit-transition: all 0.4s;
+      transition: all 0.4s;
+    }
+    button:hover {
+      background-color: #263238;
+      color: white;
+    }
+  </style>
   <body>
     <!-- <div>
-        <h1>Assign Delivery Guy</h1>
-        <p id="orderDetails"></p>
-    </div>
-    <button id="assign">Accept Order</button> -->
+      <h1>Delivery Assignment</h1>
+      <p id="orderDetails"></p>
+    </div> -->
 
-    <div class="reservation-area section-padding text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h2>Customers are waiting</h2>
-            <h4 class="mt-4">check out their orders</h4>
-            <center>
-              <table class="tableoforder">
-                <tr>
-                  <th>Order Id</th>
-                  <th>Address</th>
-                  <th>Payable</th>
-                  <th>Date</th>
-                  <th>Phone</th>
-                  <th>E.T.A</th>
-                  <th>Order Status</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </table>
-            </center>
+    <div class="container">
+      <section class="cards" id="cards">
+        <div class="card" id="cardItem">
+          <p class="name">Restaurant Name</p>
+          <p class="phone">989898989</p>
+          <div class="paymentdetails">
+            <p>Address</p>
+            <p class="raddress">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
+              itaque cupiditate assumenda expedita animi aspernatur!
+            </p>
+          </div>
+          <hr style="margin: 0.5rem 0;" />
+          <div class="userinfo">
+            <p>User Contact</p>
+            <p>9898989898</p>
+          </div>
+          <div class="payment">
+            <div class="paymentdetails">
+              <p>Food</p>
+              <p class="pfood">
+                <li>svkn</li>
+                <li>svkn</li>
+                <li>svkn</li>
+                <li>svkn</li>
+              </p>
+            </div>
+            <div class="paymentdetails">
+              <p>User Address</p>
+              <p class="paddress">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
+                itaque cupiditate assumenda expedita animi aspernatur!
+              </p>
+            </div>
+
+            <div class="paymentdetails">
+              <p>Date and Time</p>
+              <p class="pstatus">132-1.21.21.</p>
+            </div>
+            <div class="paymentdetails">
+              <p>Payment Amount</p>
+              <p class="pamount">200</p>
+            </div>
+
+            <button id="assign">Accept Order</button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
 
     <div id="popup-modal" class="modal">
