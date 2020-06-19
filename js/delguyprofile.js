@@ -95,7 +95,7 @@ window.onload = () => {
             liStatus.innerText = data["status"];
             // liETA.innerText = data["eta"];
 
-            var time = data["updatedAt"];
+            var time = data["createdAt"];
             var timing = Date(time);
 
             liAssignmentDate.innerText = timing.substr(0, 24);

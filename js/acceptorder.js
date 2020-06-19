@@ -100,7 +100,7 @@ fetch(restProfileURL, {
           liContact.innerText = data["user"]["phone"];
           liStatus.innerText = data["status"];
 
-          var time = data["updatedAt"];
+          var time = data["createdAt"];
           var timing = Date(time);
 
           liAssignmentDate.innerText = timing.substr(0, 24);

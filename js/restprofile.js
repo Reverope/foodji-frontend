@@ -61,7 +61,7 @@ fetch(restProfileURL, {
 
       var onclicktext = food.childNodes[1].childNodes[3].childNodes[5];
       console.log(foodItem);
-      onclicktext.id = foodItem._id;
+      onclicktext.id = foodItem.foodid;
 
       var price = food.childNodes[1].childNodes[3].childNodes[1].childNodes[3];
       price["innerText"] = foodItem.price;

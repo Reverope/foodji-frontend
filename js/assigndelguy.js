@@ -53,7 +53,7 @@ fetch(url, {
         '<p></p>\n            </div>\n            <div class="paymentdetails">\n              <p>User Address</p>\n              <p class="paddress">' +
         data["address"] +
         ' </p>\n            </div>\n            <br>\n            <div class="paymentdetails">\n              <p>Date and Time</p>\n              <p class="pstatus">' +
-        data["updatedAt"] +
+        data["createdAt"] +
         '</p>\n            </div>\n            <div class="paymentdetails">\n              <p>Payment Amount</p>\n              <p class="pamount">' +
         data["payment"].total +
         '</p>\n            </div>\n            <br>\n            <button id="assign" onclick="assignorder(' +
