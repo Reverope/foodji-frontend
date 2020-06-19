@@ -4,7 +4,6 @@ table {
   margin: 0;
   padding: 1rem;
   width: fit-content;
-  table-layout: fixed;
 }
 
 table caption {
@@ -23,53 +22,45 @@ table th {
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 800px) {
-  table {
-    border: 0;
-    width: 100%;
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
   }
 
-  table caption {
-    font-size: 1.3em;
-  }
-
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
     position: absolute;
-    width: 1px;
-  }
-  table th {
-    text-align: center;
+    top: -9999px;
+    left: -9999px;
   }
 
-  table tr {
-    padding: 0.1rem;
-    border-bottom: 3px solid #ddd;
-    display: block;
-    margin-bottom: 0.625em;
+  tr {
+    border: 1px solid #ccc;
   }
 
-  table td {
-    padding: 0.1rem;
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: 0.8em;
-    text-align: right;
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
   }
 
-  table td::before {
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  table td:last-child {
-    border-bottom: 0;
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
   }
 }
