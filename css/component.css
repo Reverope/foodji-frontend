@@ -30,7 +30,7 @@
 .orderListInProfile {
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
+  width: 100%;
   background-color: white;
   padding: 1rem;
   margin: 1rem 0;
@@ -136,4 +136,3 @@
   color: #ffb606;
   background-color: white !important;
 }
-

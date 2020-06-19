@@ -5,7 +5,6 @@ var profileNumber = document.getElementById("about");
 var orderDisplay = document.querySelector(".tableoforder");
 var container = document.querySelector("#ritem");
 
-
 var url = "https://knight-foodji.herokuapp.com/api/deliveryguy/me";
 
 var token = localStorage.getItem("foodji-guy-auth-header");
@@ -20,7 +19,12 @@ window.onload = () => {
     },
   })
     .then(function (response) {
-      return response.json();
+      if (!response.ok) {
+        throw Error(response);
+      } else {
+        return response.json();
+      }
+      console.log(token);
     })
     .then(function (data) {
       profileName.innerHTML = data.name;
@@ -34,18 +38,17 @@ window.onload = () => {
         var liTotalPrice = document.createElement("td");
         var liAssignmentDate = document.createElement("td");
         var liContact = document.createElement("td");
-        var liETA = document.createElement("td");
+        // var liETA = document.createElement("td");
         var accept = document.createElement("td");
         var decline = document.createElement("td");
         var liStatus = document.createElement("td");
-
 
         tablerow.appendChild(liElement);
         tablerow.appendChild(liAddress);
         tablerow.appendChild(liTotalPrice);
         tablerow.appendChild(liAssignmentDate);
         tablerow.appendChild(liContact);
-        tablerow.appendChild(liETA);
+        // tablerow.appendChild(liETA);
         tablerow.appendChild(liStatus);
         tablerow.appendChild(accept);
         tablerow.appendChild(decline);
@@ -64,10 +67,12 @@ window.onload = () => {
             if (!response.ok) {
               throw Error(response);
             } else {
-              response.json();
+              return response.json();
             }
+            console.log(token);
           })
           .then((data) => {
+            console.log(data);
             var orderedFoodList = data["foods"];
             console.log(orderedFoodList);
 
@@ -83,12 +88,12 @@ window.onload = () => {
                 "</li>";
             });
 
-          // liElement.innerText = orderId;
-          liAddress.innerText = data["address"];
-          liTotalPrice.innerText = data["payment"]["total"];
-          liContact.innerText = data["user"]["phone"];
-          liStatus.innerText = data["status"];
-          liETA.innerText = data["eta"]
+            // liElement.innerText = orderId;
+            liAddress.innerText = data["address"];
+            liTotalPrice.innerText = data["payment"]["total"];
+            liContact.innerText = data["user"]["phone"];
+            liStatus.innerText = data["status"];
+            // liETA.innerText = data["eta"];
 
             var time = data["updatedAt"];
             var timing = Date(time);

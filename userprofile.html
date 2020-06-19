@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="./assets/css/jquery.datetimepicker.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./css/component.css" />
+    <link rel="stylesheet" href="./css/global.css" />
 
     <link rel="stylesheet" href="./css/form.css" />
     <style>
@@ -33,7 +34,6 @@
         text-align: start;
       }
     </style>
-
   </head>
   <body>
     <!-- Preloader Starts -->
@@ -98,7 +98,6 @@
 
     <!--================Blog Area =================-->
     <section class="blog_area">
-
       <div class="blog_right_sidebar">
         <aside class="single_sidebar_widget author_widget">
           <h5 id="name"></h5>
@@ -118,17 +117,21 @@
                   <h4 class="mt-4">check out their orders</h4>
 
                   <div class="orderListInProfile" style="width: auto;">
-                    <table class="tableoforder">
-                      <tr>
-                        <th>Order Id</th>
-                        <th>Address</th>
-                        <th>Payable</th>
-                        <th>Date</th>
-                        <th>Phone</th>
-                        <th>E.T.A</th>
-                      </tr>
-                    </table>
-
+                    <center>
+                      <table class="tableoforder">
+                        <tr>
+                          <th>Order Id</th>
+                          <th>Address</th>
+                          <th>Payable</th>
+                          <th>Date</th>
+                          <th>Phone</th>
+                          <th>E.T.A</th>
+                          <th>Order Status</th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </table>
+                    </center>
                   </div>
                 </div>
               </div>
@@ -152,7 +155,7 @@
                 onfocusout="labelOut(this)"
                 onfocus="label(this)"
               />
-       
+
               <label for="Name">Name</label>
               <input
                 type="text"
@@ -286,7 +289,6 @@
         </form>
       </div>
     </div>
-
 
     <!-- Javascript -->
     <script src="./assets/js/vendor/jquery-2.2.4.min.js"></script>
