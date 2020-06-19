@@ -96,9 +96,9 @@ window.onload = () => {
             // liETA.innerText = data["eta"];
 
             var time = data["createdAt"];
-            var timing = Date(time);
+            var timing = new Date(time);
 
-            liAssignmentDate.innerText = timing.substr(0, 24);
+            liAssignmentDate.innerText = timing.toString().substr(0, 24);
 
             // Triggering event : Accept/Decline
 

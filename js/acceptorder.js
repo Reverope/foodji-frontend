@@ -101,9 +101,10 @@ fetch(restProfileURL, {
           liStatus.innerText = data["status"];
 
           var time = data["createdAt"];
-          var timing = Date(time);
+          var timing = new Date(time);
 
-          liAssignmentDate.innerText = timing.substr(0, 24);
+          // liAssignmentDate.innerText = timing.substr(0, 24);
+          liAssignmentDate.innerText = timing.toString().substr(0, 24);
 
           // Triggering event : Accept/Decline
 
@@ -121,24 +122,28 @@ fetch(restProfileURL, {
               var url =
                 "https://knight-foodji.herokuapp.com/api/restaurant/order/acceptreject/accept/" +
                 clickedButton.target.id;
+                console.log(document.getElementById(`eta${clickedButton.target.id}`).value)
               var reqBody = JSON.stringify({
                 eta: document.getElementById(`eta${clickedButton.target.id}`).value
               })
+              console.log(reqBody)
               fetch(url, {
-                accept: "application/json",
                 mode: "cors",
-                body: reqBody,
                 method: "POST",
+            
                 headers: {
+                  "Content-Type": "application/json",
                   Authorization: token,
                 },
+                body: reqBody,
+                accept: "application/json",
               }).then((response) => {
                 if (response.status == 200) {
-                  location.reload()
-                  // console.log("Accepted");
+                  // location.reload()
+                  console.log("Accepted");
                 } else {
-                  // console.log("Error");
-                  location.reload()
+                  console.log("Error");
+                  // location.reload()
                 }
               });
             });
