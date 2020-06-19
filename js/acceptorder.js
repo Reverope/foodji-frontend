@@ -36,7 +36,7 @@ fetch(restProfileURL, {
       var liAssignmentDate = document.createElement("td");
       var liContact = document.createElement("td");
       var liETA = document.createElement("input");
-      // liETA.setAttribute("id",`eta${orderId}`)
+      liETA.id = `eta${orderId}`
       var accept = document.createElement("td");
       var decline = document.createElement("td");
       var liStatus = document.createElement("td");
@@ -121,13 +121,13 @@ fetch(restProfileURL, {
               var url =
                 "https://knight-foodji.herokuapp.com/api/restaurant/order/acceptreject/accept/" +
                 clickedButton.target.id;
-              // var reqBody = JSON.stringify({
-              //   eta: document.getElementById(`eta${clickedButton.target.id}`).value
-              // })
+              var reqBody = JSON.stringify({
+                eta: document.getElementById(`eta${clickedButton.target.id}`).value
+              })
               fetch(url, {
                 accept: "application/json",
                 mode: "cors",
-                // body: reqBody,
+                body: reqBody,
                 method: "POST",
                 headers: {
                   Authorization: token,
