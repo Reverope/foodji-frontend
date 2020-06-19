@@ -9,6 +9,8 @@ var restaurantNameDisplay2 = document.getElementById("dName2");
 var restaurantAddressDisplay = document.getElementById("dAdd");
 var restaurantDisplayEmail = document.getElementById("dEmail");
 var restaurantDisplayContact = document.getElementById("dContact");
+var restaurantDeleteButton = document.getElementById("deleteorderfood");
+
 var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("foodlistingbox");
 var addFoodForm = document.getElementById("addFoodForm");
@@ -32,7 +34,6 @@ fetch(restProfileURL, {
 })
   .then((response) => response.json())
   .then((restaurant) => {
-
     var restaurantName = restaurant["name"];
     var restaurantId = restaurant["_id"];
     var restaurantContact = restaurant["contactNos"][0];
@@ -48,6 +49,7 @@ fetch(restProfileURL, {
     restaurantAddressDisplay.innerText = restaurantAddress;
     restaurantDisplayEmail.innerText = restaurantEmail;
     restaurantDisplayContact.innerText = restaurantContact;
+
     var ar = [];
     ar = restaurantFoods;
 
@@ -57,6 +59,10 @@ fetch(restProfileURL, {
       var name = food.childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       name["innerText"] = foodItem.name;
 
+      var onclicktext = food.childNodes[1].childNodes[3].childNodes[5];
+      console.log(foodItem);
+      onclicktext.id = foodItem._id;
+
       var price = food.childNodes[1].childNodes[3].childNodes[1].childNodes[3];
       price["innerText"] = foodItem.price;
       container.after(food);
@@ -64,6 +70,16 @@ fetch(restProfileURL, {
   })
   .then((_) => {
     containerBig["childNodes"][1].remove();
+  })
+  .then(() => {
+    var deleteButtonArray = document.querySelectorAll(".deleteorderfood");
+    deleteButtonArray.forEach((dbtn) => {
+      dbtn.addEventListener("click", (e) => {
+        var id = e.target["id"];
+        deletefooditemthroughapi(id);
+        console.log(id);
+      });
+    });
   });
 
 addFoodForm.onsubmit = (e) => {
@@ -97,29 +113,27 @@ addFoodForm.onsubmit = (e) => {
     });
 };
 
-// deleteFoodForm.onsubmit = (e) => {
-//   e.preventDefault();
-//   var deletefoodId = document.getElementById("deleteFoodId").value;
-//   var reqBody = JSON.stringify({
-//     foodid: deletefoodId,
-//   });
-//   fetch(deleteFoodURL, {
-//     mode: "cors",
-//     method: "DELETE",
+function deletefooditemthroughapi(fid) {
+  var reqBody = JSON.stringify({
+    foodid: fid,
+  });
+  fetch(deleteFoodURL, {
+    mode: "cors",
+    method: "DELETE",
 
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: token,
-//     },
-//     body: reqBody,
-//     accept: "application/json",
-//   })
-//     .then((res) => res.json)
-//     .then((data) => {
-//       window.location = "restprofile.html";
-//       // console.log(data)
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: reqBody,
+    accept: "application/json",
+  })
+    .then((res) => res.json)
+    .then((data) => {
+      window.location = "restprofile.html";
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
