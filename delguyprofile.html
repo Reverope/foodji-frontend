@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./css/component.css" />
     <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/form.css" />
+
 
 
     <style>
@@ -63,7 +65,7 @@
             <div class="main-menu main-menu2">
               <ul>
                 <li class="active"><a href="index.html">home</a></li>
-                <!-- <li><a href="restlogin.html">Restaurant Login</a></li> -->
+                <!-- <li><a href="assigndelguy.html">Orders</a></li> -->
                 <li><a href="restaurant.html">restaurants</a></li>
                 <!-- <li>
                   <a href="#">blog</a>
@@ -107,7 +109,10 @@
         
                 <h5 id="name"></h5>
                 <p id="about"></p>
-               
+                <button id="edit" class="template-btn template-btn2">
+                  Edit Profile
+                </button>
+              
                 <div class="br"></div>
               </aside>
               <aside class="single_sidebar_widget popular_post_widget">
@@ -143,6 +148,55 @@
         </div>
       </div>
     </section>
+
+    <div class="containert" style="display: none;">
+      <section class="formsection">
+        <div class="formboxiwthillus">
+          <div class="formbox">
+            <h1>Edit Profile</h1>
+
+            <form class="form" id="editprofileform">
+              <label for="Email">Email</label>
+              <input
+                type="text"
+                placeholder="Email"
+                id="Email"
+                onfocusout="labelOut(this)"
+                onfocus="label(this)"
+              />
+
+              <label for="Name">Name</label>
+              <input
+                type="text"
+                placeholder="Name"
+                id="Name"
+                onfocusout="labelOut(this)"
+                onfocus="label(this)"
+              />
+
+              <label for="Phone">Phone</label>
+              <input
+                type="text"
+                placeholder="Phone"
+                id="Phone"
+                onfocus="label(this)"
+                onfocusout="labelOut(this)"
+              />
+              <div class="btns">
+                <input
+                  class="cancel"
+                  type="button"
+                  onclick="remove()"
+                  value="Cancel"
+                  style="padding: 0;"
+                />
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
     <div class="modal" id="guy-modal">
     <div class="modal-content">
         <span id="guy-close">&times;</span>
@@ -173,7 +227,20 @@
     </div>
     </div>
 
+    <script>
+      function label(data) {
+        var labelAss = data["labels"][0];
+        labelAss["style"]["animation"] = "moveup 0.2s forwards";
+        data["attributes"]["placeholder"]["value"] = " ";
+      }
 
+      function labelOut(data) {
+        var labelAss = data["labels"][0];
+        var textD = data["labels"][0]["innerText"];
+        data["attributes"]["placeholder"]["value"] = textD;
+        labelAss["style"]["animation"] = "movedown 0.2s forwards";
+      }
+    </script>
     <!-- Javascript -->
     <script src="./assets/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="./assets/js/vendor/bootstrap-4.1.3.min.js"></script>

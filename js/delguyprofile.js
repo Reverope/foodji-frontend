@@ -4,9 +4,24 @@ var profileName = document.getElementById("name");
 var profileNumber = document.getElementById("about");
 var orderDisplay = document.querySelector(".tableoforder");
 var container = document.querySelector("#ritem");
-
+var editFormSection = document.querySelector(".containert");
+var editProfileButton = document.getElementById("edit");
+var editProfileForm = document.getElementById('editprofileform')
 var url = "https://knight-foodji.herokuapp.com/api/deliveryguy/me";
 
+
+var eName = document.getElementById("Name");
+var eEmail = document.getElementById("Email");
+var ePhone = document.getElementById("Phone");
+editProfileButton.addEventListener("click", () => {
+  editFormSection.style.display = "block";
+  window.scrollTo(0, document.body.scrollHeight);
+});
+
+function remove() {
+  editFormSection.style.display = "none";
+  window.scrollTo(document.body.scrollHeight, 0);
+}
 var token = localStorage.getItem("foodji-guy-auth-header");
 window.onload = () => {
   fetch(url, {
@@ -29,6 +44,11 @@ window.onload = () => {
     .then(function (data) {
       profileName.innerHTML = data.name;
       profileNumber.innerHTML = data.email;
+
+      eName["value"] = data.name;
+      eEmail["value"] = data.email;
+      ePhone["value"] = data.phone;
+  
       data.orders.forEach((ord) => {
         var orderId = ord._id;
         var tablerow = document.createElement("tr");
@@ -115,3 +135,40 @@ window.onload = () => {
       document.getElementById("guy-error").style.display = "block";
     });
 };
+
+
+var editProfileURL = `https://knight-foodji.herokuapp.com/api/deliveryguy/me`
+
+editProfileForm.onsubmit = (e)=>{
+  e.preventDefault()
+  var reqBody = JSON.stringify({
+    name: eName.value,
+    email:eEmail.value,
+    phone:ePhone.value,
+  }) 
+  console.log(reqBody)
+  fetch(editProfileURL,{
+    mode: "cors",
+    method: "PATCH",
+
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: reqBody,
+    accept: "application/json"
+  })
+  .then(res => {
+    if(res.status == 200){
+      alert("Profile Updated Successfully")
+      location.reload()
+    } else{
+      alert("Please try again.")
+      location.reload()
+    }
+  })
+  .catch(err =>{
+    console.log(err)
+  })
+  
+}
