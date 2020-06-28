@@ -53,7 +53,7 @@ fetch(url, {
       name["innerText"] = foodItem["foodid"].name;
 
       var price = food.childNodes[1].childNodes[3].childNodes[1].childNodes[3];
-      price["innerText"] = foodItem.price;
+      price["innerText"] = " Rs. "+foodItem.price;
 
       var foodId = food.childNodes[1].childNodes[3].childNodes[1].childNodes[5];
       foodId["innerText"] = foodItem.foodid._id;
