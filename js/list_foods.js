@@ -53,7 +53,7 @@ fetch(url, {
       name["innerText"] = foodItem["foodid"].name;
 
       var price = food.childNodes[1].childNodes[3].childNodes[1].childNodes[3];
-      price["innerText"] = " Rs. "+foodItem.price;
+      price["innerText"] = "Rs. "+foodItem.price;
 
       var foodId = food.childNodes[1].childNodes[3].childNodes[1].childNodes[5];
       foodId["innerText"] = foodItem.foodid._id;
@@ -79,7 +79,9 @@ fetch(url, {
       var total = 0;
 
       for (every in orderAr) {
-        total = total + orderAr[every].food_price * orderAr[every].quantity;
+        var price = orderAr[every].food_price.replace("Rs. ","")
+        total = total + price * orderAr[every].quantity;
+        console.log(price)
       }
       return total;
     }
@@ -139,7 +141,7 @@ fetch(url, {
             todoList.appendChild(foodItemInList);
           });
 
-          totalAmount.innerText = "₹" + totalAm();
+          totalAmount.innerText = "Total: ₹" + totalAm();
         }
       })
     );
@@ -182,7 +184,7 @@ fetch(url, {
 
           todoList.appendChild(foodItemInList);
         });
-        totalAmount.innerText = "₹" + totalAm();
+        totalAmount.innerText = "Total: ₹" + totalAm();
         // var found = orderAr.find((element) => element == foodName);
       });
     });
