@@ -47,7 +47,6 @@ fetch(url, {
     eEmail["value"] = data["user"].email;
     eAddress["value"] = data["user"].address;
     ePhone["value"] = data["user"].phone;
-
     data.user.orders.forEach((item) => {
       var orderId = item._id;
       var tablerow = document.createElement("tr");
@@ -58,7 +57,6 @@ fetch(url, {
       var liAssignmentDate = document.createElement("td");
       var liContact = document.createElement("td");
       var liETA = document.createElement("td");
-      var accept = document.createElement("td");
       var decline = document.createElement("td");
       var liStatus = document.createElement("td");
 
@@ -69,7 +67,6 @@ fetch(url, {
       tablerow.appendChild(liContact);
       tablerow.appendChild(liETA);
       tablerow.appendChild(liStatus);
-      tablerow.appendChild(accept);
       tablerow.appendChild(decline);
 
       var url = `https://knight-foodji.herokuapp.com/api/user/order/${orderId}`;
@@ -84,52 +81,53 @@ fetch(url, {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data["status"] == "RECEIVED") {
-            var declineButton = document.createElement("button");
-            declineButton.id = orderId;
-            decline.appendChild(declineButton);
-            declineButton.style.margin = "0 1rem";
-            declineButton.className =
-              "declinedecision template-btn template-btn2";
-            declineButton.innerText = "Cancel";
-          }
+            if (data["status"] == "RECEIVED") {
+              var declineButton = document.createElement("button");
+              declineButton.id = orderId;
+              decline.appendChild(declineButton);
+              declineButton.style.margin = "0 1rem";
+              declineButton.className =
+                "declinedecision template-btn template-btn2";
+              
+              declineButton.innerText = "Cancel";
+            }
+
+            var orderedFoodList = data["foods"];
+
+            [...orderedFoodList].forEach((food) => {
+              liElement.innerHTML +=
+                "<li><p>" +
+                food["name"] +
+                "(x" +
+                food["quantity"] +
+                ")  <br> ₹" +
+                food["price"] +
+                "</p>" +
+                "</li>";
+            });
+
+            // liElement.innerText = orderId;
+            liAddress.innerText = data["address"];
+            liTotalPrice.innerText = data["payment"]["total"];
+            liContact.innerText = data["restaurant"]["contactNos"][0];
+            liStatus.innerText = data["status"];
+            liETA.innerText = data["eta"]
+
+            var time = data["createdAt"];
+            var timing = new Date(time);
+
+            // liAssignmentDate.innerText = timing.substr(0, 24);
+            liAssignmentDate.innerText = timing.toString().substr(0, 24);
+
+            // Triggering event : Accept/Decline
+
+            orderDisplay.appendChild(tablerow);
 
 
-          var orderedFoodList = data["foods"];
-          console.log(orderedFoodList);
+            var selectAllDeclineButtons = document.querySelectorAll(
+              ".declinedecision"
+            );
 
-          [...orderedFoodList].forEach((food) => {
-            liElement.innerHTML +=
-              "<li><p>" +
-              food["name"] +
-              "(x" +
-              food["quantity"] +
-              ")  <br> ₹" +
-              food["price"] +
-              "</p>" +
-              "</li>";
-          });
-
-          // liElement.innerText = orderId;
-          liAddress.innerText = data["address"];
-          liTotalPrice.innerText = data["payment"]["total"];
-          liContact.innerText = data["user"]["phone"];
-          liStatus.innerText = data["status"];
-          liETA.innerText = data["eta"]
-
-          var time = data["createdAt"];
-          var timing = new Date(time);
-
-          liAssignmentDate.innerText = timing.toString().substr(0, 24);
-
-          // Triggering event : Accept/Decline
-
-          orderDisplay.appendChild(tablerow);
-
-        
-          var selectAllDeclineButtons = document.querySelectorAll(
-            ".declinedecision"
-          );
 
           selectAllDeclineButtons.forEach((button) => {
             button.addEventListener("click", (clickedButton) => {
@@ -158,7 +156,7 @@ fetch(url, {
               });
             });
           });
-        });
+      });
     });
 
   })

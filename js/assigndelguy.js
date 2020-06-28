@@ -1,13 +1,12 @@
 var url = new URL(window.location.href);
 
 var orderId = url.searchParams.get("id");
-var token = localStorage.getItem("foodji-guy-auth-header");
-console.log(orderId);
+var delGuyToken = localStorage.getItem("foodji-guy-auth-header");
 var card = document.getElementById("cardItem");
 
 var url = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`;
 window.onload = () => {
-  if (!token) {
+  if (!delGuyToken) {
     document.getElementById("pop-modal").style.display = "block";
   }
 };
@@ -17,7 +16,7 @@ fetch(url, {
   mode: "cors",
   method: "GET",
   headers: {
-    Authorization: token,
+    Authorization: delGuyToken,
   },
 })
   .then((response) => response.json())
@@ -56,32 +55,33 @@ fetch(url, {
         data["createdAt"] +
         '</p>\n            </div>\n            <div class="paymentdetails">\n              <p>Payment Amount</p>\n              <p class="pamount">' +
         data["payment"].total +
-        '</p>\n            </div>\n            <br>\n            <button id="assign" onclick="assignorder(' +
-        orderId +
-        ')">Accept Order</button>\n          </div>\n        ';
+        '</p>\n            </div>\n            <br>\n            <button id="assign" onclick="assignorder()">Accept Order</button>\n          </div>\n        ';
 
       card.innerHTML = string;
-      console.log(orderedFoodList);
     }
   });
 
-function assignorder(orderidincoming) {
-  var od = parseInt(orderidincoming);
-  console.log(orderidincoming);
+function assignorder() {
+  // var od = parseInt(orderidincoming);
+  // console.log(orderidincoming);
   var urlaccept =
-    "https://knight-foodji.herokuapp.com/api/deliveryguy/assign/" + od;
+    "https://knight-foodji.herokuapp.com/api/deliveryguy/assign/" + orderId;
   fetch(urlaccept, {
     accept: "application/json",
     mode: "cors",
     method: "POST",
     headers: {
-      Authorization: token,
+      Authorization: delGuyToken,
     },
   }).then((response) => {
     if (response.status == 200) {
-      location.reload();
+      // location.reload();
+      window.location = "delguyprofile.html"
     } else {
       location.reload();
     }
+  })
+  .catch(err =>{
+    console.log(err)
   });
 }

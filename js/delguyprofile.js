@@ -58,24 +58,22 @@ window.onload = () => {
         var liTotalPrice = document.createElement("td");
         var liAssignmentDate = document.createElement("td");
         var liContact = document.createElement("td");
-        // var liETA = document.createElement("td");
-        var accept = document.createElement("td");
-        var decline = document.createElement("td");
+        var liUserPhone = document.createElement("td");
+        // var decline = document.createElement("td");
         var liStatus = document.createElement("td");
-
+  
         tablerow.appendChild(liElement);
         tablerow.appendChild(liAddress);
         tablerow.appendChild(liTotalPrice);
         tablerow.appendChild(liAssignmentDate);
         tablerow.appendChild(liContact);
-        // tablerow.appendChild(liETA);
+        tablerow.appendChild(liUserPhone);
         tablerow.appendChild(liStatus);
-        tablerow.appendChild(accept);
-        tablerow.appendChild(decline);
 
-        var orderurl = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`;
-
-        fetch(orderurl, {
+  
+        var url = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`;
+  
+        fetch(url, {
           accept: "application/json",
           mode: "cors",
           method: "GET",
@@ -83,47 +81,116 @@ window.onload = () => {
             Authorization: token,
           },
         })
-          .then((response) => {
-            if (!response.ok) {
-              throw Error(response);
-            } else {
-              return response.json();
-            }
-            console.log(token);
-          })
+          .then((response) => response.json())
           .then((data) => {
-            console.log(data);
-            var orderedFoodList = data["foods"];
-            console.log(orderedFoodList);
+          
+  
+              var orderedFoodList = data["foods"];
+  
+              [...orderedFoodList].forEach((food) => {
+                liElement.innerHTML +=
+                  "<li><p>" +
+                  food["name"] +
+                  "(x" +
+                  food["quantity"] +
+                  ")  <br> ₹" +
+                  food["price"] +
+                  "</p>" +
+                  "</li>";
+              });
+  
+              // liElement.innerText = orderId;
+              liAddress.innerText = data["address"];
+              liTotalPrice.innerText = data["payment"]["total"];
+              liContact.innerText = data["restaurant"]["contactNos"][0];
+              liUserPhone.innerText = data["user"]["phone"];
+              liStatus.innerText = data["status"]
+  
+              var time = data["createdAt"];
+              var timing = new Date(time);
+  
+              // liAssignmentDate.innerText = timing.substr(0, 24);
+              liAssignmentDate.innerText = timing.toString().substr(0, 24);
+  
+              // Triggering event : Accept/Decline
+  
+              orderDisplay.appendChild(tablerow);
+  
+        });
+        // var orderId = ord._id;
+        // var tablerow = document.createElement("tr");
+        // var liElement = document.createElement("td");
+        // var liAddress = document.createElement("td");
+        // var liPaymentStatus = document.createElement("td");
+        // var liTotalPrice = document.createElement("td");
+        // var liAssignmentDate = document.createElement("td");
+        // var liContact = document.createElement("td");
+        // // var liETA = document.createElement("td");
+        // var accept = document.createElement("td");
+        // var decline = document.createElement("td");
+        // var liStatus = document.createElement("td");
 
-            [...orderedFoodList].forEach((food) => {
-              liElement.innerHTML +=
-                "<li><p>" +
-                food["name"] +
-                "(x" +
-                food["quantity"] +
-                ")  <br> ₹" +
-                food["price"] +
-                "</p>" +
-                "</li>";
-            });
+        // tablerow.appendChild(liElement);
+        // tablerow.appendChild(liAddress);
+        // tablerow.appendChild(liTotalPrice);
+        // tablerow.appendChild(liAssignmentDate);
+        // tablerow.appendChild(liContact);
+        // // tablerow.appendChild(liETA);
+        // tablerow.appendChild(liStatus);
+        // tablerow.appendChild(accept);
+        // tablerow.appendChild(decline);
 
-            // liElement.innerText = orderId;
-            liAddress.innerText = data["address"];
-            liTotalPrice.innerText = data["payment"]["total"];
-            liContact.innerText = data["user"]["phone"];
-            liStatus.innerText = data["status"];
-            // liETA.innerText = data["eta"];
+        // var orderurl = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`;
 
-            var time = data["createdAt"];
-            var timing = new Date(time);
+        // fetch(orderurl, {
+        //   accept: "application/json",
+        //   mode: "cors",
+        //   method: "GET",
+        //   headers: {
+        //     Authorization: token,
+        //   },
+        // })
+        //   .then((response) => {
+        //     if (!response.ok) {
+        //       throw Error(response);
+        //     } else {
+        //       return response.json();
+        //     }
+        //     console.log(token);
+        //   })
+        //   .then((data) => {
+        //     console.log(data);
+        //     var orderedFoodList = data["foods"];
+        //     console.log(orderedFoodList);
 
-            liAssignmentDate.innerText = timing.toString().substr(0, 24);
+        //     [...orderedFoodList].forEach((food) => {
+        //       liElement.innerHTML +=
+        //         "<li><p>" +
+        //         food["name"] +
+        //         "(x" +
+        //         food["quantity"] +
+        //         ")  <br> ₹" +
+        //         food["price"] +
+        //         "</p>" +
+        //         "</li>";
+        //     });
 
-            // Triggering event : Accept/Decline
+        //     // liElement.innerText = orderId;
+        //     liAddress.innerText = data["address"];
+        //     liTotalPrice.innerText = data["payment"]["total"];
+        //     liContact.innerText = data["user"]["phone"];
+        //     liStatus.innerText = data["status"];
+        //     // liETA.innerText = data["eta"];
 
-            orderDisplay.appendChild(tablerow);
-          });
+        //     var time = data["createdAt"];
+        //     var timing = new Date(time);
+
+        //     liAssignmentDate.innerText = timing.toString().substr(0, 24);
+
+        //     // Triggering event : Accept/Decline
+
+        //     orderDisplay.appendChild(tablerow);
+        //   });
       });
     })
     .then((_) => {
