@@ -140,11 +140,11 @@ fetch(restProfileURL, {
                   accept: "application/json",
                 }).then((response) => {
                   if (response.status == 200) {
-                    // location.reload()
+                     location.reload()
                     console.log("Accepted");
                   } else {
                     console.log("Error");
-                    // location.reload()
+                     location.reload()
                   }
                 });
               });
@@ -163,6 +163,7 @@ fetch(restProfileURL, {
                     Authorization: token,
                   },
                 }).then((response) => {
+                  console.log(response)
                   if (response.status == 200) {
                     // console.log("Rejected");
                     location.reload()

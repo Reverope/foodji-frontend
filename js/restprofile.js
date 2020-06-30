@@ -15,7 +15,30 @@ var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("foodlistingbox");
 var addFoodForm = document.getElementById("addFoodForm");
 var orderDisplay = document.querySelector(".tableoforder");
+
+var editFormSection = document.querySelector(".containert");
+var editProfileButton = document.getElementById("edit");
+var editProfileForm = document.getElementById('editprofileform')
+
+var eName = document.getElementById("Name");
+var eEmail = document.getElementById("Email");
+
+var eAddress = document.getElementById("Address");
+var ePhone = document.getElementById("Phone");
 // var restIdDisplay = document.getElementById("dID");
+
+editProfileButton.addEventListener("click", () => {
+  editFormSection.style.display = "block";
+  window.scrollTo(0, document.body.scrollHeight);
+});
+
+function remove() {
+  editFormSection.style.display = "none";
+  window.scrollTo(document.body.scrollHeight, 0);
+}
+
+
+
 
 restaurantNameDisplay.innerHTML =
   '<img src="/assets/images/loading.gif" style="width:4rem">';
@@ -137,3 +160,38 @@ function deletefooditemthroughapi(fid) {
       console.log(err);
     });
 }
+
+
+var editProfileURL = `https://knight-foodji.herokuapp.com/api/restaurant`
+
+  editProfileForm.onsubmit = (e)=>{
+    e.preventDefault()
+    var reqBody = JSON.stringify({
+      name: eName.value,
+      email:eEmail.value,
+      contactNos:[ePhone.value],
+      address:eAddress.value
+    }) 
+
+    fetch(editProfileURL,{
+      mode: "cors",
+      method: "PATCH",
+  
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: reqBody,
+      accept: "application/json"
+    })
+    .then(res => {
+      if(res.status == 200){
+        alert("Profile Updated Successfully")
+        location.reload()
+      } else{
+        console.log(res)
+        alert("Please try again.")
+        //location.reload()
+      }
+    })
+  }

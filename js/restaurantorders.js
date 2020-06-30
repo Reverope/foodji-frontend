@@ -27,6 +27,7 @@ fetch(restProfileURL, {
 })
   .then((response) => response.json())
   .then((restaurant) => {
+    restaurant.orders.reverse();
     restaurant.orders.forEach((orderId) => {
       var tablerow = document.createElement("tr");
       var liElement = document.createElement("td");
@@ -35,7 +36,7 @@ fetch(restProfileURL, {
       var liTotalPrice = document.createElement("td");
       var liAssignmentDate = document.createElement("td");
       var liContact = document.createElement("td");
-      var liETA = document.createElement("input");
+      var liETA = document.createElement("td");
       liETA.id = `eta${orderId}`
       var accept = document.createElement("td");
       var decline = document.createElement("td");
@@ -64,7 +65,8 @@ fetch(restProfileURL, {
         .then((response) => response.json())
         .then((data) => {
             if (data["status"] == "RECEIVED") {
-                var acceptButton = document.createElement("button");
+                return;
+                /*var acceptButton = document.createElement("button");
                 var declineButton = document.createElement("button");
                 declineButton.id = orderId;
                 acceptButton.id = orderId;
@@ -77,8 +79,10 @@ fetch(restProfileURL, {
                 declineButton.className =
                 "declinedecision template-btn template-btn2";
                 acceptButton.innerText = "Accept";
-                declineButton.innerText = "Decline";
+                declineButton.innerText = "Decline";*/
             }
+            if (data["status"] == "CANCELED") 
+                return;
 
             var orderedFoodList = data["foods"];
 
