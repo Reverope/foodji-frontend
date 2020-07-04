@@ -142,3 +142,38 @@
   color: #ffb606;
   background-color: white !important;
 }
+
+@media only screen and (max-width: 600px) {
+  tr{
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  .tableoforder{
+    background-color: #e9eaf5;
+  }
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #f9ff8a; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+
+
+}
