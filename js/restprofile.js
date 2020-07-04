@@ -11,6 +11,7 @@ var restaurantAddressDisplay = document.getElementById("dAdd");
 var restaurantDisplayEmail = document.getElementById("dEmail");
 var restaurantDisplayContact = document.getElementById("dContact");
 var restaurantDeleteButton = document.getElementById("deleteorderfood");
+var addFoodBtn = document.getElementById("addFoodBtn")
 
 var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("foodlistingbox");
@@ -112,6 +113,7 @@ fetch(restProfileURL, {
 var addFoodForm = document.getElementById("addFoodForm");
 addFoodForm.onsubmit = (e) => {
   e.preventDefault();
+  addFoodBtn.innerText = "Please Wait"
 
   var formdata = new FormData(addFoodForm)
 
@@ -126,11 +128,12 @@ addFoodForm.onsubmit = (e) => {
 
     .then((res) => res.json)
     .then((data) => {
-      //console.log(JSON.stringify(data))
+      alert("Food added successfully")
       window.location = "restprofile.html";
     })
     .catch((err) => {
-      console.log(err);
+      alert("Unable to add food")
+      window.location = "restprofile.html";
     });
 };
 
