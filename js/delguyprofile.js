@@ -23,6 +23,7 @@ function remove() {
   window.scrollTo(document.body.scrollHeight, 0);
 }
 var token = localStorage.getItem("foodji-guy-auth-header");
+
 window.onload = () => {
   fetch(url, {
     accept: "application/json",
@@ -50,25 +51,36 @@ window.onload = () => {
       ePhone["value"] = data.phone;
   
       data.orders.forEach((ord) => {
+        console.log(ord)
         var orderId = ord._id;
         var tablerow = document.createElement("tr");
         var liElement = document.createElement("td");
-        var liAddress = document.createElement("td");
+        var liRestName = document.createElement("td");
+        var liRestAddress = document.createElement("td");
+        var liRestPhone = document.createElement("td");
+        var liCustName = document.createElement("td");
+        var liCustAddress = document.createElement("td");
+        var liCustPhone = document.createElement("td");
         var liPaymentStatus = document.createElement("td");
         var liTotalPrice = document.createElement("td");
         var liAssignmentDate = document.createElement("td");
-        var liContact = document.createElement("td");
-        var liUserPhone = document.createElement("td");
-        // var decline = document.createElement("td");
+        var liETA = document.createElement("td");
+        var liAction = document.createElement("td");
         var liStatus = document.createElement("td");
   
         tablerow.appendChild(liElement);
-        tablerow.appendChild(liAddress);
+        tablerow.appendChild(liRestName);
+        tablerow.appendChild(liRestAddress);
+        tablerow.appendChild(liRestPhone);
+        tablerow.appendChild(liCustName);
+        tablerow.appendChild(liCustAddress);
+        tablerow.appendChild(liCustPhone);
         tablerow.appendChild(liTotalPrice);
         tablerow.appendChild(liAssignmentDate);
-        tablerow.appendChild(liContact);
-        tablerow.appendChild(liUserPhone);
+        tablerow.appendChild(liETA);
         tablerow.appendChild(liStatus);
+        tablerow.appendChild(liAction);
+
 
   
         var url = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`;
@@ -82,8 +94,7 @@ window.onload = () => {
           },
         })
           .then((response) => response.json())
-          .then((data) => {
-          
+          .then((data) => {          
   
               var orderedFoodList = data["foods"];
   
@@ -100,10 +111,13 @@ window.onload = () => {
               });
   
               // liElement.innerText = orderId;
-              liAddress.innerText = data["address"];
+              liRestName.innerText = data['restaurant']['name']
+              liCustAddress.innerText = data["address"];
               liTotalPrice.innerText = data["payment"]["total"];
-              liContact.innerText = data["restaurant"]["contactNos"][0];
-              liUserPhone.innerText = data["user"]["phone"];
+              liRestAddress.innerText = data["restaurant"]["address"]
+              liRestPhone.innerText = data["restaurant"]["contactNos"][0];
+              liCustPhone.innerText = data["user"]["phone"];
+              liCustName.innerText = data["user"]["name"]
               liStatus.innerText = data["status"]
   
               var time = data["createdAt"];
@@ -113,8 +127,56 @@ window.onload = () => {
               liAssignmentDate.innerText = timing.toString().substr(0, 24);
   
               // Triggering event : Accept/Decline
+
+              if (data["status"] == "ACCEPTED") {
+                var shipButton = document.createElement("button");
+                liAction.appendChild(shipButton);
+                shipButton.id = orderId;
+                shipButton.style.margin = "0 1rem";
+                shipButton.className = "ship template-btn template-btn2";                
+                shipButton.innerText = "SHIP";
+              } else {
+                liAction.innerText = "None"
+              }
   
               orderDisplay.appendChild(tablerow);
+
+              var selectAllShipButtons = document.querySelectorAll(
+                ".ship"
+              );
+
+              selectAllShipButtons.forEach((button) => {
+                button.addEventListener("click", (clickedButton) => {
+                  //var r = confirm("Do you want to cancel the order.")
+                  var r = true
+                  console.log(r)
+
+                  if(r == true){
+                    var url =
+                        "https://knight-foodji.herokuapp.com/api/deliveryguy/status/" +
+                        clickedButton.target.id;
+
+                    button.innerText = "SHIPPING"
+                    console.log(url)
+                      fetch(url, {
+                        accept: "application/json",
+                        mode: "cors",
+                        method: "PATCH",
+                        headers: {
+                          Authorization: token,
+                        },
+                      }).then((response) => {
+                        console.log("SHIPPED")
+                          window.location = "delguyprofile.html";
+                      });
+                  } else{
+                    console.log("Err CANCELLED")
+                    window.location = "delguyprofile.html";
+                  }             
+                });
+              });
+
+      });
   
         });
         // var orderId = ord._id;
@@ -191,7 +253,7 @@ window.onload = () => {
 
         //     orderDisplay.appendChild(tablerow);
         //   });
-      });
+      
     })
     .then((_) => {
       loader.remove();

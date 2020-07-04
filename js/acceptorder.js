@@ -64,8 +64,8 @@ fetch(restProfileURL, {
       })
         .then((response) => response.json())
         .then((data) => {
-          if(data.status == "RECEIVED"){
-            if (data["status"] == "RECEIVED") {
+          if(data.status == "PENDING"){
+            if (data["status"] == "PENDING") {
               var acceptButton = document.createElement("button");
               var declineButton = document.createElement("button");
               declineButton.id = orderId;
@@ -86,14 +86,14 @@ fetch(restProfileURL, {
 
             [...orderedFoodList].forEach((food) => {
               liElement.innerHTML +=
-                "<li><p>" +
+                "<p>" +
                 food["name"] +
                 "(x" +
                 food["quantity"] +
                 ")  <br> ₹" +
                 food["price"] +
-                "</p>" +
-                "</li>";
+                ",</p>"
+                
             });
 
             // liElement.innerText = orderId;

@@ -37,7 +37,7 @@ userLoginForm.onsubmit = (e) => {
       );
       document.getElementById("login-error").style.display = "none";
 
-      location.reload();
+      window.location = "restaurant.html"
     })
     .catch((err) => {
       document.getElementById("login-error").style.display = "block";

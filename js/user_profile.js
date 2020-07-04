@@ -52,23 +52,25 @@ fetch(url, {
       var orderId = item._id;
       var tablerow = document.createElement("tr");
       var liElement = document.createElement("td");
+      var liRestaurant = document.createElement("td");
       var liAddress = document.createElement("td");
       var liPaymentStatus = document.createElement("td");
       var liTotalPrice = document.createElement("td");
       var liAssignmentDate = document.createElement("td");
       var liContact = document.createElement("td");
       var liETA = document.createElement("td");
-      var decline = document.createElement("td");
+      var liAction = document.createElement("td");
       var liStatus = document.createElement("td");
 
       tablerow.appendChild(liElement);
+      tablerow.appendChild(liRestaurant);
       tablerow.appendChild(liAddress);
       tablerow.appendChild(liTotalPrice);
       tablerow.appendChild(liAssignmentDate);
       tablerow.appendChild(liContact);
       tablerow.appendChild(liETA);
       tablerow.appendChild(liStatus);
-      tablerow.appendChild(decline);
+      tablerow.appendChild(liAction);
 
       var url = `https://knight-foodji.herokuapp.com/api/user/order/${orderId}`;
 
@@ -82,40 +84,56 @@ fetch(url, {
       })
         .then((response) => response.json())
         .then((data) => {
-            if (data["status"] == "RECEIVED") {
+            //data["status"] = "SHIPPED"
+
+            if (data["status"] == "PENDING") {
               var declineButton = document.createElement("button");
               declineButton.id = orderId;
-              decline.appendChild(declineButton);
+              liAction.appendChild(declineButton);
               declineButton.style.margin = "0 1rem";
-              declineButton.className =
-                "declinedecision template-btn template-btn2";
-              
+              declineButton.className = "declinedecision template-btn template-btn2";              
               declineButton.innerText = "Cancel";
+
+            } else if(data["status"] == "SHIPPED"){
+              var deliveredButton = document.createElement("button");
+              deliveredButton.id = orderId;
+              liAction.appendChild(deliveredButton);
+              deliveredButton.style.margin = "0 1rem";
+              deliveredButton.className = "delivered template-btn template-btn2";              
+              deliveredButton.innerText = "Delivered";
+
+            }
+            else{
+              liAction.innerText = "None"
             }
 
             var orderedFoodList = data["foods"];
 
             [...orderedFoodList].forEach((food) => {
               liElement.innerHTML +=
-                "<li><p>" +
+                "<p>" +
                 food["name"] +
                 "(x" +
                 food["quantity"] +
                 ")  <br> ₹" +
                 food["price"] +
-                "</p>" +
-                "</li>";
+                ",</p>"
             });
 
             // liElement.innerText = orderId;
+            liRestaurant.innerText = data["restaurant"]["name"]
             liAddress.innerText = data["address"];
             liTotalPrice.innerText = data["payment"]["total"];
             liContact.innerText = data["restaurant"]["contactNos"][0];
             liStatus.innerText = data["status"];
             liETA.innerText = data["eta"]
 
+            if(data["eta"] == undefined)
+              liETA.innerText = "pending"
+
             var time = data["createdAt"];
             var timing = new Date(time);
+
 
             // liAssignmentDate.innerText = timing.substr(0, 24);
             liAssignmentDate.innerText = timing.toString().substr(0, 24);
@@ -129,32 +147,72 @@ fetch(url, {
               ".declinedecision"
             );
 
+            var selectAllDeliveredButtons = document.querySelectorAll(
+              ".delivered"
+            );
+
 
           selectAllDeclineButtons.forEach((button) => {
             button.addEventListener("click", (clickedButton) => {
-              var r = confirm("Do you want to cancel the order.")
-              if(!r){
-                return 
-              }
-              var url =
-                "https://knight-foodji.herokuapp.com/api/user/order/cancel/" +
-                clickedButton.target.id;
-              fetch(url, {
-                accept: "application/json",
-                mode: "cors",
-                method: "POST",
-                headers: {
-                  Authorization: token,
-                },
-              }).then((response) => {
-                if (response.status == 200) {
-                  location.reload()
-                } else {
-                  location.reload()
-                }
-              });
+              //var r = confirm("Do you want to cancel the order.")
+              var r = true
+              console.log(r)
+
+              if(r == true){
+                var url =
+                    "https://knight-foodji.herokuapp.com/api/user/order/cancel/" +
+                    clickedButton.target.id;
+
+                button.innerText = "CANCELING"
+                  fetch(url, {
+                    accept: "application/json",
+                    mode: "cors",
+                    method: "POST",
+                    headers: {
+                      Authorization: token,
+                    },
+                  }).then((response) => {
+                    console.log("CANCELLED")
+                      window.location = "userprofile.html";
+                  });
+              } else{
+                console.log("Err CANCELLED")
+                window.location = "userprofile.html";
+              }             
             });
           });
+
+          
+          selectAllDeliveredButtons.forEach((button) => {
+            button.addEventListener("click", (clickedButton) => {
+              //var r = confirm("Do you want to cancel the order.")
+              var r = true
+              console.log(r)
+
+              if(r == true){
+                var url =
+                    "https://knight-foodji.herokuapp.com/api/user/order/status/" +
+                    clickedButton.target.id;
+
+                button.innerText = "UPDATING"
+                  fetch(url, {
+                    accept: "application/json",
+                    mode: "cors",
+                    method: "PATCH",
+                    headers: {
+                      Authorization: token,
+                    },
+                  }).then((response) => {
+                    console.log("UPDATED to Delivered")
+                      window.location = "userprofile.html";
+                  });
+              } else{
+                console.log("Err CANCELLED")
+                window.location = "userprofile.html";
+              }             
+            });
+          });
+
       });
     });
 
