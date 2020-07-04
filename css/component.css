@@ -36,10 +36,7 @@
   margin: 1rem 0;
   list-style: none;
 }
-.tableoforder{
-  position: relative;
-  left: 5%;
-}
+
 .tableoforder td {
   border-bottom: 0.5px solid black;
   padding: 1rem;

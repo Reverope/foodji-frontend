@@ -52,6 +52,7 @@ fetch(url, {
       var orderId = item._id;
       var tablerow = document.createElement("tr");
       var liElement = document.createElement("td");
+      var liRestaurant = document.createElement("td");
       var liAddress = document.createElement("td");
       var liPaymentStatus = document.createElement("td");
       var liTotalPrice = document.createElement("td");
@@ -62,6 +63,7 @@ fetch(url, {
       var liStatus = document.createElement("td");
 
       tablerow.appendChild(liElement);
+      tablerow.appendChild(liRestaurant);
       tablerow.appendChild(liAddress);
       tablerow.appendChild(liTotalPrice);
       tablerow.appendChild(liAssignmentDate);
@@ -82,7 +84,8 @@ fetch(url, {
       })
         .then((response) => response.json())
         .then((data) => {
-            if (data["status"] == "RECEIVED") {
+          console.log(data["restaurant"]["name"])
+            if (data["status"] == "PENDING") {
               var declineButton = document.createElement("button");
               declineButton.id = orderId;
               decline.appendChild(declineButton);
@@ -91,31 +94,37 @@ fetch(url, {
                 "declinedecision template-btn template-btn2";
               
               declineButton.innerText = "Cancel";
+            } else{
+              decline.innerText = "None"
             }
 
             var orderedFoodList = data["foods"];
 
             [...orderedFoodList].forEach((food) => {
               liElement.innerHTML +=
-                "<li><p>" +
+                "<p>" +
                 food["name"] +
                 "(x" +
                 food["quantity"] +
                 ")  <br> ₹" +
                 food["price"] +
-                "</p>" +
-                "</li>";
+                ",</p>"
             });
 
             // liElement.innerText = orderId;
+            liRestaurant.innerText = data["restaurant"]["name"]
             liAddress.innerText = data["address"];
             liTotalPrice.innerText = data["payment"]["total"];
             liContact.innerText = data["restaurant"]["contactNos"][0];
             liStatus.innerText = data["status"];
             liETA.innerText = data["eta"]
 
+            if(data["eta"] == undefined)
+              liETA.innerText = "pending"
+
             var time = data["createdAt"];
             var timing = new Date(time);
+
 
             // liAssignmentDate.innerText = timing.substr(0, 24);
             liAssignmentDate.innerText = timing.toString().substr(0, 24);
@@ -132,27 +141,31 @@ fetch(url, {
 
           selectAllDeclineButtons.forEach((button) => {
             button.addEventListener("click", (clickedButton) => {
-              var r = confirm("Do you want to cancel the order.")
-              if(!r){
-                return 
-              }
-              var url =
-                "https://knight-foodji.herokuapp.com/api/user/order/cancel/" +
-                clickedButton.target.id;
-              fetch(url, {
-                accept: "application/json",
-                mode: "cors",
-                method: "POST",
-                headers: {
-                  Authorization: token,
-                },
-              }).then((response) => {
-                if (response.status == 200) {
-                  location.reload()
-                } else {
-                  location.reload()
-                }
-              });
+              //var r = confirm("Do you want to cancel the order.")
+              var r = true
+              console.log(r)
+
+              if(r == true){
+                var url =
+                    "https://knight-foodji.herokuapp.com/api/user/order/cancel/" +
+                    clickedButton.target.id;
+
+                button.innerText = "CANCELING"
+                  fetch(url, {
+                    accept: "application/json",
+                    mode: "cors",
+                    method: "POST",
+                    headers: {
+                      Authorization: token,
+                    },
+                  }).then((response) => {
+                    console.log("CANCELLED")
+                      window.location = "userprofile.html";
+                  });
+              } else{
+                console.log("Err CANCELLED")
+                window.location = "userprofile.html";
+              }             
             });
           });
       });
