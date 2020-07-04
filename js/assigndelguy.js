@@ -44,7 +44,7 @@ fetch(url, {
         '</p>\n          <p class="phone">' +
         data["restaurant"].contactNos[0] +
         '</p>\n          <div class="paymentdetails">\n            <p>Address</p>\n            <p class="raddress">' +
-        "\n              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non\n              itaque cupiditate assumenda expedita animi aspernatur!\n            " +
+        "\n"+ data.restaurant.address +
         '</p>\n          </div>\n          <hr style="margin: 0.5rem 0;">\n          <div class="userinfo">\n            <p>User Contact</p>\n            <p>' +
         data["user"].phone +
         '</p>\n          </div>\n          <div class="payment">\n            <div class="paymentdetails">\n              <p>Food</p>\n              ' +
