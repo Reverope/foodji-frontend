@@ -23,7 +23,7 @@ fetch(getAllOrdersURL, {
     [...data].forEach((item) => {
       if(item.status == "REJECTED" || item.status == "CANCELED")
         return
-      console.log(item);
+
 
       var ordercards = card.cloneNode(true);
 

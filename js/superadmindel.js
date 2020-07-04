@@ -5,6 +5,9 @@ var token = localStorage.getItem('foodji-super-auth-header')
 fetch(url, {
   accept: "application/json",
   mode: "cors",
+  headers:{
+    Authorization: token
+  },
   method: "GET",
 
 })
@@ -24,7 +27,7 @@ fetch(url, {
       tablerow.appendChild(liAction);             
 
       liRestaurantName.innerText = d["name"]
-      liRestaurantAddress.innerText = d["address"];
+      liRestaurantAddress.innerText = d["username"];
 
       restDisplay.appendChild(tablerow);
 
@@ -49,7 +52,7 @@ fetch(url, {
 
           if(r == true){
             var url =
-                "https://knight-foodji.herokuapp.com/api/restaurant/delete/" +
+                "https://knight-foodji.herokuapp.com/api/deliveryguy/delete/" +
                 clickedButton.target.id;
 
             button.innerText = "Deleting"
@@ -61,12 +64,12 @@ fetch(url, {
                   Authorization: token,
                 },
               }).then((response) => {
-                console.log("DELETED")
-                  window.location = "superadminrest.html";
+            
+                  window.location = "superadmindel.html";
               });
           } else{
-            console.log("Err CANCELLED")
-            window.location = "superadminrest.html";
+            
+            window.location = "superadmindel.html";
           }             
         });
       });
