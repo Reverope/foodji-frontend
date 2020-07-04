@@ -21,7 +21,7 @@ fetch(url, {
 })
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
+   
     var foodListForInnerHtml = "";
 
     if (!data["assign"] && data.status != "CANCELED") {

@@ -27,6 +27,7 @@ fetch(restProfileURL, {
 })
   .then((response) => response.json())
   .then((restaurant) => {
+    restaurant.orders.reverse();
     restaurant.orders.forEach((orderId) => {
       var tablerow = document.createElement("tr");
       var liElement = document.createElement("td");
@@ -123,11 +124,9 @@ fetch(restProfileURL, {
                 var url =
                   "https://knight-foodji.herokuapp.com/api/restaurant/order/acceptreject/accept/" +
                   clickedButton.target.id;
-                  console.log(document.getElementById(`eta${clickedButton.target.id}`).value)
                 var reqBody = JSON.stringify({
                   eta: document.getElementById(`eta${clickedButton.target.id}`).value
                 })
-                console.log(reqBody)
                 fetch(url, {
                   mode: "cors",
                   method: "POST",
@@ -140,10 +139,9 @@ fetch(restProfileURL, {
                   accept: "application/json",
                 }).then((response) => {
                   if (response.status == 200) {
-                     location.reload()
-                    console.log("Accepted");
+                     window.location = "restprofile.html"
                   } else {
-                    console.log("Error");
+                     alert("Unable to accept order. Please try again.")
                      location.reload()
                   }
                 });
@@ -151,7 +149,6 @@ fetch(restProfileURL, {
             });
             selectAllDeclineButtons.forEach((button) => {
               button.addEventListener("click", (clickedButton) => {
-                console.log(clickedButton.target.id);
                 var url =
                   "https://knight-foodji.herokuapp.com/api/restaurant/order/acceptreject/reject/" +
                   clickedButton.target.id;
@@ -163,12 +160,11 @@ fetch(restProfileURL, {
                     Authorization: token,
                   },
                 }).then((response) => {
-                  console.log(response)
                   if (response.status == 200) {
-                    // console.log("Rejected");
-                    location.reload()
+                    alert("Order Rejected")
+                    window.location = "restprofile.html"
                   } else {
-                    // console.log("Error");
+                    alert("Unable to Reject order. Please try again.")
                     location.reload()
                   }
                 });

@@ -87,7 +87,7 @@ fetch(restProfileURL, {
       name["innerText"] = foodItem.name;
 
       var onclicktext = food.childNodes[1].childNodes[3].childNodes[5];
-      console.log(foodItem);
+  
       onclicktext.id = foodItem.foodid;
 
       var price = food.childNodes[1].childNodes[3].childNodes[1].childNodes[3];
@@ -104,7 +104,7 @@ fetch(restProfileURL, {
       dbtn.addEventListener("click", (e) => {
         var id = e.target["id"];
         deletefooditemthroughapi(id);
-        console.log(id);
+      
       });
     });
   });
@@ -155,10 +155,11 @@ function deletefooditemthroughapi(fid) {
     .then((res) => res.json)
     .then((data) => {
       window.location = "restprofile.html";
-      console.log(data);
+
     })
     .catch((err) => {
-      console.log(err);
+      alert("Unable to delete food")
+      location.reload()
     });
 }
 
@@ -190,9 +191,8 @@ var editProfileURL = `https://knight-foodji.herokuapp.com/api/restaurant`
         alert("Profile Updated Successfully")
         location.reload()
       } else{
-        console.log(res)
         alert("Please try again.")
-        //location.reload()
+        location.reload()
       }
     })
   }

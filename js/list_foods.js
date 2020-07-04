@@ -8,11 +8,15 @@ var restaurantCode = url.searchParams.get("id");
 var placeOrderBtn = document.getElementById("placeOrder");
 var createOrderURL = `https://knight-foodji.herokuapp.com/api/user/order`;
 var currentAddress = document.querySelector(".currentaddress");
+var userToken = localStorage.getItem("foodji-user-auth-header");
 
 // Address Code
-var userAddress = localStorage.getItem("foodji-user-address");
-var index = parseInt(userAddress.toString().length - 2);
-currentAddress["value"] = userAddress.toString().substr(1, index);
+if(userToken){
+  var userAddress = localStorage.getItem("foodji-user-address");
+  var index = parseInt(userAddress.toString().length - 2);
+  currentAddress["value"] = userAddress.toString().substr(1, index);
+}
+
 
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -48,7 +52,6 @@ fetch(url, {
 
       var img = food.childNodes[1].childNodes[1].childNodes[1];
       img["attributes"][0]["value"] = foodItem.imageLink;
-      console.log(img)
 
       var name = food.childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       name["innerText"] = foodItem["foodid"].name;
@@ -82,7 +85,6 @@ fetch(url, {
       for (every in orderAr) {
         var price = orderAr[every].food_price.replace("Rs. ","")
         total = total + price * orderAr[every].quantity;
-        console.log(price)
       }
       return total;
     }
@@ -191,7 +193,7 @@ fetch(url, {
     });
   });
 
-var userToken = localStorage.getItem("foodji-user-auth-header");
+
 
 
   placeOrderBtn.onclick = (e)=>{

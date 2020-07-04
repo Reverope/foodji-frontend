@@ -47,6 +47,7 @@ fetch(url, {
     eEmail["value"] = data["user"].email;
     eAddress["value"] = data["user"].address;
     ePhone["value"] = data["user"].phone;
+    data.user.orders.reverse()
     data.user.orders.forEach((item) => {
       var orderId = item._id;
       var tablerow = document.createElement("tr");
@@ -147,10 +148,8 @@ fetch(url, {
                 },
               }).then((response) => {
                 if (response.status == 200) {
-                  console.log("Canceled");
                   location.reload()
                 } else {
-                  console.log("Error");
                   location.reload()
                 }
               });
@@ -164,7 +163,6 @@ fetch(url, {
     loader.remove();
   })
   .catch((err) => {
-    console.log(err);
     PopUpLog();
   });
 
