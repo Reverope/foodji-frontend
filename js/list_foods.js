@@ -46,8 +46,9 @@ fetch(url, {
 
       // console.log(a);
 
-      //   var img = food.childNodes[1].childNodes[1].childNodes[1].childNodes[1];
-      //   img["attributes"][0]["value"] = element.image;
+      var img = food.childNodes[1].childNodes[1].childNodes[1];
+      img["attributes"][0]["value"] = foodItem.imageLink;
+      console.log(img)
 
       var name = food.childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       name["innerText"] = foodItem["foodid"].name;

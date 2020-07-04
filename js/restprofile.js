@@ -1,5 +1,6 @@
 var restProfileURL = "https://knight-foodji.herokuapp.com/api/restaurant/me";
 var addFoodURL = "https://knight-foodji.herokuapp.com/api/food/";
+var addFoodURLlocal = "http://localhost:5000/api/food/"
 var deleteFoodURL = "https://knight-foodji.herokuapp.com/api/restaurant/food/";
 var token = localStorage.getItem("foodji-rest-auth-header");
 
@@ -13,7 +14,6 @@ var restaurantDeleteButton = document.getElementById("deleteorderfood");
 
 var container = document.querySelector("#ritem");
 var containerBig = document.getElementById("foodlistingbox");
-var addFoodForm = document.getElementById("addFoodForm");
 var orderDisplay = document.querySelector(".tableoforder");
 
 var editFormSection = document.querySelector(".containert");
@@ -79,6 +79,9 @@ fetch(restProfileURL, {
     [...ar].forEach((foodItem) => {
       var food = container.cloneNode(true);
 
+      var imageLink = food.childNodes[1].childNodes[1].childNodes[1];
+      imageLink.setAttribute("src", foodItem.imageLink)
+
       var name = food.childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       name["innerText"] = foodItem.name;
 
@@ -105,30 +108,25 @@ fetch(restProfileURL, {
     });
   });
 
+
+var addFoodForm = document.getElementById("addFoodForm");
 addFoodForm.onsubmit = (e) => {
   e.preventDefault();
-  var foodName = document.getElementById("foodName").value;
-  var foodPrice = document.getElementById("foodPrice").value;
 
-  var reqBody = JSON.stringify({
-    name: foodName,
-    price: foodPrice,
-  });
-  console.log(reqBody);
+  var formdata = new FormData(addFoodForm)
+
   fetch(addFoodURL, {
-    mode: "cors",
     method: "POST",
-
     headers: {
-      "Content-Type": "application/json",
       Authorization: token,
     },
-    body: reqBody,
-    accept: "application/json",
+    body: formdata,
+    accept: "application/json"
   })
+
     .then((res) => res.json)
     .then((data) => {
-      // console.log(JSON.stringify(data))
+      //console.log(JSON.stringify(data))
       window.location = "restprofile.html";
     })
     .catch((err) => {
