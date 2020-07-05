@@ -60,6 +60,11 @@ fetch(restProfileURL, {
 })
   .then((response) => response.json())
   .then((restaurant) => {
+    eEmail.value = restaurant["email"]
+    eName.value = restaurant["name"]
+    eAddress.value = restaurant["address"]
+    ePhone.value = restaurant["contactNos"][0]
+
     var restaurantName = restaurant["name"];
     var restaurantId = restaurant["_id"];
     var restaurantContact = restaurant["contactNos"][0];
