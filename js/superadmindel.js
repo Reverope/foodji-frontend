@@ -35,7 +35,7 @@ fetch(url, {
       deleteButton.id = restId;
       liAction.appendChild(deleteButton);
       deleteButton.style.margin = "0 1rem";
-      deleteButton.className = "delete template-btn template-btn2";              
+      deleteButton.className = "delete btn btn-danger";              
       deleteButton.innerText = "Delete";
 
       //restDisplay.appendChild(tablerow);
