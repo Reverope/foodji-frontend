@@ -1,7 +1,11 @@
-var url = "https://knight-foodji.herokuapp.com/api/restaurant";
+
 var restDisplay = document.querySelector(".tableoforder");
 var token = localStorage.getItem('foodji-super-auth-header')
+var showMoreBtn = document.getElementById("showmore")
+var page = 1;
 
+const getRestaurants = ()=>{
+  var url = `https://knight-foodji.herokuapp.com/api/restaurant?pageNo=${page}&size=10`;
 fetch(url, {
   accept: "application/json",
   mode: "cors",
@@ -48,6 +52,7 @@ fetch(url, {
       deleteButton.style.margin = "0 1rem";
       deleteButton.className = "delete template-btn template-btn2";              
       deleteButton.innerText = "Delete";
+      deleteButton.className = "btn btn-danger"
 
       //restDisplay.appendChild(tablerow);
 
@@ -89,10 +94,17 @@ fetch(url, {
 
   })
   .catch((err) => {
-
+    console.error(err)
   });
+}
+
+getRestaurants();
 
   
+  showMoreBtn.onclick = (e)=>{
+    page = page + 1;
+    getRestaurants()
+  }
 
 
 
