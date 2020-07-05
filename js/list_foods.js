@@ -145,6 +145,7 @@ fetch(url, {
           });
 
           totalAmount.innerText = "Total: ₹" + totalAm();
+
         }
       })
     );
@@ -194,9 +195,27 @@ fetch(url, {
   });
 
 
-
+function getRandomString(length) {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    for ( var i = 0; i < length; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
+}
 
   placeOrderBtn.onclick = (e)=>{
+    var myText = getRandomString(8)
+    console.log(myText)
+    var confirm1 = prompt("Please enter this text correctly: "+myText, "enter text here");
+
+    if (confirm1!= myText) {
+      alert("Error. Please type correctly")
+      return
+    } else {
+      alert("Order will be placed. Please confirm")
+    }
+
     var foods = []
     var orderAddress = document.getElementById("address").value
     orderAr.forEach((item) => {
