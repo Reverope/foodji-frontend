@@ -26,6 +26,8 @@ var eEmail = document.getElementById("Email");
 
 var eAddress = document.getElementById("Address");
 var ePhone = document.getElementById("Phone");
+
+
 // var restIdDisplay = document.getElementById("dID");
 
 editProfileButton.addEventListener("click", () => {
@@ -82,6 +84,7 @@ fetch(restProfileURL, {
 
       var imageLink = food.childNodes[1].childNodes[1].childNodes[1];
       imageLink.setAttribute("src", foodItem.imageLink)
+      imageLink.setAttribute("style", "width:100%; height: 200px")
 
       var name = food.childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       name["innerText"] = foodItem.name;
@@ -91,7 +94,7 @@ fetch(restProfileURL, {
       onclicktext.id = foodItem.foodid;
 
       var price = food.childNodes[1].childNodes[3].childNodes[1].childNodes[3];
-      price["innerText"] = foodItem.price;
+      price["innerText"] = "Rs. " + foodItem.price;
       container.after(food);
     });
   })
