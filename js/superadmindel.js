@@ -16,18 +16,25 @@ fetch(url, {
   })
   .then(function (data) {   
     data.forEach((d)=>{
+      console.log(d)
       var restId = d._id;
       var tablerow = document.createElement("tr");
       var liRestaurantName = document.createElement("td");
       var liRestaurantAddress = document.createElement("td");
+      var liRestaurantEmail = document.createElement("td");
+      var liRestaurantNumber = document.createElement("td");
       var liAction = document.createElement("td");
 
       tablerow.appendChild(liRestaurantName);
       tablerow.appendChild(liRestaurantAddress);
+      tablerow.appendChild(liRestaurantEmail);
+      tablerow.appendChild(liRestaurantNumber);
       tablerow.appendChild(liAction);             
 
       liRestaurantName.innerText = d["name"]
       liRestaurantAddress.innerText = d["username"];
+      liRestaurantEmail.innerText = d["email"]
+      liRestaurantNumber.innerText = d["phone"]
 
       restDisplay.appendChild(tablerow);
 
@@ -55,6 +62,8 @@ fetch(url, {
                 "https://knight-foodji.herokuapp.com/api/deliveryguy/delete/" +
                 clickedButton.target.id;
 
+                console.log(url)
+
             button.innerText = "Deleting"
               fetch(url, {
                 accept: "application/json",
@@ -81,3 +90,16 @@ fetch(url, {
   });
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+

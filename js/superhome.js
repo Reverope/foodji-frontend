@@ -84,9 +84,10 @@ createDelGuyForm.onsubmit = (e)=>{
     .then( res => res.json())
     .then(data =>{
         // console.log(JSON.stringify(data))
-        //window.location('superhome.html')
+        window.location('superhome.html')
     })
     .catch(err =>{
         console.log(err)
     })
 }
+
