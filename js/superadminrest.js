@@ -21,14 +21,24 @@ fetch(url, {
       var tablerow = document.createElement("tr");
       var liRestaurantName = document.createElement("td");
       var liRestaurantAddress = document.createElement("td");
+      var liRestaurantId = document.createElement("td");
+      var liRestaurantNumber = document.createElement("td");
+      var liRestaurantEmail = document.createElement("td");
       var liAction = document.createElement("td");
 
       tablerow.appendChild(liRestaurantName);
       tablerow.appendChild(liRestaurantAddress);
+      tablerow.appendChild(liRestaurantId);
+      tablerow.appendChild(liRestaurantNumber);
+      tablerow.appendChild(liRestaurantEmail);
       tablerow.appendChild(liAction);             
 
       liRestaurantName.innerText = d["name"]
       liRestaurantAddress.innerText = d["address"];
+      liRestaurantId.innerText = d["restId"];
+      liRestaurantNumber.innerText = d["contactNos"][0];
+      liRestaurantEmail.innerText = d["email"];
+
 
       restDisplay.appendChild(tablerow);
 
