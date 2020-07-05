@@ -1,7 +1,7 @@
-var restProfileURL = "https://knight-foodji.herokuapp.com/api/restaurant/me";
-var addFoodURL = "https://knight-foodji.herokuapp.com/api/food/";
+var restProfileURL = "https://foodji-backend.herokuapp.com/api/restaurant/me";
+var addFoodURL = "https://foodji-backend.herokuapp.com/api/food/";
 var addFoodURLlocal = "http://localhost:5000/api/food/"
-var deleteFoodURL = "https://knight-foodji.herokuapp.com/api/restaurant/food/";
+var deleteFoodURL = "https://foodji-backend.herokuapp.com/api/restaurant/food/";
 var token = localStorage.getItem("foodji-rest-auth-header");
 
 // Selectors
@@ -164,7 +164,7 @@ function deletefooditemthroughapi(fid) {
 }
 
 
-var editProfileURL = `https://knight-foodji.herokuapp.com/api/restaurant`
+var editProfileURL = `https://foodji-backend.herokuapp.com/api/restaurant`
 
   editProfileForm.onsubmit = (e)=>{
     e.preventDefault()

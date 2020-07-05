@@ -18,7 +18,7 @@ registerForm.onsubmit = (e) => {
     password: password,
     address: address,
   });
-  fetch("https://knight-foodji.herokuapp.com/api/user/", {
+  fetch("https://foodji-backend.herokuapp.com/api/user/", {
     method: "POST",
     mode: "cors",
     headers: { "Content-Type": "application/json" },

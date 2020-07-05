@@ -1,7 +1,7 @@
 var getAllOrdersURL =
-  "https://knight-foodji.herokuapp.com/api/user/super/orders?pageNo=1&size=10";
-var createRestURL = "https://knight-foodji.herokuapp.com/api/restaurant";
-var createDelGuyURL = "https://knight-foodji.herokuapp.com/api/deliveryGuy";
+  "https://foodji-backend.herokuapp.com/api/user/super/orders?pageNo=1&size=10";
+var createRestURL = "https://foodji-backend.herokuapp.com/api/restaurant";
+var createDelGuyURL = "https://foodji-backend.herokuapp.com/api/deliveryGuy";
 var token = localStorage.getItem("foodji-super-auth-header");
 
 var createRestForm = document.getElementById("createRestForm");
@@ -153,7 +153,7 @@ var pageNo = 1
 function showmore(){
   pageNo++;
   getAllOrdersURL =
-  "https://knight-foodji.herokuapp.com/api/user/super/orders?pageNo="+pageNo+"&size=10";
+  "https://foodji-backend.herokuapp.com/api/user/super/orders?pageNo="+pageNo+"&size=10";
 
   fetch(getAllOrdersURL, {
   accept: "application/json",
@@ -208,7 +208,7 @@ function showmore(){
 
 document.writeln("<script type='text/javascript' src='./js/download.js'></script>");
 function download_order(){
-    var download_order_url = "https://knight-foodji.herokuapp.com/api/user/super/allorders"
+    var download_order_url = "https://foodji-backend.herokuapp.com/api/user/super/allorders"
 
     fetch(download_order_url,{
         method: "GET",

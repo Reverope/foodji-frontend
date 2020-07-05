@@ -1,5 +1,5 @@
 var superLoginForm = document.getElementById('superLoginForm')
-var superLoginURL = `https://knight-foodji.herokuapp.com/api/user/super` 
+var superLoginURL = `https://foodji-backend.herokuapp.com/api/user/super` 
 superLoginForm.onsubmit = (e)=>{
     e.preventDefault();
     var reqBody = JSON.stringify({

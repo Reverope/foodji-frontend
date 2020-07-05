@@ -15,7 +15,7 @@ loginForm.onsubmit = (e) => {
   // console.log(body);
   document.getElementById("delLoginBtn").innerHTML = "Loging In";
   document.getElementById("delLoginBtn").disabled = true;
-  fetch("https://knight-foodji.herokuapp.com/api/deliveryguy/login", {
+  fetch("https://foodji-backend.herokuapp.com/api/deliveryguy/login", {
     method: "POST",
     mode: "cors",
     headers: { "Content-Type": "application/json" },

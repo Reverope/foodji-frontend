@@ -1,4 +1,4 @@
-var restProfileURL = "https://knight-foodji.herokuapp.com/api/restaurant/me";
+var restProfileURL = "https://foodji-backend.herokuapp.com/api/restaurant/me";
 var token = localStorage.getItem("foodji-rest-auth-header");
 
 // Selectors
@@ -52,7 +52,7 @@ fetch(restProfileURL, {
       tablerow.appendChild(accept);
       tablerow.appendChild(decline);
 
-      var url = `https://knight-foodji.herokuapp.com/api/restaurant/order/${orderId}`;
+      var url = `https://foodji-backend.herokuapp.com/api/restaurant/order/${orderId}`;
 
       fetch(url, {
         accept: "application/json",
@@ -122,7 +122,7 @@ fetch(restProfileURL, {
             selectAllAcceptButtons.forEach((button) => {
               button.addEventListener("click", (clickedButton) => {
                 var url =
-                  "https://knight-foodji.herokuapp.com/api/restaurant/order/acceptreject/accept/" +
+                  "https://foodji-backend.herokuapp.com/api/restaurant/order/acceptreject/accept/" +
                   clickedButton.target.id;
                 var reqBody = JSON.stringify({
                   eta: document.getElementById(`eta${clickedButton.target.id}`).value
@@ -150,7 +150,7 @@ fetch(restProfileURL, {
             selectAllDeclineButtons.forEach((button) => {
               button.addEventListener("click", (clickedButton) => {
                 var url =
-                  "https://knight-foodji.herokuapp.com/api/restaurant/order/acceptreject/reject/" +
+                  "https://foodji-backend.herokuapp.com/api/restaurant/order/acceptreject/reject/" +
                   clickedButton.target.id;
                 fetch(url, {
                   accept: "application/json",

@@ -5,7 +5,7 @@ var showMoreBtn = document.getElementById("showmore")
 var page = 1;
 
 const getRestaurants = ()=>{
-  var url = `https://knight-foodji.herokuapp.com/api/restaurant?pageNo=${page}&size=10`;
+  var url = `https://foodji-backend.herokuapp.com/api/restaurant?pageNo=${page}&size=10`;
 fetch(url, {
   accept: "application/json",
   mode: "cors",
@@ -68,7 +68,7 @@ fetch(url, {
 
           if(r == true){
             var url =
-                "https://knight-foodji.herokuapp.com/api/restaurant/delete/" +
+                "https://foodji-backend.herokuapp.com/api/restaurant/delete/" +
                 clickedButton.target.id;
 
 

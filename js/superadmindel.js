@@ -1,4 +1,4 @@
-var url = "https://knight-foodji.herokuapp.com/api/deliveryguy/all/";
+var url = "https://foodji-backend.herokuapp.com/api/deliveryguy/all/";
 var restDisplay = document.querySelector(".tableoforder");
 var token = localStorage.getItem('foodji-super-auth-header')
 
@@ -59,7 +59,7 @@ fetch(url, {
 
           if(r == true){
             var url =
-                "https://knight-foodji.herokuapp.com/api/deliveryguy/delete/" +
+                "https://foodji-backend.herokuapp.com/api/deliveryguy/delete/" +
                 clickedButton.target.id;
 
                 console.log(url)

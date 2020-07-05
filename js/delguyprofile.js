@@ -7,7 +7,7 @@ var container = document.querySelector("#ritem");
 var editFormSection = document.querySelector(".containert");
 var editProfileButton = document.getElementById("edit");
 var editProfileForm = document.getElementById('editprofileform')
-var url = "https://knight-foodji.herokuapp.com/api/deliveryguy/me";
+var url = "https://foodji-backend.herokuapp.com/api/deliveryguy/me";
 
 
 var eName = document.getElementById("Name");
@@ -83,7 +83,7 @@ window.onload = () => {
 
 
   
-        var url = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`;
+        var url = `https://foodji-backend.herokuapp.com/api/deliveryguy/order/${orderId}`;
   
         fetch(url, {
           accept: "application/json",
@@ -165,7 +165,7 @@ window.onload = () => {
 
                   if(r == true){
                     var url =
-                        "https://knight-foodji.herokuapp.com/api/deliveryguy/status/" +
+                        "https://foodji-backend.herokuapp.com/api/deliveryguy/status/" +
                         clickedButton.target.id;
 
                     button.innerText = "SHIPPING"
@@ -196,7 +196,7 @@ window.onload = () => {
 
                   if(r == true){
                     var url =
-                        "https://knight-foodji.herokuapp.com/api/deliveryguy/order/status/" +
+                        "https://foodji-backend.herokuapp.com/api/deliveryguy/order/status/" +
                         clickedButton.target.id;
 
                     button.innerText = "Updating"
@@ -245,7 +245,7 @@ window.onload = () => {
         // tablerow.appendChild(accept);
         // tablerow.appendChild(decline);
 
-        // var orderurl = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`;
+        // var orderurl = `https://foodji-backend.herokuapp.com/api/deliveryguy/order/${orderId}`;
 
         // fetch(orderurl, {
         //   accept: "application/json",
@@ -309,7 +309,7 @@ window.onload = () => {
 };
 
 
-var editProfileURL = `https://knight-foodji.herokuapp.com/api/deliveryguy/me`
+var editProfileURL = `https://foodji-backend.herokuapp.com/api/deliveryguy/me`
 
 editProfileForm.onsubmit = (e)=>{
   e.preventDefault()

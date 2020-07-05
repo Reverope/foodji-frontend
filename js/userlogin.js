@@ -12,7 +12,7 @@ userLoginForm.onsubmit = (e) => {
     phone: phone,
     password: password,
   });
-  fetch("https://knight-foodji.herokuapp.com/api/user/login", {
+  fetch("https://foodji-backend.herokuapp.com/api/user/login", {
     method: "POST",
     mode: "cors",
     headers: { "Content-Type": "application/json" },

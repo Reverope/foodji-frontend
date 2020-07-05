@@ -4,7 +4,7 @@ var orderId = url.searchParams.get("id");
 var delGuyToken = localStorage.getItem("foodji-guy-auth-header");
 var card = document.getElementById("cardItem");
 
-var url = `https://knight-foodji.herokuapp.com/api/deliveryguy/order/${orderId}`;
+var url = `https://foodji-backend.herokuapp.com/api/deliveryguy/order/${orderId}`;
 window.onload = () => {
   if (!delGuyToken) {
     document.getElementById("pop-modal").style.display = "block";
@@ -65,7 +65,7 @@ function assignorder() {
   // var od = parseInt(orderidincoming);
   // console.log(orderidincoming);
   var urlaccept =
-    "https://knight-foodji.herokuapp.com/api/deliveryguy/assign/" + orderId;
+    "https://foodji-backend.herokuapp.com/api/deliveryguy/assign/" + orderId;
   fetch(urlaccept, {
     accept: "application/json",
     mode: "cors",

@@ -14,7 +14,7 @@ loginForm.onsubmit = (e) => {
   });
   // console.log(rest_id, password);
   // console.log(body);
-  fetch("https://knight-foodji.herokuapp.com/api/restaurant/login", {
+  fetch("https://foodji-backend.herokuapp.com/api/restaurant/login", {
     method: "POST",
     mode: "cors",
     headers: { "Content-Type": "application/json" },

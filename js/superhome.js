@@ -1,6 +1,6 @@
-var getAllOrdersURL = "https://knight-foodji.herokuapp.com/api/user/super/orders?pageNo=1&size=10"
-var createRestURL = "https://knight-foodji.herokuapp.com/api/restaurant"
-var createDelGuyURL = "https://knight-foodji.herokuapp.com/api/deliveryGuy"
+var getAllOrdersURL = "https://foodji-backend.herokuapp.com/api/user/super/orders?pageNo=1&size=10"
+var createRestURL = "https://foodji-backend.herokuapp.com/api/restaurant"
+var createDelGuyURL = "https://foodji-backend.herokuapp.com/api/deliveryGuy"
 var token = localStorage.getItem('foodji-super-auth-header')
 
 var createRestForm = document.getElementById('createRestForm')

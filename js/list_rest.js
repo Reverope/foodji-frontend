@@ -5,7 +5,7 @@ var url = new URL(url_string);
 var page = parseInt(url.searchParams.get("page"));
 console.log(page)
 const getRestaurants = ()=>{
-var url =   `https://knight-foodji.herokuapp.com/api/restaurant?pageNo=${page}&size=10`
+var url =   `https://foodji-backend.herokuapp.com/api/restaurant?pageNo=${page}&size=10`
   fetch(url, {
     accept: "application/json",
     mode: "cors",

@@ -6,7 +6,7 @@ var url_string = window.location.href;
 var url = new URL(url_string);
 var restaurantCode = url.searchParams.get("id");
 var placeOrderBtn = document.getElementById("placeOrder");
-var createOrderURL = `https://knight-foodji.herokuapp.com/api/user/order`;
+var createOrderURL = `https://foodji-backend.herokuapp.com/api/user/order`;
 var currentAddress = document.querySelector(".currentaddress");
 var userToken = localStorage.getItem("foodji-user-auth-header");
 
@@ -28,7 +28,7 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 var restaurantId = getParameterByName("id");
-var url = "https://knight-foodji.herokuapp.com/api/restaurant/" + restaurantId;
+var url = "https://foodji-backend.herokuapp.com/api/restaurant/" + restaurantId;
 
 fetch(url, {
   accept: "application/json",

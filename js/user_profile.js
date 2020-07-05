@@ -14,7 +14,7 @@ var eEmail = document.getElementById("Email");
 var eAddress = document.getElementById("Address");
 var ePhone = document.getElementById("Phone");
 
-var url = "https://knight-foodji.herokuapp.com/api/user/me";
+var url = "https://foodji-backend.herokuapp.com/api/user/me";
 var token = localStorage.getItem("foodji-user-auth-header");
 
 editProfileButton.addEventListener("click", () => {
@@ -72,7 +72,7 @@ fetch(url, {
       tablerow.appendChild(liStatus);
       tablerow.appendChild(liAction);
 
-      var url = `https://knight-foodji.herokuapp.com/api/user/order/${orderId}`;
+      var url = `https://foodji-backend.herokuapp.com/api/user/order/${orderId}`;
 
       fetch(url, {
         accept: "application/json",
@@ -151,7 +151,7 @@ fetch(url, {
 
               if(r == true){
                 var url =
-                    "https://knight-foodji.herokuapp.com/api/user/order/cancel/" +
+                    "https://foodji-backend.herokuapp.com/api/user/order/cancel/" +
                     clickedButton.target.id;
 
                 button.innerText = "CANCELING"
@@ -187,7 +187,7 @@ fetch(url, {
     PopUpLog();
   });
 
-  var editProfileURL = `https://knight-foodji.herokuapp.com/api/user/me`
+  var editProfileURL = `https://foodji-backend.herokuapp.com/api/user/me`
 
   editProfileForm.onsubmit = (e)=>{
     e.preventDefault()
