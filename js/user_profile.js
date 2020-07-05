@@ -94,16 +94,7 @@ fetch(url, {
               declineButton.className = "declinedecision template-btn template-btn2";              
               declineButton.innerText = "Cancel";
 
-            } else if(data["status"] == "SHIPPED"){
-              var deliveredButton = document.createElement("button");
-              deliveredButton.id = orderId;
-              liAction.appendChild(deliveredButton);
-              deliveredButton.style.margin = "0 1rem";
-              deliveredButton.className = "delivered template-btn template-btn2";              
-              deliveredButton.innerText = "Delivered";
-
-            }
-            else{
+            } else{
               liAction.innerText = "None"
             }
 
@@ -183,35 +174,7 @@ fetch(url, {
           });
 
           
-          selectAllDeliveredButtons.forEach((button) => {
-            button.addEventListener("click", (clickedButton) => {
-              //var r = confirm("Do you want to cancel the order.")
-              var r = true
-              console.log(r)
-
-              if(r == true){
-                var url =
-                    "https://knight-foodji.herokuapp.com/api/user/order/status/" +
-                    clickedButton.target.id;
-
-                button.innerText = "UPDATING"
-                  fetch(url, {
-                    accept: "application/json",
-                    mode: "cors",
-                    method: "PATCH",
-                    headers: {
-                      Authorization: token,
-                    },
-                  }).then((response) => {
-                    console.log("UPDATED to Delivered")
-                      window.location = "userprofile.html";
-                  });
-              } else{
-                console.log("Err CANCELLED")
-                window.location = "userprofile.html";
-              }             
-            });
-          });
+          
 
       });
     });

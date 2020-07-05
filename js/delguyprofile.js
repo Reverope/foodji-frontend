@@ -135,6 +135,14 @@ window.onload = () => {
                 shipButton.style.margin = "0 1rem";
                 shipButton.className = "ship template-btn template-btn2";                
                 shipButton.innerText = "SHIP";
+
+              } else if (data["status"] == "SHIPPED") {
+                var deliveredButton = document.createElement("button");
+                liAction.appendChild(deliveredButton);
+                deliveredButton.id = orderId;
+                deliveredButton.style.margin = "0 1rem";
+                deliveredButton.className = "delivered template-btn template-btn2";                
+                deliveredButton.innerText = "DELIVERED";
               } else {
                 liAction.innerText = "None"
               }
@@ -143,6 +151,10 @@ window.onload = () => {
 
               var selectAllShipButtons = document.querySelectorAll(
                 ".ship"
+              );
+
+              var selectAllDeliveredButtons = document.querySelectorAll(
+                ".delivered"
               );
 
               selectAllShipButtons.forEach((button) => {
@@ -167,6 +179,37 @@ window.onload = () => {
                         },
                       }).then((response) => {
                         console.log("SHIPPED")
+                          window.location = "delguyprofile.html";
+                      });
+                  } else{
+                    console.log("Err CANCELLED")
+                    window.location = "delguyprofile.html";
+                  }             
+                });
+              });
+
+              selectAllDeliveredButtons.forEach((button) => {
+                button.addEventListener("click", (clickedButton) => {
+                  //var r = confirm("Do you want to cancel the order.")
+                  var r = true
+                  console.log(r)
+
+                  if(r == true){
+                    var url =
+                        "https://knight-foodji.herokuapp.com/api/deliveryguy/order/status/" +
+                        clickedButton.target.id;
+
+                    button.innerText = "Updating"
+                    console.log(url)
+                      fetch(url, {
+                        accept: "application/json",
+                        mode: "cors",
+                        method: "PATCH",
+                        headers: {
+                          Authorization: token,
+                        },
+                      }).then((response) => {
+                        console.log("DELIVERED")
                           window.location = "delguyprofile.html";
                       });
                   } else{
