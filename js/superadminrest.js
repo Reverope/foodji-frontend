@@ -10,6 +10,9 @@ fetch(url, {
   accept: "application/json",
   mode: "cors",
   method: "GET",
+  headers:{
+    Authorization: token
+  }
 
 })
   .then(function (response) {
@@ -17,7 +20,8 @@ fetch(url, {
   })
   .then(function (data) {   
     data.forEach((d)=>{
-      var restId = d._id;
+      console.log(d)
+      var restId = d.id;
       var tablerow = document.createElement("tr");
       var liRestaurantName = document.createElement("td");
       var liRestaurantAddress = document.createElement("td");
@@ -57,6 +61,7 @@ fetch(url, {
                 "https://knight-foodji.herokuapp.com/api/restaurant/delete/" +
                 clickedButton.target.id;
 
+
             button.innerText = "Deleting"
               fetch(url, {
                 accept: "application/json",
@@ -90,3 +95,14 @@ getRestaurants();
     page = page + 1;
     getRestaurants()
   }
+
+
+
+
+
+
+
+
+
+
+

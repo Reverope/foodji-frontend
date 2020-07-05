@@ -205,3 +205,26 @@ function showmore(){
   });
 
 }
+
+document.writeln("<script type='text/javascript' src='./js/download.js'></script>");
+function download_order(){
+    var download_order_url = "https://knight-foodji.herokuapp.com/api/user/super/allorders"
+
+    fetch(download_order_url,{
+        method: "GET",
+
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+
+        accept: "application/json"
+    })   
+    .then(response => response.blob())
+    .then(blob => {
+        download(blob,"orderfile.csv","text/csv")   
+    })
+    .catch(err =>{
+        console.log(err)
+    }) 
+}
