@@ -27,6 +27,7 @@ function remove() {
   window.scrollTo(document.body.scrollHeight, 0);
 }
 
+
 fetch(url, {
   accept: "application/json",
   mode: "cors",
@@ -47,7 +48,22 @@ fetch(url, {
     eEmail["value"] = data["user"].email;
     eAddress["value"] = data["user"].address;
     ePhone["value"] = data["user"].phone;
-    data.user.orders.reverse()
+    //data.user.orders.reverse()
+
+    data.user.orders.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+     var date1 = new Date(b.updatedAt)
+     var date2 = new Date(a.updatedAt)
+     console.log(date1)
+
+    if(date1 < date2) return -1
+    else return 1 
+    });
+    console.log(data.user.orders)
+
+
+
     data.user.orders.forEach((item) => {
       var orderId = item._id;
       var tablerow = document.createElement("tr");
@@ -74,19 +90,25 @@ fetch(url, {
 
       var url = `https://foodji-backend.herokuapp.com/api/user/order/${orderId}`;
 
-      fetch(url, {
-        accept: "application/json",
-        mode: "cors",
-        method: "GET",
-        headers: {
-          Authorization: token,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
+      
+      async function fun(url){
+        try{
+        var response = await fetch(url, {
+          accept: "application/json",
+          mode: "cors",
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        })
+        //console.log(response.json())
+
+
+        var data1 = await response.json()
+        console.log(data1)
             //data["status"] = "SHIPPED"
 
-            if (data["status"] == "PENDING") {
+            if (data1["status"] == "PENDING") {
               var declineButton = document.createElement("button");
               declineButton.id = orderId;
               liAction.appendChild(declineButton);
@@ -98,9 +120,9 @@ fetch(url, {
               liAction.innerText = "None"
             }
 
-            var orderedFoodList = data["foods"];
+            var orderedFoodList = data1["foods"];
 
-            [...orderedFoodList].forEach((food) => {
+            await [...orderedFoodList].forEach((food) => {
               liElement.innerHTML +=
                 "<p>" +
                 food["name"] +
@@ -112,12 +134,12 @@ fetch(url, {
             });
 
             // liElement.innerText = orderId;
-            liRestaurant.innerText = data["restaurant"]["name"]
-            liAddress.innerText = data["address"];
-            liTotalPrice.innerText = data["payment"]["total"];
-            liContact.innerText = data["restaurant"]["contactNos"][0];
-            liStatus.innerText = data["status"];
-            liETA.innerText = data["eta"]
+            liRestaurant.innerText = data1["restaurant"]["name"]
+            liAddress.innerText = data1["address"];
+            liTotalPrice.innerText = data1["payment"]["total"];
+            liContact.innerText = data1["restaurant"]["contactNos"][0];
+            liStatus.innerText = data1["status"];
+            liETA.innerText = data1["eta"]
 
             if(data["eta"] == undefined)
               liETA.innerText = "pending"
@@ -131,7 +153,7 @@ fetch(url, {
 
             // Triggering event : Accept/Decline
 
-            orderDisplay.appendChild(tablerow);
+            await orderDisplay.appendChild(tablerow);
 
 
             var selectAllDeclineButtons = document.querySelectorAll(
@@ -143,7 +165,7 @@ fetch(url, {
             );
 
 
-          selectAllDeclineButtons.forEach((button) => {
+          await selectAllDeclineButtons.forEach((button) => {
             button.addEventListener("click", (clickedButton) => {
               //var r = confirm("Do you want to cancel the order.")
               var r = true
@@ -171,12 +193,12 @@ fetch(url, {
                 window.location = "userprofile.html";
               }             
             });
-          });
-
-          
-          
-
-      });
+          });  
+        } catch(e){
+          console.log(e)
+        }
+}
+      fun(url)
     });
 
   })
