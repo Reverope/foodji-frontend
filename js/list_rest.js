@@ -35,7 +35,7 @@ var url =   `https://foodji-backend.herokuapp.com/api/restaurant?pageNo=${page}&
             .childNodes[1];
         name["innerText"] = element.name;
         var phone =  restaurant.childNodes[1].childNodes[1].childNodes[3].childNodes[1].childNodes[3];
-        phone.innerText = element.contactNos[0];
+        //phone.innerText = element.contactNos[0];
         var address =
           restaurant.childNodes[1].childNodes[1].childNodes[3].childNodes[3];
         address["innerText"] = element.address;
