@@ -30,6 +30,7 @@ fetch(restProfileURL, {
     restaurant.orders.reverse();
     restaurant.orders.forEach((orderId) => {
       var tablerow = document.createElement("tr");
+      var liName = document.createElement("td");
       var liElement = document.createElement("td");
       var liAddress = document.createElement("td");
       var liPaymentStatus = document.createElement("td");
@@ -43,6 +44,7 @@ fetch(restProfileURL, {
       var liStatus = document.createElement("td");
 
       tablerow.appendChild(liElement);
+      tablerow.appendChild(liName);
       tablerow.appendChild(liAddress);
       tablerow.appendChild(liTotalPrice);
       tablerow.appendChild(liAssignmentDate);
@@ -97,6 +99,7 @@ fetch(restProfileURL, {
             });
 
             // liElement.innerText = orderId;
+            liName.innerText=data["user"]["name"]
             liAddress.innerText = data["address"];
             liTotalPrice.innerText = data["payment"]["total"];
             liContact.innerText = data["user"]["phone"];
