@@ -55,12 +55,11 @@ fetch(url, {
       // to get a value that is either negative, positive, or zero.
      var date1 = new Date(b.updatedAt)
      var date2 = new Date(a.updatedAt)
-     console.log(date1)
 
     if(date1 < date2) return -1
     else return 1 
     });
-    console.log(data.user.orders)
+
 
 
 
@@ -141,15 +140,15 @@ fetch(url, {
             liStatus.innerText = data1["status"];
             liETA.innerText = data1["eta"]
 
-            if(data["eta"] == undefined)
+            if(data1["eta"] == undefined)
               liETA.innerText = "pending"
 
-            var time = data["createdAt"];
+            var time = data1["createdAt"];
             var timing = new Date(time);
 
 
             // liAssignmentDate.innerText = timing.substr(0, 24);
-            liAssignmentDate.innerText = timing.toString().substr(0, 24);
+            liAssignmentDate.innerText = timing
 
             // Triggering event : Accept/Decline
 
